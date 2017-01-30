@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>用户登录-UI中国-专业界面交互设计平台</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="Keywords" content="ui设计,界面设计,ui平台,学ui,ui教程,ui源文件,ui下载,ui问答,ui杂志,ui活动,ui软件,ui工具,ui灵感,ui经验">
+  <meta property="qc:admins" content="172174204536747716" />
+  <meta name="Description" content="UI中国,前身为iconfans.com。是专业的界面设计师交流、学习/展示平台.同时也是UI设计师人才流动的集散地,会员均为一线UI设计师,覆盖主流互联网公司.我们希望借助互联网的力量打造国内最专业的UI设计平台,为UI设计师做最好的服务,提高UI设计行业价值!">
+
+  <link rel="icon" href="{{ static_url('img/logo.ico') }}" type="image/png/ico">
+  <link rel="stylesheet" href="{{ static_url('uicn/css/base.css') }}">
+  <link rel="stylesheet" href="{{ static_url('uicn/css/login-fluid.css') }}">
+  <link rel="stylesheet" href="{{ static_url('uicn/css/verify.css') }}">
+  <link rel="stylesheet" href="{{ static_url('uicn/css/iconfont.css') }}">
+
+  <style type="text/css">
+    .loginForm label {
+      cursor: default;
+    }
+  </style>
+
+  <script src="{{ static_url('uicn/js/jquery.js') }}"></script>
+  <script src="{{ static_url('uicn/js/msgTip.js') }}"></script>
+  <script src="{{ static_url('uicn/js/agree.js') }}"></script>
+  <script src="{{ static_url('uicn/js/placeholder.js') }}"></script>
+  <script src="{{ static_url('uicn/js/Validform_v5.3.2.js') }}"></script>
+  <script src="{{ static_url('uicn/js/md5.min.js') }}" type="text/javascript"></script>
+  <script src="{{ static_url('js/json2.js') }}" type="text/javascript"></script>
+  <script src="{{ static_url('js/tornado_cookie.js') }}" type="text/javascript"></script>
+</head>
+
+<body>
+  <div id="ajax-hook"></div>
+  <div class="wp cl">
+    <div class="log-wrap cl">
+      <div class="log-hd">
+        <div class="wpl cl">
+          <div class="log-row cl">
+            <div class="log-logo">
+              <a href="/"> <img src="{{ static_url('img/logo-64.png') }}" srcset="{{ static_url('img/logo-128.png') }} 2x" /> </a>
+            </div>
+            <div class="log-title">
+              <strong>欢迎来到UI中国</strong>
+              <p>UI中国 专业界面设计平台</p>
+            </div>
+
+            <ul class="log-nav">
+              <li><a href="/" target="_blank">首页</a> </li>
+              <li><a href="http://www.ui.cn/list.html" target="_blank">作品</a> </li>
+              <li><a href="http://www.ui.cn/exp.html" target="_blank">学习</a> </li>
+              <li><a href="http://peixun.ui.cn" target="_blank">培训</a> </li>
+              <li><a href="http://idea.ui.cn" target="_blank">灵感</a> </li>
+              <li><a href="http://activity.ui.cn" target="_blank">活动</a> </li>
+              <li><a href="http://read.ui.cn" target="_blank">阅读</a> </li>
+              <li><a href="http://tool.ui.cn" target="_blank">工具</a> </li>
+              <li><a href="http://zhaopin.ui.cn" target="_blank">招聘</a> </li>
+              <li><a href="http://talk.ui.cn" target="_blank">话题</a> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="log-content cl">
+        <div class="wpl pos cl">
+          <div class="log-row-cx cl">
+            <div class="login_left">
+              <div class="lr_title_txt">
+                <h2>欢迎回来</h2>
+                <span>还没有账号？<a href="/portal/auth/register">立即注册</a></span>
+              </div>
+              <form id="loginForm" class='loginForm'>
+                <div class="reg_cont_input">
+                  <label class="login-icon pos">
+                    <i class="iconfont icon-envelope-line"></i>
+                    <input type="text" id="email" name="email" dataType='e' autocomplete="off"  nullmsg="邮箱不能为空!" class="log-input mls" placeholder='输入邮箱'>
+                    <div class='Validform_checktip'></div>
+                  </label>
+                  <label class="login-icon pos">
+                    <i class="iconfont icon-lock-line"></i>
+                    <input type="text" name="placeholderpwd" class="log-input mls" value='输入密码'>
+                    <input type="password" id="password" datatype='*6-20' errormsg="密码范围在6~20位之间!" autocomplete="off" class="log-input mls" nullmsg="请输入密码!" placeholder='输入密码'>
+                    <div class='Validform_checktip'></div>
+                  </label>
+                  <button id="login-button" class="lang-btn lang-btn-huge mtw lang-btn-fixed-Large">
+                    <span class="lang-btn-content">登录</span>
+                  </button>
+                  <p class="login-msg"><a class="y login-forget" href="/portal/auth/forgot-pwd" target="_blank">忘记密码?</a> 如登录出现异常,请清理浏览器缓存后再尝试。</p>
+                </div>
+              </form>
+            </div>
+            <div class="login-wrap-party z">
+              <h2>第三方账号登录</h2>
+              <div class="login-party cl">
+                <a href="http://ui.cn/oauth/sina/" class="log-sina">
+                  <span><i class="icon-sina"></i><p>新浪微博登录</p></span>
+                </a>
+                <a href="http://ui.cn/oauth/qq/" class="log-qq">
+                  <span><i class="icon-qq"></i><p>QQ帐号登录</p></span>
+                </a>
+                <a href="http://ui.cn/oauth/mi/" class="log-mi">
+                  <span><i class="icon-mi"></i><p>小米帐号登录</p></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="log-footer cl">
+      <div class="wpl cl">
+        <div class="log-row cl">
+          <p style="display:block;width:100%;text-align:center;">京ICP备14007358号-1 \ 京公网安备11010802014104号 \ Powered by © 2008-2016 aplan.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('.loginForm input').focus(function() {
+        $(this).parent().addClass('login-on')
+      }).blur(function() {
+        if ($(this).val() == '') {
+          $(this).parent().removeClass('login-on')
+        }
+      });
+
+      //email框失去、得到焦点事件处理
+      var emaildel = $('#email').val();
+      $('#email').blur(function() {
+        if ($.trim($(this).val()).length <= 0) {
+          $(this).val(emaildel)
+          $(this).parent().removeClass('login-on');
+        } else {
+          $(this).parent().addClass('login-on');
+        }
+      }).focus(function() {
+        $(this).parent().addClass('login-on');
+        if ($(this).val() == emaildel)
+          $(this).val('');
+        emaildel = "";
+      });
+
+      //password框失去、得到焦点事件处理
+      var passdel = $('#password').val();
+      $('#password').blur(function() {
+        if ($.trim($(this).val()).length <= 0) {
+          $(this).val(passdel)
+          $(this).parent().removeClass('login-on');
+        } else {
+          $(this).parent().addClass('login-on');
+        }
+      }).focus(function() {
+        $(this).parent().addClass('login-on');
+        if ($(this).val() == passdel)
+          $(this).val('');
+        passdel = "";
+      });
+
+      /**表单验证*/
+      var forminfo = $(".loginForm").Validform({
+        tiptype: function(msg, o, cssctl) {
+          if (!o.obj.is("form")) {
+            var objtip = o.obj.siblings(".Validform_checktip");
+            cssctl(objtip, o.type);
+            if (o.type == 2) {
+              msg = "<i class='icon-ok'></i>";
+            } else {
+              msg = "<i class='icon-warn'></i><span class='spanTip'>" + msg + '</span>';
+            }
+            objtip.html(msg);
+          }
+        },
+        ignoreHidden: true, //当为true时对:hidden的表单元素将不做验证;
+        ajaxPost: true,
+        beforeSubmit: function(curform) {}
+      });
+
+      $('#login-button').click(function() {
+        var email = $.trim($('#email').val());
+        if (email.length <= 0 || email == emaildel) {
+          globalTip({
+            'msg': '请输入邮箱',
+            'setTime': 2, // seconds
+          });
+          $('#email').focus();
+          return false;
+        }
+
+        password = $.trim($('#password').val());
+        if (password.length <= 0 || password == passdel) {
+          globalTip({
+            'msg': '请输入密码',
+            'setTime': 2, // seconds
+          });
+          $('#password').focus();
+          return false;
+        }
+
+        var data = {
+          action: 'login',
+          login_type: 'email',
+          email: email,
+          pwd: $.md5(password),
+        };
+        var json = JSON.stringify(data);
+        console.log(data);
+
+        $('#login-button').attr('disabled', 'true');
+        $.ajax({
+          type: "POST",
+          url: "/api/auth/tokens",
+          headers: {
+            "Authorization": "Bearer eHfWk+OqSWaR7FhDTkW/d7TIZqP3q0W3nVGXKZY5A8Q="
+          },
+          data: json,
+          dataType: "json",
+          contentType: 'application/json',
+          success: function(data, status, xhr) {
+            console.log(data.access_token, data.expires_at);
+            var json = JSON.stringify(data);
+
+            // 登录成功后，注册入联盟
+            $.ajax({
+              type: "POST",
+              url: "/portal/auth/register/into-league",
+              data: json,
+              dataType: "json",
+              contentType: 'application/json',
+              success: function(data, status, xhr) {},
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+              },
+              complete: function(XMLHttpRequest, textStatus) {
+                this; // 调用本次AJAX请求时传递的options参数
+              }
+            });
+
+            redirectTip('恭喜你，登录成功!', true, '{{ login_next }}', 2);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+            if (XMLHttpRequest.status == 404) {
+              $('#login-button').attr('disabled', 'false');
+              redirectTip('邮箱或密码不正确, 请重试', false, '/portal/auth/login', 3);
+            }
+          },
+          complete: function(XMLHttpRequest, textStatus) {
+            this; // 调用本次AJAX请求时传递的options参数
+          }
+        });
+
+        return false;
+      });
+
+      $(window).keydown(function(event) {
+        switch (event.keyCode) {
+          case 13:
+            $('#login-button').trigger('click');
+            break;
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

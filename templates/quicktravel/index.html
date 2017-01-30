@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> Quick Travel - Responsive HTML5 Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Include All CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('css/font-awesome.min.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/animate.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/pe-icon-7-stroke.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/owl.carousel.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/owl.theme.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/magnific-popup.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/vegas.min.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/preset.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ static_url('quicktravel/css/style.css') }}" />
+  <!-- End Include All CSS -->
+
+  <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+            <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+  <!-- Favicon Icon -->
+  <link rel="icon" type="image/png" href="/static/quicktravel/images/favicon.png">
+  <!-- Favicon Icon -->
+</head>
+
+<body>
+  <div class="preloader">
+    <div class="preloaderInner">
+      <span></span>
+    </div>
+  </div>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-sm-3">
+          <div class="logo">
+            <a href="index.html">
+              <img src="/static/quicktravel/images/logo.png" alt="">
+            </a>
+          </div>
+          <div class="logo2 hidden">
+            <a href="index.html">
+              <img src="/static/quicktravel/images/logo2.png" alt="">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-10 col-sm-9 text-right">
+          <nav class="mainNav">
+            <div class="mobileMenu hidden-lg hidden-md hidden-sm">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <ul>
+              <li class="scroll"><a href="#about">about</a></li>
+              <li class="scroll"><a href="#todo">Things to do</a></li>
+              <li class="scroll"><a href="#inspired">get inspired</a></li>
+              <li class="scroll"><a href="#package">packages</a></li>
+              <li class="scroll"><a href="#gallery">gallery</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="banner banners">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="bannerCont slContent">
+            <h1>Fiji Island</h1>
+            <p>You’ll always have fascinating places to be and friendly people to see.</p>
+            <a href="#" class="travelBtn">Starting from just <span>$199</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="commonSection promotion" id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="commonTitle">
+            <h2 class="headdingOne">Explore. Save. Share</h2>
+            <p>Plan your <span>dream</span> vacation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 text-center wow fadeInUp" data-wow-duration="700ms" data-wow-delay="300ms">
+          <div class="singlePromotion">
+            <i class="pe-7s-bicycle"></i>
+            <h2>Exclusive Package</h2>
+            <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 text-center wow fadeInUp" data-wow-duration="700ms" data-wow-delay="350ms">
+          <div class="singlePromotion">
+            <i class="pe-7s-plane"></i>
+            <h2>peace of mind</h2>
+            <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
+          </div>
+        </div>
+        <div class="col-sm-4 text-center wow fadeInUp" data-wow-duration="700ms" data-wow-delay="400ms">
+          <div class="singlePromotion">
+            <i class="pe-7s-map"></i>
+            <h2>Best travel guide</h2>
+            <p>Proin gravida nibh vel velit auctor aliquet sollicitudin, lorem quis bibendum auctor, nisi elit consequat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="calltoACtion" data-parallax="scroll" data-image-src="/static/quicktravel/images/caltoactionbg.jpg">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="calltoActCont">
+            <h2>Fiji Island</h2>
+            <p>Get the <span>special offers</span> directly in your email.</p>
+            <form action="#" method="post" class="subsForm" id="subscriptionsforms">
+              <input type="email" placeholder="Enter email address" id="sub_email" name="sub_email">
+              <button id="sub_submit" type="submit">subscribe</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="commonSection gray" id="todo">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="commonTitle wedoTit">
+            <h2 class="text-capitalize">Things to do</h2>
+            <p>Discover what <span>Fiji Islands</span> has to offer</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="singleWedo">
+              <div class="col-sm-6 noPadding wow fadeInLeft" data-wow-duration="700ms" data-wow-delay="300ms">
+                <div class="wedoImg">
+                  <img src="/static/quicktravel/images/blog/1.jpg" alt="">
+                </div>
+              </div>
+              <div class="col-sm-6 text-center noPadding wedocont one wow fadeInRight" data-wow-duration="700ms" data-wow-delay="300ms">
+                <div class="meta">
+                  <p>Day 1</p>
+                </div>
+                <h2 class="wedoTitle">
+                                        <a href="#">Hunt Lairo Crab <br><span>on</span> Qamea</a>
+                                    </h2>
+                <p>
+                  Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                </p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="row hidden-xs">
+            <div class="singleWedo wow fadeInUp" data-wow-duration="700ms" data-wow-delay="300ms">
+              <div class="col-sm-6 text-center noPadding wedocont two">
+                <div class="meta">
+                  <p>Day 2</p>
+                </div>
+                <h2 class="wedoTitle">
+                                        <a href="#">Drink Kava on<br><span>on</span> Vanua Levu</a>
+                                    </h2>
+                <p>
+                  Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                </p>
+              </div>
+              <div class="col-sm-6 noPadding">
+                <div class="wedoImg">
+                  <img src="/static/quicktravel/images/blog/3.jpg" alt="">
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="row hidden-lg hidden-md hidden-sm">
+            <div class="singleWedo wow fadeInUp" data-wow-duration="700ms" data-wow-delay="300ms">
+              <div class="col-sm-6 noPadding">
+                <div class="wedoImg">
+                  <img src="/static/quicktravel/images/blog/3.jpg" alt="">
+                </div>
+              </div>
+              <div class="col-sm-6 text-center noPadding wedocont two">
+                <div class="meta">
+                  <p>Day 2</p>
+                </div>
+                <h2 class="wedoTitle">
+                                        <a href="#">Drink Kava on<br><span>on</span> Vanua Levu</a>
+                                    </h2>
+                <p>
+                  Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                </p>
+              </div>
+
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="singleWedo">
+              <div class="col-sm-12 noPadding wow fadeInDown" data-wow-duration="700ms" data-wow-delay="300ms">
+                <div class="wedoImg">
+                  <img src="/static/quicktravel/images/blog/2.jpg" alt="">
+                </div>
+              </div>
+              <div class="col-sm-12 text-center noPadding wedocont three">
+                <div class="meta">
+                  <p>Day 3</p>
+                </div>
+                <h2 class="wedoTitle">
+                                        <a href="#">Discover Pearls<br><span>in</span> Savusavu</a>
+                                    </h2>
+                <p>
+                  Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
+                </p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="videoSection" id="inspired">
+    <div id="videoWrap1">
+      <video poster="/static/quicktravel/images/videobg.jpg" loop muted="" id="myVideo1">
+                    <source type="video/mp4" src="video/video.mp4">
+                </video>
+    </div>
+    <div class="vidContent">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2>
+                                Get Inspired
+                            </h2>
+            <div class="clearfix"></div>
+            <a id="playVideos" href="#" class="active"><i class="pe-7s-play"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contactSec gray" id="package">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 paddingRight">
+          <div class="row startingRow wow fadeInUp" data-wow-duration="700ms" data-wow-delay="300ms">
+            <div class="col-lg-12">
+              <p class="coninfoTitle">Starting</p>
+            </div>
+            <div class="col-sm-6">
+              <div class="contTopinfo">
+                <h1><span>$</span>199</h1>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="conttopRight">
+                <p>
+                  <span>per person</span><br> 3 nights stay at Fiji Island<br> air fair not included
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row offeredRow wow fadeInUp" data-wow-duration="700ms" data-wow-delay="300ms">
+            <div class="col-lg-12">
+              <p class="coninfoTitle two">Offer includes</p>
+            </div>
+            <div class="col-sm-6">
+              <div class="singleOffer">
+                <i class="pe-7s-anchor"></i>
+                <p>Aliquam sollicitudin metus</p>
+              </div>
+              <div class="singleOffer">
+                <i class="pe-7s-bicycle"></i>
+                <p>Nullam vel ex vel turpis</p>
+              </div>
+              <div class="singleOffer last">
+                <i class="pe-7s-phone"></i>
+                <p>Morbi eu purus interdum</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="singleOffer">
+                <i class="pe-7s-map"></i>
+                <p>Duis vitae felis pharetra</p>
+              </div>
+              <div class="singleOffer">
+                <i class="pe-7s-like"></i>
+                <p>Quisque dapibus elit</p>
+              </div>
+              <div class="singleOffer last">
+                <i class="pe-7s-map-marker"></i>
+                <p>Donec quis mauris mattis</p>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12 text-center">
+              <p class="phone">
+                for more info call 1.800.321.9876
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 noPaddingLeft text-center wow fadeInUp" data-wow-duration="700ms" data-wow-delay="300ms">
+          <div class="contactForm">
+            <form action="#" method="post" class="contactform" id="booking">
+              <div class="topTitle">
+                <p>Start your journey today!</p>
+                <h3>Explore <span>the</span> Fiji Mountain</h3>
+              </div>
+              <div class="singleConForm">
+                <p>Name:</p>
+                <input class="required" type="text" name="jname" id="con_name">
+              </div>
+              <div class="singleConForm">
+                <p>Email:</p>
+                <input class="required" type="email" name="jemail" id="con_email">
+              </div>
+              <div class="singleConForm">
+                <p>Phone:</p>
+                <input class="required" type="text" name="jphone" id="con_phone">
+              </div>
+              <div class="singleConForm">
+                <p>No. of people</p>
+                <input class="required" type="text" name="jpeople" id="con_people">
+              </div>
+              <div class="contFormBott">
+                <div class="cheackbox">
+                  <input type="checkbox" class="agree" name="agree" id="a" value="1">
+                  <label for="a">Donec quis mauris mattis</label>
+                  <a href="#">terms & conditions</a>
+                </div>
+                <button class="travelBtnCont" type="submit" id="con_submit">Book Now!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="googleMap">
+    <div id="map" style="width:100%; height: 500px;"></div>
+  </section>
+  <section class="testmonial">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="testTitle">What people are saying...</h2>
+        </div>
+        <div class="col-lg-12 text-center" id="testCaro">
+          <div class="singleTest">
+            <div class="rating">
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+            </div>
+            <div class="testCont">
+              <p>
+                “The best so far prototyping tool out there, very easy to use for a non coder, highly recommended.”
+              </p>
+            </div>
+            <div class="testdeg">
+              <h4>Randy & Victoria</h4>
+              <h5>New York - USA</h5>
+            </div>
+          </div>
+          <div class="singleTest">
+            <div class="rating">
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+            </div>
+            <div class="testCont">
+              <p>
+                “The best so far prototyping tool out there, very easy to use for a non coder, highly recommended.”
+              </p>
+            </div>
+            <div class="testdeg">
+              <h4>Randy & Victoria</h4>
+              <h5>New York - USA</h5>
+            </div>
+          </div>
+          <div class="singleTest">
+            <div class="rating">
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+              <a href="#"><i class="fa fa-star"></i></a>
+            </div>
+            <div class="testCont">
+              <p>
+                “The best so far prototyping tool out there, very easy to use for a non coder, highly recommended.”
+              </p>
+            </div>
+            <div class="testdeg">
+              <h4>Randy & Victoria</h4>
+              <h5>New York - USA</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="instagramSec" id="gallery">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="commonTitle wedoTit">
+            <h2 class="text-capitalize">Insta Snaps</h2>
+            <p>Explore the fiji mountains<span>@quicktravel</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="instRow">
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/1.jpg" class="popup"><img src="/static/quicktravel/images/inst/1.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/2.jpg" class="popup"><img src="/static/quicktravel/images/inst/2.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/3.jpg" class="popup"><img src="/static/quicktravel/images/inst/3.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/4.jpg" class="popup"><img src="/static/quicktravel/images/inst/4.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/5.jpg" class="popup"><img src="/static/quicktravel/images/inst/5.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/6.jpg" class="popup"><img src="/static/quicktravel/images/inst/6.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/7.jpg" class="popup"><img src="/static/quicktravel/images/inst/7.jpg" alt=""></a>
+        </div>
+        <div class="col-lg-3 col-sm-6 noPadding">
+          <a href="/static/quicktravel/images/inst/8.jpg" class="popup"><img src="/static/quicktravel/images/inst/8.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-sm-6">
+          <div class="widget">
+            <div class="logo2 footerlo wow zoomIn" data-wow-duration="700ms" data-wow-delay="300ms">
+              <a href="index.html">
+                <img src="/static/quicktravel/images/logo2.png" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 wow zoomIn" data-wow-duration="700ms" data-wow-delay="300ms">
+          <div class="widget">
+            <ul class="navigation">
+              <li><a href="#">home</a></li>
+              <li><a href="#">get inspired</a></li>
+              <li><a href="#">about</a></li>
+              <li><a href="#">gallery</a></li>
+              <li><a href="#">Things to do</a></li>
+              <li><a href="#">packages</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-12 noPaddingLeft wow zoomIn" data-wow-duration="700ms" data-wow-delay="300ms">
+          <div class="widget">
+            <div class="socialfooter">
+              <a href="#" class="fac"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="twi"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="link"><i class="fa fa-linkedin"></i></a>
+              <a href="#" class="goo"><i class="fa fa-google-plus"></i></a>
+            </div>
+            <p class="copyPera">©2015 Quick Launch. All rights reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="subscriptionSuccess">
+    <div class="subsNotice">
+      <i class="fa fa-thumbs-o-up closers"></i>
+      <div class="clearfix"></div>
+      <p class="closers">Subscription Request Successfully placed!</p>
+    </div>
+  </div>
+  <div class="contactSuccess">
+    <div class="consNotice">
+      <i class="fa fa-thumbs-o-up closers"></i>
+      <div class="clearfix"></div>
+      <p class="closers">Your Booking Request successfully sent!</p>
+    </div>
+  </div>
+
+  <a href="#" id="backToTop"><i class="fa fa-angle-up"></i></a>
+  <!-- Include All JS -->
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/jquery.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/owl.carousel.js') }}"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/gmaps.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/jquery.magnific-popup.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/wow.min.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/parallax.min.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/vegas.min.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('quicktravel/js/theme.js') }}"></script>
+</body>
+
+</html>

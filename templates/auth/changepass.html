@@ -1,0 +1,79 @@
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>密码重置-UI中国-专业界面交互设计平台</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="Keywords" content="ui设计,界面设计,ui平台,学ui,ui教程,ui源文件,ui下载,ui问答,ui杂志,ui活动,ui软件,ui工具,ui灵感,ui经验">
+        <meta name="Description" content="UI中国,前身为iconfans.com。是专业的界面设计师交流、学习/展示平台.同时也是UI设计师人才流动的集散地,会员均为一线UI设计师,覆盖主流互联网公司.我们希望借助互联网的力量打造国内最专业的UI设计平台,为UI设计师做最好的服务,提高UI设计行业价值!">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/base.css') }}">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/login-fluid.css') }}">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/verify.css') }}">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/iconfont.css') }}">
+        <script src="{{ static_url('uicn/js/jquery.js') }}"></script>
+        <script src="{{ static_url('uicn/js/msgTip.js') }}"></script>
+    </head>
+    <body>
+        <div id="ajax-hook"></div>
+        <div class="wp cl">
+            <div class="log-wrap cl">
+                <div class="log-hd">
+                    <div class="wpl cl">
+                        <div class="log-row cl">
+                            <div class="log-logo"><a href="http://www.ui.cn"><img src="http://s8.ui.cn/img/log-logo.png"  srcset="http://s8.ui.cn/img/@2x/log-logo@2x.png 2x" /></a></div>
+                            <div class="log-title">
+                                <strong>密码重置</strong>
+                                <p>请按要求设置您的新密码</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="log-content cl">
+                    <div class="wpl pos cl">
+                        <div class="log-row-cx cl">
+							<div class="reg_left pos z">
+                           	<form id="LoginForm" action="" method="post">
+                                    <label class="login-icon pos">
+                                        <i class="iconfont fss log-i icon-lock-line"></i>
+                                        <input id="newpass" type="text" name="newpass" value="请输入您的新密码" class="log-input login-pwd mls" />
+                                    </label>
+                                    <label class="login-icon pos">
+                                        <i class="iconfont fss log-i icon-lock-line"></i>
+                                        <input id="repass" type="text" name="repass" value="请输确认密码" class="log-input login-pwd mls" />
+                                    </label>
+
+                                    <label class="login-icon fg-code pos">
+                                        <i class="iconfont fss log-i icon-lock-line"></i>
+                                            <input id="code" type="text" name="code" value="请输入验证码" class="log-input-half login-pwd mls" />
+                                    </label>
+                                    <div class="fg-code-wp">
+                                        <span class="fg-code-pic">
+                                            <img src="/code" onclick="this.src='/code?'+Math.random();" alt="换一张"/>
+                                        </span>
+                                        <a class="fg-code-t" href="javascript:;" onclick="$('.fg-code-pic img').attr('src','/code?'+Math.random())">换一张</a>
+                                    </div>
+                                    <button id="re-button" class="lang-btn lang-btn-huge lang-btn-fixed-Large mtw" >
+                                        <span class="lang-btn-content">立即重置</span>
+                                    </button>
+                                </form>
+                                <div class="log-cartoon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="log-footer cl">
+    <div class="wpl cl">
+        <div class="log-row cl">
+            <p style="display:block;width:100%;text-align:center;">京ICP备14007358号-1  \ 京公网安备11010802014104号  \ Powered by © 2008-2016 UI.CN</p>
+        </div>
+    </div>
+</div>
+<div style="display:none">
+	<script src="http://s6.cnzz.com/stat.php?id=5726673&web_id=5726673" language="JavaScript"></script>
+</div>
+        </div>
+        <script src="{{ static_url('uicn/js/jquery.js') }}"></script>
+        <script src="{{ static_url('uicn/js/passedit.js') }}"></script>
+    </body>
+</html>

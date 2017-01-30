@@ -1,0 +1,123 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>新用户注册-UI中国-专业界面交互设计平台</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="Keywords" content="ui设计,界面设计,ui平台,学ui,ui教程,ui源文件,ui下载,ui问答,ui杂志,ui活动,ui软件,ui工具,ui灵感,ui经验">
+        <meta name="Description" content="UI中国,前身为iconfans.com。是专业的界面设计师交流、学习/展示平台.同时也是UI设计师人才流动的集散地,会员均为一线UI设计师,覆盖主流互联网公司.我们希望借助互联网的力量打造国内最专业的UI设计平台,为UI设计师做最好的服务,提高UI设计行业价值!">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/iconfont.css') }}">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/base.css') }}">
+        <link rel="stylesheet" href="{{ static_url('uicn/css/login-fluid.css') }}">
+        <script src="{{ static_url('uicn/js/jquery.js') }}"></script>
+        <script src="{{ static_url('uicn/js/msgTip.js') }}"></script>
+        <script src="{{ static_url('uicn/js/reg.js') }}"></script>
+        <script src="{{ static_url('uicn/js/agree.js') }}"></script>
+        <script src="{{ static_url('uicn/js/placeholder.js') }}"></script>
+        <script src="{{ static_url('uicn/js/Validform_v5.3.2.js') }}"></script>
+        <style type="text/css">.regForm label{cursor:default;}</style>
+	</head>
+	<body>
+        <div id="ajax-hook"></div>
+		<div class="wp cl">
+            <div class="log-wrap cl">
+               <div class="log-hd">
+    <div class="wpl cl">
+        <div class="log-row cl">
+            <div class="log-logo"><a href="http://www.ui.cn"> <img src="http://s8.ui.cn/img/log-logo.png" srcset="http://s8.ui.cn/img/@2x/log-logo@2x.png 2x" /> </a></div>
+            <div class="log-title">
+                <strong>欢迎来到UI中国</strong>
+                <p>UI中国 专业界面设计平台</p>
+            </div>
+
+           <ul class="log-nav">
+               <li><a href="http://www.ui.cn" target="_blank">首页</a> </li>
+               <li><a href="http://www.ui.cn/list.html" target="_blank">作品</a> </li>
+               <li><a href="http://www.ui.cn/exp.html" target="_blank">学习</a> </li>
+               <li><a href="http://peixun.ui.cn" target="_blank">培训</a> </li>
+               <li><a href="http://idea.ui.cn" target="_blank">灵感</a> </li>
+               <li><a href="http://activity.ui.cn" target="_blank">活动</a> </li>
+               <li><a href="http://read.ui.cn" target="_blank">阅读</a> </li>
+               <li><a href="http://tool.ui.cn" target="_blank">工具</a> </li>
+               <li><a href="http://zhaopin.ui.cn" target="_blank">招聘</a> </li>
+               <li><a href="http://talk.ui.cn" target="_blank">话题</a> </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                <div class="log-content cl">
+                    <div class="wpl pos cl">
+                        <div class="log-row-cx cl">
+                        	<div class="reg_left pos">
+                            	<div class="lr_title_txt">
+                                	<h2></h2>
+                                	<span>已有账号？<a href="/login.html">马上登录</a></span>
+                                </div>
+                            <form action='' method="post" onsubmit="return false" class='regForm'>
+                                <div class="reg_cont_input">
+                                	<label class="login-icon pos">
+										<i class="iconfont icon-user-line"></i>
+                                        <input type="text" name="username" autocomplete="off" class="log-input mls" dataType='username' errormsg="用户名应由3~20个字符组成!" nullmsg="用户名不能为空!" ajaxurl="/regusernameck" placeholder='用户名(3~20个字符,包含字母/中文/数字/下划线)'>
+                                        <div class='Validform_checktip'></div>
+									</label>
+                                    <label class="login-icon pos">
+										<i class="iconfont icon-lock-line"></i>
+                                        <input type="text" name="placeholderpwd" class="log-input mls" value='设置密码'>
+                                        <input type="password" name="password" datatype='*6-20' errormsg="密码范围在6~20位之间!" autocomplete="off" class="log-input mls" nullmsg="请输入您的账号密码!" placeholder='设置密码'>
+                                        <div class='Validform_checktip'></div>
+									</label>
+                                    <label class="login-icon pos">
+										<i class="iconfont icon-lock-line"></i>
+                                        <input type="text" name="placeholderpwd2" class="log-input mls" value='确认密码'>
+                                        <input type="password" name="password2" datatype="*" recheck='password' errormsg="您两次输入的账号密码不一致!" value class="log-input mls" nullmsg="请输入确认密码!" placeholder='确认密码'>
+                                        <div class='Validform_checktip'></div>
+									</label>
+                                    <label class="login-icon pos">
+										<i class="iconfont icon-envelope-line"></i>
+                                        <input type="text" name="email" dataType='e' autocomplete="off"  nullmsg="邮箱不能为空!" class="log-input mls" ajaxurl="/reguseremailck" placeholder='设置邮箱'>
+                                        <div class='Validform_checktip'></div>
+									</label>
+                                    <div class="reg_checkboxline pos">
+                                            <span class="z"><i class="icon-ok-sign" nullmsg="请同意!"></i></span>
+                                            <input type="hidden" name="agree" value="0">
+                                            <div class="Validform_checktip"></div>
+                                            <p>我已阅读并接受 <a href="http://www.ui.cn/about.php#section-2" target="_brack">《版权声明》</a> 和 <a href="http://www.ui.cn/about.php#section-3" target="_brack">《隐私保护》</a></p>
+                                            <div id="errormsg" class="hide"><i class="icon-warn"></i><span class="spanTip">请接受 《版权声明》 和 《隐私保护》</span></div>
+                                    </div>
+                                    <button class="lang-btn" id="regInputSubmit">
+                                    	<span>注 册</span>
+                                    </button>
+                                </div>
+                               </form>
+                            </div><!-- .reg_left -->
+                            <div class="login-wrap-party z">
+                                <h2 class="h2">也可使用以下账号简单注册快人一步</h2>
+                                <div class="login-party cl">
+                                    <a href="http://ui.cn/oauth/sina/" class="log-sina">
+                                        <span><i class="icon-sina"></i><p>新浪微博登录</p></span>
+                                    </a>
+                                    <a href="http://ui.cn/oauth/qq/" class="log-qq" onclick='toQzoneLogin()'>
+                                        <span><i class="icon-qq"></i><p>QQ帐号登录</p></span>
+                                    </a>
+                                    <a href="http://ui.cn/oauth/mi/" class="log-mi">
+                                        <span><i class="icon-mi"></i><p>小米帐号登录</p></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="log-footer cl">
+    <div class="wpl cl">
+        <div class="log-row cl">
+            <p style="display:block;width:100%;text-align:center;">京ICP备14007358号-1  \ 京公网安备11010802014104号  \ Powered by © 2008-2016 UI.CN</p>
+        </div>
+    </div>
+</div>
+<div style="display:none">
+	<script src="http://s6.cnzz.com/stat.php?id=5726673&web_id=5726673" language="JavaScript"></script>
+</div>
+		</div>
+	</body>
+</html>
