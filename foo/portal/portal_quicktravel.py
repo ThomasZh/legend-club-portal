@@ -37,4 +37,12 @@ class QuickTravelIndexHandler(tornado.web.RequestHandler):
     def get(self):
         logging.info(self.request)
 
-        self.render('quicktravel/index.html')
+        params = {"filter":"club", "club_id":CLUB_ID, "status":"publish", "category":"9b876004e94711e69b1c00163e023e51"}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        sceneries = json_decode(response.body)
+
+        self.render('quicktravel/index.html',
+                sceneries=sceneries)
