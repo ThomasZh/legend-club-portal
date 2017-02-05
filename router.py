@@ -9,7 +9,7 @@ import tornado.web
 
 from foo import comm
 from foo.auth import auth_email
-from foo.portal import portal_quicktravel
+from foo.portal import quicktravel
 
 
 def map():
@@ -17,7 +17,7 @@ def map():
     config = [
 
         # homepage
-        (r'/', getattr(portal_quicktravel, 'QuickTravelIndexHandler')),
+        (r'/', getattr(quicktravel, 'QuickTravelIndexHandler')),
 
         (r'/club/auth/login', getattr(auth_email, 'AuthEmailLoginHandler')),
         (r'/club/auth/register', getattr(auth_email, 'AuthEmailRegisterHandler')),
