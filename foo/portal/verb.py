@@ -25,6 +25,7 @@ import uuid
 import smtplib
 import json as JSON # 启用别名，不会跟方法里的局部变量混淆
 from bson import json_util
+import re
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../dao"))
@@ -33,22 +34,215 @@ from comm import *
 from global_const import *
 
 
-class VerbIndexHandler(tornado.web.RequestHandler):
+class VerbHomeHandler(tornado.web.RequestHandler):
     def get(self):
         logging.info(self.request)
 
-        self.render('verb/index.html')
+        self.redirect("/verb/clubs/"+CLUB_ID+"/index")
 
 
-class VerbSingleHandler(tornado.web.RequestHandler):
-    def get(self):
+class VerbClubIndexHandler(tornado.web.RequestHandler):
+    def get(self, club_id):
         logging.info(self.request)
 
-        self.render('verb/single.html')
+        url = "http://api.7x24hs.com/api/clubs/"+club_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        club = json_decode(response.body)
+        league_id = club['league_id']
+
+        url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        categories = json_decode(response.body)
+
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        articles = json_decode(response.body)
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        # popular(流行)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        populars = json_decode(response.body)
+        for article in populars:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        self.render('verb/index.html',
+                club=club,
+                categories=categories,
+                articles=articles,
+                populars=populars)
+
+
+class VerbClubInfoHandler(tornado.web.RequestHandler):
+    def get(self, club_id):
+        logging.info(self.request)
+
+        url = "http://api.7x24hs.com/api/clubs/"+club_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        club = json_decode(response.body)
+        league_id = club['league_id']
+
+        url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        categories = json_decode(response.body)
+
+        html = club['paragraphs']
+        # 为图片延迟加载准备数据
+        # <img alt="" src="http://bighorn.b0.upaiyun.com/blog/2016/11/2/758f7478-d406-4f2e-9566-306a963fb979" />
+        # <img data-original="真实图片" src="占位符图片">
+        ptn="(<img src=\"http[s]*://[\w\.\/\-]+\" />)"
+        img_ptn = re.compile(ptn)
+        imgs = img_ptn.findall(html)
+        for img in imgs:
+            logging.info("got img %r", img)
+            ptn="<img src=\"(http[s]*://[\w\.\/\-]+)\" />"
+            url_ptn = re.compile(ptn)
+            urls = url_ptn.findall(html)
+            url = urls[0]
+            logging.info("got url %r", url)
+            #html = html.replace(img, "<img class=\"lazy\" data-original=\""+url+"\" src=\"/static/images/weui.png\" width=\"100%\" height=\"480\" />")
+            html = html.replace(img, "<img class='img-responsive' src='"+url+"' />")
+        logging.info("got html %r", html)
+        club['paragraphs'] = html
+
+        # popular(流行)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        populars = json_decode(response.body)
+        for article in populars:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        self.render('verb/club.html',
+                club=club,
+                categories=categories,
+                populars=populars)
 
 
 class VerbCategoryHandler(tornado.web.RequestHandler):
-    def get(self):
+    def get(self, club_id, category_id):
         logging.info(self.request)
 
-        self.render('verb/category.html')
+        url = "http://api.7x24hs.com/api/clubs/"+club_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        club = json_decode(response.body)
+        league_id = club['league_id']
+
+        url = "http://api.7x24hs.com/api/categories/"+category_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        category = json_decode(response.body)
+
+        url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        categories = json_decode(response.body)
+
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":category_id, "idx":0, "limit":10}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        articles = json_decode(response.body)
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        # popular(流行)
+        params = {"filter":"club", "club_id":CLUB_ID, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        populars = json_decode(response.body)
+        for article in populars:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        self.render('verb/category.html',
+                club=club,
+                category=category,
+                categories=categories,
+                articles=articles,
+                populars=populars)
+
+
+class VerbArticleHandler(tornado.web.RequestHandler):
+    def get(self, club_id, article_id):
+        logging.info(self.request)
+
+        url = "http://api.7x24hs.com/api/clubs/"+club_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        club = json_decode(response.body)
+        league_id = club['league_id']
+
+        url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        categories = json_decode(response.body)
+
+        url = "http://api.7x24hs.com/api/articles/"+article_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        article_info = json_decode(response.body)
+
+        html = article_info['paragraphs']
+        # 为图片延迟加载准备数据
+        # <img alt="" src="http://bighorn.b0.upaiyun.com/blog/2016/11/2/758f7478-d406-4f2e-9566-306a963fb979" />
+        # <img data-original="真实图片" src="占位符图片">
+        ptn="(<img src=\"http[s]*://[\w\.\/\-]+\" />)"
+        img_ptn = re.compile(ptn)
+        imgs = img_ptn.findall(html)
+        for img in imgs:
+            logging.info("got img %r", img)
+            ptn="<img src=\"(http[s]*://[\w\.\/\-]+)\" />"
+            url_ptn = re.compile(ptn)
+            urls = url_ptn.findall(html)
+            url = urls[0]
+            logging.info("got url %r", url)
+            #html = html.replace(img, "<img class=\"lazy\" data-original=\""+url+"\" src=\"/static/images/weui.png\" width=\"100%\" height=\"480\" />")
+            html = html.replace(img, "<img class='img-responsive' src='"+url+"' />")
+        logging.info("got html %r", html)
+        article_info['paragraphs'] = html
+        article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
+
+        # popular(流行)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        populars = json_decode(response.body)
+        for article in populars:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        self.render('verb/article.html',
+                club=club,
+                categories=categories,
+                article=article_info,
+                populars=populars)

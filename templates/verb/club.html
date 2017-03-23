@@ -51,6 +51,7 @@
 	<div class="gtco-loader"></div>
 
 	<div id="page">
+
 	<!-- navigator content -->
 	{% module Template("verb/block-navbar.html", club_id=club['_id'], categories=categories) %}
 	<!-- /navigator content -->
@@ -62,9 +63,7 @@
 				<div class="col-md-7 text-left">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeInUp">
-							<span class="date-post"></span>
-							<h1 class="mb30"><a href="/verb/clubs/{{ club['_id'] }}/info">{{ club['name'] }}</a></h1>
-							<p><a href="/verb/clubs/{{ club['_id'] }}/info" class="text-link">查看详情</a></p>
+							<h1 class="mb30"><a href="#">{{ club['name'] }}</a></h1>
 						</div>
 					</div>
 				</div>
@@ -72,71 +71,38 @@
 		</div>
 	</header>
 
-	<div id="gtco-main">
+	<div id="gtco-maine">
 		<div class="container">
 			<div class="row row-pb-md">
 				<div class="col-md-12">
-					<ul id="gtco-post-list">
-						{% for i in range(len(articles)) %}
-	          {% if i == 0 %}
-						<li class="full entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 1 %}
-						<li class="two-third entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 2 %}
-						<li class="one-third entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 3 %}
-						<li class="one-third entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 4 %}
-						<li class="one-third entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 5 %}
-						<li class="one-third entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 6 %}
-						<li class="one-half entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 7 %}
-						<li class="one-half entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 8 %}
-						<li class="one-third entry animate-box" data-animate-effect="fadeIn">
-						{% elif i == 9 %}
-						<li class="two-third entry animate-box" data-animate-effect="fadeIn">
-	          {% end %}
-							<a href="/verb/clubs/{{ club['_id'] }}/articles/{{ articles[i]['_id'] }}">
-								<div class="entry-img" style="background-image: url({{ articles[i]['img'] }}!800x640)"></div>
-								<div class="entry-desc">
-									<h3>{{ articles[i]['title'] }}</h3>
-									<p>{{ articles[i]['subtitle'] }}</p>
+					<article class="mt-negative">
+						<div class="text-left content-article">
+							<div class="row">
+								<div class="col-lg-4 animate-box">
+									<div class="gtco-highlight right">
+										<p>{{ club['introduction'] }}</p>
+									</div>
 								</div>
-							</a>
-							<a href="#" class="post-meta"><span class="date-posted">{{ articles[i]['publish_time'] }}</span></a>
-						</li>
-	          {% end %}
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<nav aria-label="Page navigation">
-					  <ul class="pagination">
-					    <li>
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li class="active"><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-					</nav>
+							</div>
+
+							<div class="row row-pb-sm">
+								<div class="col-lg-6 col-md-12 animate-box">
+									<figure>
+										{% if club.has_key('paragraphs') %}
+										{% raw club['paragraphs'] %}
+										{% end %}
+									</figure>
+								</div>
+							</div>
+
+						</div>
+					</article>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
 
 	<!-- footer content -->
 	{% module Template("verb/block-footer.html", club_id=club['_id'], populars=populars) %}

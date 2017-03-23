@@ -1,0 +1,17 @@
+<nav class="gtco-nav" role="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2 text-left">
+        <div id="gtco-logo"><a href="/verb/clubs/{{ club_id }}/index">Verb<span>.</span></a></div>
+      </div>
+      <div class="col-xs-10 text-right menu-1">
+        <ul>
+          {% for category in categories %}
+          <li><a href="/verb/clubs/{{ club_id }}/categoies/{{ category['_id'] }}">{{ category['title'] }}</a></li>
+          {% end %}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nav>

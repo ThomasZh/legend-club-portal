@@ -1,0 +1,40 @@
+<footer id="gtco-footer" role="contentinfo">
+  <div class="container">
+    <div class="row row-pb-md">
+      <div class="col-md-12">
+        <h3 class="footer-heading">推荐文章</h3>
+      </div>
+      {% for popular in populars %}
+      <div class="col-md-4">
+        <div class="post-entry">
+          <div class="post-img">
+            <a href="/verb/clubs/{{ club_id }}/articles/{{ popular['_id'] }}"><img src="{{ popular['img'] }}!200x200" class="img-responsive" alt="Free HTML5 Bootstrap Template by GetTemplates.co"></a>
+          </div>
+          <div class="post-copy">
+            <h4><a href="/verb/clubs/{{ club_id }}/articles/{{ popular['_id'] }}">{{ popular['title'] }}</a></h4>
+            <a href="#" class="post-meta"><span class="date-posted">{{ popular['publish_time'] }}</span></a>
+          </div>
+        </div>
+      </div>
+      {% end %}
+    </div>
+
+    <div class="row copyright">
+      <div class="col-md-12 text-center">
+        <p>
+          <small class="block">&copy; 2017 7x24hs. All Rights Reserved.</small>
+          <small class="block">Designed by <a href="http://gettemplates.co/" target="_blank">7x24hs.com</a></small>
+        </p>
+        <p>
+          <ul class="gtco-social-icons">
+            <li><a href="#"><i class="icon-twitter"></i></a></li>
+            <li><a href="#"><i class="icon-facebook"></i></a></li>
+            <li><a href="#"><i class="icon-linkedin"></i></a></li>
+            <li><a href="#"><i class="icon-dribbble"></i></a></li>
+          </ul>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</footer>
