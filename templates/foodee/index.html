@@ -1,0 +1,682 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{{ club['name'] }}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+
+  <!--
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{{ static_url('foodee/css/animate.css') }}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{{ static_url('foodee/css/icomoon.css') }}">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="{{ static_url('foodee/css/simple-line-icons.css') }}">
+	<!-- Datetimepicker -->
+	<link rel="stylesheet" href="{{ static_url('foodee/css/bootstrap-datetimepicker.min.css') }}">
+	<!-- Flexslider -->
+	<link rel="stylesheet" href="{{ static_url('foodee/css/flexslider.css') }}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{{ static_url('foodee/css/bootstrap.css') }}">
+
+	<link rel="stylesheet" href="{{ static_url('foodee/css/style.css') }}">
+
+
+	<!-- Modernizr JS -->
+	<script src="{{ static_url('foodee/js/modernizr-2.6.2.min.js') }}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{{ static_url('foodee/js/respond.min.js') }}"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	<div id="fh5co-container">
+		<div id="fh5co-home" class="js-fullheight" data-section="home">
+
+			<div class="flexslider">
+
+				<div class="fh5co-overlay"></div>
+				<div class="fh5co-text">
+					<div class="container">
+						<div class="row">
+							<h1 class="to-animate">domicake</h1>
+							<h4 class="to-animate"><a href="http://7x4hs.com" target="_blank">7x24hs.com</a>工作室设计</h4>
+						</div>
+					</div>
+				</div>
+			  	<ul class="slides">
+			   	<li style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/001.jpg);" data-stellar-background-ratio="0.5"></li>
+			   	<li style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/002.jpg);" data-stellar-background-ratio="0.5"></li>
+			   	<li style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/003.jpg);" data-stellar-background-ratio="0.5"></li>
+					<li style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/004.jpg);" data-stellar-background-ratio="0.5"></li>
+			  	</ul>
+
+			</div>
+
+		</div>
+
+		<div class="js-sticky">
+			<div class="fh5co-main-nav">
+				<div class="container-fluid">
+					<div class="fh5co-menu-1">
+						<a href="#" data-nav-section="home">主页</a>
+						<a href="#" data-nav-section="about">关于我们</a>
+						<a href="#" data-nav-section="features">推荐作品</a>
+					</div>
+					<div class="fh5co-logo">
+						<a href="/foodee">多米蛋糕</a>
+					</div>
+					<div class="fh5co-menu-2">
+						<a href="#" data-nav-section="menu">最新作品</a>
+						<a href="#" data-nav-section="events">近期活动</a>
+						<a href="#" data-nav-section="reservation">预订</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="fh5co-about" data-section="about">
+			<div class="fh5co-2col fh5co-bg to-animate-2" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake008.jpg)"></div>
+			<div class="fh5co-2col fh5co-text">
+				<h2 class="heading to-animate">关于我们</h2>
+				<p class="to-animate">{% raw club['paragraphs'] %}</p>
+				<p class="text-center to-animate"><a href="#" data-nav-section="reservation" class="btn btn-primary btn-outline">联系我们</a></p>
+			</div>
+		</div>
+
+		<div id="fh5co-sayings">
+			<div class="container">
+				<div class="row to-animate">
+
+					<div class="flexslider">
+						<ul class="slides">
+
+							<li>
+								<blockquote>
+									<p>&ldquo;自开始烘焙，才知道以前吃到的生日蛋糕上雪白的奶油是植脂的，所含的反式脂肪酸是人体无法降解的；才知道巧克力还有可可脂和人工非可可脂之分；才知道饼干包装上司空见惯的成份三犁酸钾、二氯化钠。是各种名称的防腐剂，它保证饼干放那儿几个月也不会变质；才知道一个美味的蛋糕有那么多种人工香精可以替代各种水果味道。&rdquo;</p>
+									<p class="quote-author">&mdash; Nathan Myhrvold</p>
+								</blockquote>
+							</li>
+							<li>
+								<blockquote>
+									<p>&ldquo;希望有更多人尝到天然的美味，在这里发集采，我们出品的蛋糕选用优质原料：动物奶油、安佳黄油、优质奶酪、新鲜鸡蛋、可可脂巧克力等等，蛋糕胚都不含任何色素和香精。&rdquo;</p>
+									<p class="quote-author">&mdash; Lev L. Spiro</p>
+								</blockquote>
+							</li>
+							<li>
+								<blockquote>
+									<p>&ldquo;幸福就是一家人在一起，一起吃着亲手做的蛋糕更加幸福。这个蛋糕无色素无添加剂，还是自己做的健康又好吃，那种味道真的是外面买的怎么也比不上的。&rdquo;</p>
+									<p class="quote-author">&mdash; Julia Child</p>
+								</blockquote>
+							</li>
+							<li>
+								<blockquote>
+									<p>&ldquo;自己动手这个过程是个非常快乐的过程哟，漂亮的蛋糕并没有想象的那么麻烦。&rdquo;</p>
+									<p class="quote-author">&mdash; Josh Billings</p>
+								</blockquote>
+							</li>
+
+
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div id="fh5co-featured" data-section="features">
+			<div class="container">
+				<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="heading to-animate">推荐作品</h2>
+						<p class="sub-heading to-animate">我们的最爱，每次朋友聚合必带的。</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="fh5co-grid">
+						<div class="fh5co-v-half to-animate-2">
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg)"></div>
+							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
+								<h2>巧克力蛋糕</h2>
+								<span class="pricing">¥350</span>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							</div>
+						</div>
+						<div class="fh5co-v-half">
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-left">
+									<h2>水果夹层</h2>
+									<span class="pricing">¥350</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-right">
+									<h2>红丝绒</h2>
+									<span class="pricing">¥350</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="fh5co-v-half">
+							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-right">
+									<h2>黑森林</h2>
+									<span class="pricing">¥350</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake005.jpeg)"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-left">
+									<h2>水果裸蛋糕</h2>
+									<span class="pricing">¥350</span>
+									<p>Far far away, behind the word mountains.</p>
+								</div>
+							</div>
+						</div>
+						<div class="fh5co-v-half to-animate-2">
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake006.jpeg)"></div>
+							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
+								<h2>缤纷糖豆</h2>
+								<span class="pricing">¥350</span>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="fh5co-type" style="background-image: url(images/slide_3.jpg);" data-stellar-background-ratio="0.5">
+			<div class="fh5co-overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 to-animate">
+						<div class="fh5co-type">
+							<h3 class="with-icon icon-1">水果</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+					</div>
+					<div class="col-md-3 to-animate">
+						<div class="fh5co-type">
+							<h3 class="with-icon icon-2">面粉</h3>
+							<p>面粉用最普通的就可以，不要用饺子粉或是高筋面粉。</p>
+						</div>
+					</div>
+					<div class="col-md-3 to-animate">
+						<div class="fh5co-type">
+							<h3 class="with-icon icon-3">牛奶</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+					</div>
+					<div class="col-md-3 to-animate">
+						<div class="fh5co-type">
+							<h3 class="with-icon icon-4">砂糖</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="fh5co-menus" data-section="menu">
+			<div class="container">
+				<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="heading to-animate">最新作品</h2>
+						<p class="sub-heading to-animate">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="row row-padded">
+					<div class="col-md-6">
+						<div class="fh5co-food-menu to-animate-2">
+							<h2 class="fh5co-drinks">Drinks</h2>
+							<ul>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Pineapple Juice</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Green Juice</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Soft Drinks</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Carlo Rosee Drinks</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fh5co-food-menu to-animate-2">
+							<h2 class="fh5co-dishes">Steak</h2>
+							<ul>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake005.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Beef Steak</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake006.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Tomato with Chicken</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Sausages from Italy</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Beef Grilled</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fh5co-food-menu to-animate-2">
+							<h2 class="fh5co-drinks">Drinks</h2>
+							<ul>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Pineapple Juice</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Green Juice</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake005.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Soft Drinks</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake006.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Carlo Rosee Drinks</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="fh5co-food-menu to-animate-2">
+							<h2 class="fh5co-dishes">Steak</h2>
+							<ul>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Beef Steak</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Tomato with Chicken</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Sausages from Italy</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+								<li>
+									<div class="fh5co-food-desc">
+										<figure>
+											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
+										</figure>
+										<div>
+											<h3>Beef Grilled</h3>
+											<p>Far far away, behind the word mountains.</p>
+										</div>
+									</div>
+									<div class="fh5co-food-pricing">
+										¥350
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
+						<p><a href="#" class="btn btn-primary btn-outline">更多作品</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="fh5co-events" data-section="events" style="background-image: url(images/slide_2.jpg);" data-stellar-background-ratio="0.5">
+			<div class="fh5co-overlay"></div>
+			<div class="container">
+				<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2 to-animate">
+						<h2 class="heading">近期活动</h2>
+						<p class="sub-heading">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="fh5co-event to-animate-2">
+							<h3>Kitchen Workshops</h3>
+							<span class="fh5co-event-meta">March 19th, 2016</span>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<p><a href="#" class="btn btn-primary btn-outline">Read More</a></p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="fh5co-event to-animate-2">
+							<h3>Music Concerts</h3>
+							<span class="fh5co-event-meta">March 19th, 2016</span>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<p><a href="#" class="btn btn-primary btn-outline">Read More</a></p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="fh5co-event to-animate-2">
+							<h3>Free to Eat Party</h3>
+							<span class="fh5co-event-meta">March 19th, 2016</span>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<p><a href="#" class="btn btn-primary btn-outline">Read More</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="fh5co-contact" data-section="reservation">
+			<div class="container">
+				<div class="row text-center fh5co-heading row-padded">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="heading to-animate">预订</h2>
+						<p class="sub-heading to-animate">不仅作品列表中的可以选择，我们还接受私人定制，按照您的口味，制作您最喜爱的蛋糕！</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 to-animate-2">
+						<h3>联络信息</h3>
+						<ul class="fh5co-contact-info">
+							<li class="fh5co-contact-address ">
+								<i class="icon-home"></i>
+								{{ club['province'] }} &nbsp; {{ club['city'] }}
+							</li>
+							<li><i class="icon-phone"></i> {{ club['phone'] }}</li>
+							<li><i class="icon-envelope"></i>{{ club['email'] }}</li>
+							<li><i class="icon-globe"></i> <a href="http://7x24hs.com/" target="_blank">7x24hs.com</a></li>
+						</ul>
+					</div>
+					<div class="col-md-6 to-animate-2">
+						<h3>预订</h3>
+						<div class="form-group ">
+							<label for="name" class="sr-only">Phone</label>
+							<input id="name" class="form-control" placeholder="手机号码" type="text">
+						</div>
+						<div class="form-group">
+							<label for="occation" class="sr-only">Occation</label>
+							<select class="form-control" id="occation">
+								<option>选择食物类型</option>
+								<option>披萨</option>
+							  <option>蛋糕</option>
+							  <option>面包</option>
+							</select>
+						</div>
+						<div class="form-group ">
+							<label for="date" class="sr-only">Date</label>
+							<input id="date" class="form-control" placeholder="日期 &amp; 时间" type="text">
+						</div>
+
+						<div class="form-group ">
+							<label for="message" class="sr-only">Message</label>
+							<textarea name="" id="message" cols="30" rows="5" class="form-control" placeholder="食物类型、特殊口味、数量、送货地址信息..."></textarea>
+						</div>
+						<div class="form-group ">
+							<input class="btn btn-primary" value="发送" type="submit">
+						</div>
+						</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div id="fh5co-footer">
+		<div class="container">
+			<div class="row row-padded">
+				<div class="col-md-12 text-center">
+					<p class="to-animate">&copy; 2016 Foodee Free HTML5 Template. <br> Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> Demo Images: <a href="http://pexels.com/" target="_blank">Pexels</a> <br> Tasty Icons Free <a href="http://handdrawngoods.com/store/tasty-icons-free-food-icons/" target="_blank">handdrawngoods</a>
+					</p>
+					<p class="text-center to-animate"><a href="#" class="js-gotop">Go To Top</a></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<ul class="fh5co-social">
+						<li class="to-animate-2"><a href="#"><i class="icon-facebook"></i></a></li>
+						<li class="to-animate-2"><a href="#"><i class="icon-twitter"></i></a></li>
+						<li class="to-animate-2"><a href="#"><i class="icon-instagram"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!-- jQuery -->
+	<script src="{{ static_url('foodee/js/jquery.min.js') }}"></script>
+	<!-- jQuery Easing -->
+	<script src="{{ static_url('foodee/js/jquery.easing.1.3.js') }}"></script>
+	<!-- Bootstrap -->
+	<script src="{{ static_url('foodee/js/bootstrap.min.js') }}"></script>
+	<!-- Bootstrap DateTimePicker -->
+	<script src="{{ static_url('foodee/js/moment.js') }}"></script>
+	<script src="{{ static_url('foodee/js/bootstrap-datetimepicker.min.js') }}"></script>
+	<!-- Waypoints -->
+	<script src="{{ static_url('foodee/js/jquery.waypoints.min.js') }}"></script>
+	<!-- Stellar Parallax -->
+	<script src="{{ static_url('foodee/js/jquery.stellar.min.js') }}"></script>
+
+	<!-- Flexslider -->
+	<script src="{{ static_url('foodee/js/jquery.flexslider-min.js') }}"></script>
+	<script>
+		$(function () {
+	       $('#date').datetimepicker();
+	   });
+	</script>
+	<!-- Main JS -->
+	<script src="{{ static_url('foodee/js/main.js') }}"></script>
+
+	</body>
+</html>

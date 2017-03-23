@@ -10,6 +10,9 @@ import tornado.web
 from foo import comm
 from foo.auth import auth_email
 from foo.portal import quicktravel
+from foo.portal import foodee
+from foo.portal import story
+from foo.portal import verb
 
 
 def map():
@@ -18,6 +21,12 @@ def map():
 
         # homepage
         (r'/', getattr(quicktravel, 'QuickTravelIndexHandler')),
+        (r'/foodee', getattr(foodee, 'FoodeeIndexHandler')),
+        (r'/story', getattr(story, 'StoryIndexHandler')),
+        (r'/story/single', getattr(story, 'StorySingleHandler')),
+        (r'/verb', getattr(verb, 'VerbIndexHandler')),
+        (r'/verb/single', getattr(verb, 'VerbSingleHandler')),
+        (r'/verb/category', getattr(verb, 'VerbCategoryHandler')),
 
         (r'/club/auth/login', getattr(auth_email, 'AuthEmailLoginHandler')),
         (r'/club/auth/register', getattr(auth_email, 'AuthEmailRegisterHandler')),
