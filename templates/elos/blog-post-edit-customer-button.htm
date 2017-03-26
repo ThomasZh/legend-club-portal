@@ -1,0 +1,564 @@
+<!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+
+<head>
+	<title>{{ club['name'] }}</title>
+
+	<meta charset="utf-8">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+	<!-- this styles only adds some repairs on idevices  -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- ######### CSS STYLES ######### -->
+	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ static_url('elos/css/style.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ static_url('elos/css/font-awesome/css/font-awesome.min.css') }}">
+	<!-- responsive devices styles -->
+	<link rel="stylesheet" media="screen" href="{{ static_url('elos/css/responsive-leyouts.css') }}" type="text/css" />
+
+	<!-- just remove the below comments witch color skin you want to use -->
+	<!--<link rel="stylesheet" href="css/colors/blue.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/green.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/cyan.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/orange.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/lightblue.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/pink.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/purple.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/bridge.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/slate.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/yellow.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/darkred.css" />-->
+
+	<!-- just remove the below comments witch bg patterns you want to use -->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-default.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-one.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-two.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-three.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-four.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-five.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-six.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-seven.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eight.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-nine.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-ten.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eleven.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-twelve.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-thirteen.css" />-->
+
+	<!-- mega menu -->
+	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
+	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ static_url('elos/js/mainmenu/fhmm.css') }}" rel="stylesheet">
+	<!-- REVOLUTION SLIDER -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/rs-plugin/css/settings.css') }}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/css/slider_main.css') }}" media="screen" />
+	<!-- cubeportfolio -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/cubeportfolio/cubeportfolio.min.css') }}">
+	<!-- tabs -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs2.css') }}">
+	<!-- carousel -->
+	<link rel="stylesheet" href="{{ static_url('elos/js/carousel/flexslider.css') }}" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/carousel/skin.css') }}" />
+	<!-- accordion -->
+	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
+	<!-- Lightbox -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ static_url('froala/css/froala_editor.css') }}">
+	<link rel="stylesheet" href="{{ static_url('froala/css/froala_style.css') }}">
+	<link rel="stylesheet" href="{{ static_url('froala/css/plugins/code_view.css') }}">
+	<link rel="stylesheet" href="{{ static_url('froala/css/plugins/image.css') }}">
+	<link rel="stylesheet" href="{{ static_url('froala/css/plugins/video.css') }}">
+	<link rel="stylesheet" href="{{ static_url('froala/css/plugins/table.css') }}">
+	<link rel="stylesheet" href="{{ static_url('froala/css/plugins/fullscreen.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+
+	<link type="text/css" rel="stylesheet" href="{{ static_url('syntaxhighlighter/styles/shCoreDefault.css') }}" />
+	<link type="text/css" rel="stylesheet" href="{{ static_url('syntaxhighlighter/styles/shThemeEmacs.css') }}" />
+	<script type="text/javascript" src="{{ static_url('syntaxhighlighter/scripts/shCore.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('syntaxhighlighter/scripts/shBrushJScript.js') }}"></script>
+
+</head>
+
+<body>
+
+
+	<div class="wrapper_boxed">
+
+		<div class="site_wrapper">
+
+			<!-- top header bar -->
+			{% module Template("elos/block-header.html", club=club, categories=categories) %}
+			<!-- /top header bar -->
+
+			<div class="clearfix"></div>
+
+			<!-- Contant
+======================================= -->
+
+			<div class="page_title2">
+				<div class="container">
+
+					<div class="title">
+						<h1>Blog Post</h1></div>
+
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">Home</a> <i>/</i> <a href="#">Blog</a> <i>/</i> Post</div>
+
+				</div>
+			</div>
+			<!-- end page title -->
+
+
+			<div class="clearfix"></div>
+
+			<div class="container">
+
+				<div class="content_left">
+
+					<div class="blog_post">
+						<div class="blog_postcontent">
+
+							<a href="blog-archive.html" class="date"><strong>18</strong><i>March</i></a>
+							<h3><a href="blog-post.html">{{ article['title'] }}</a></h3>
+							<ul class="post_meta_links">
+								<li class="post_by"><a href="#">{{ article['nickname'] }}</a></li>
+								<li class="post_categoty"><a href="#">Web tutorials</a></li>
+								<li class="post_comments"><a href="#">18 Comments</a></li>
+							</ul>
+
+							<div class="post_info_content">
+								<p>{{ article['subtitle'] }}</p>
+							</div>
+
+							<div class="post_info_content">
+								<section id="editor">
+									<div id='edit' style="margin-top: 30px;">
+										{% raw article['paragraphs'] %}
+										<p>After defining custom buttons you need to add them to the toolbar buttons list, using the following options: <a href="https://www.froala.com/wysiwyg-editor/docs/options#toolbarButtons" title="toolbarButtons" target="_blank">toolbarButtons</a>,
+											<a href="https://www.froala.com/wysiwyg-editor/docs/options#toolbarButtonsMD" title="toolbarButtonsMD" target="_blank">toolbarButtonsMD</a>,
+											<a href="https://www.froala.com/wysiwyg-editor/docs/options#toolbarButtonsSM" title="toolbarButtonsSM" target="_blank">toolbarButtonsSM</a> and
+											<a href="https://www.froala.com/wysiwyg-editor/docs/options#toolbarButtonsXS" title="toolbarButtonsXS" target="_blank">toolbarButtonsXS</a> as explained in the
+											<a href="https://froala.com/wysiwyg-editor/examples/custom-toolbar" title="Custom Toolbar Example" target="_blank">Custom Toolbar</a> example.</p>
+									</div>
+								</section>
+
+								<pre class="brush: js; ruler: true; first-line: 1; highlight: [1, 3, 5]">
+function SubmitForm() {
+	var title = document.getElementById("title").value;
+	if (title == null || title == undefined || title == '') {
+		var alertPanel = document.getElementById("alertPanel");
+		alertPanel.innerHTML = '<div class="alert alert-danger" role="alert">'
+			+ '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>'
+			+ '<span class="sr-only"> Warning: </span>'
+			+ "{{_("The title is required and cannot be empty")}}"
+			+ '</div>';
+		return false;
+	}
+
+	document.getElementById("form-signin").submit();
+}
+								</pre>
+							</div>
+
+							<div class="post_info_content">
+								<div class="clearfix divider_dashed9"></div>
+								<div id="buttons">
+									<ul class="list_empty">
+										<li><a id="destroy" href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> Save</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /# end post -->
+
+				</div>
+				<!-- end content left side -->
+
+				<!-- right sidebar starts -->
+				<div class="right_sidebar">
+
+					<div class="site-search-area">
+
+						<form method="get" id="site-searchform" action="blog.html">
+							<div>
+								<input class="input-text" name="s" id="s" value="Enter Search keywords..." onFocus="if (this.value == 'Enter Search keywords...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Enter Search keywords...';}" type="text" />
+								<input id="searchsubmit" value="Search" type="submit" />
+							</div>
+						</form>
+
+					</div>
+					<!-- end site search -->
+
+					<div class="clearfix margin_top4"></div>
+
+					<!-- sidebar category widget -->
+					{% module Template("elos/block-sidebar-category.html", categories=categories) %}
+					<!-- /sidebar category widget -->
+
+					<div class="clearfix margin_top4"></div>
+
+					<!-- sidebar popular widget -->
+					{% module Template("elos/block-sidebar-popular.html", populars=populars) %}
+					<!-- /sidebar popular widget -->
+
+					<div class="clearfix margin_top5"></div>
+
+					<div class="clientsays_widget">
+
+						<div class="sidebar_title">
+							<h3>Happy <i>Client Say's</i></h3></div>
+
+						<img src="http://placehold.it/50x50" alt="" />
+						<strong>- Henry Brodie</strong>
+						<p>Lorem Ipsum passage, and going through the cites of the word here classical literature passage disvered undou btable source. which looks reasonable the generated charac eristic words.</p>
+
+					</div>
+					<!-- end section -->
+
+					<div class="clearfix margin_top5"></div>
+
+					<div class="sidebar_widget">
+
+						<div class="sidebar_title">
+							<h3>Portfolio <i>Widget</i></h3></div>
+
+						<div class="features_sec15 two">
+
+							<div>
+								<section class="slider nosidearrows">
+									<div class="flexslider carousel">
+
+										<ul class="slides">
+
+											<li>
+
+												<div class="grid-container cbp-l-grid-fullScreen sidebar">
+													<ul>
+														<li class="cbp-item identity logo">
+															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Consectetuer Adipiscing<br>by GSRthemes9">
+																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
+																<div class="cbp-caption-activeWrap">
+																	<div class="cbp-l-caption-alignLeft">
+																		<div class="cbp-l-caption-body">
+																			<div class="margin_top7"></div>
+																			<div class="cbp-l-caption-title">Consectetuer Adipiscing</div>
+																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
+																		</div>
+																	</div>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+
+											</li>
+											<!-- end section -->
+
+											<li>
+
+												<div class="grid-container cbp-l-grid-fullScreen sidebar">
+													<ul>
+														<li class="cbp-item">
+															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Many Websites Infancy<br>by GSRthemes9">
+																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
+																<div class="cbp-caption-activeWrap">
+																	<div class="cbp-l-caption-alignLeft">
+																		<div class="cbp-l-caption-body">
+																			<div class="margin_top7"></div>
+																			<div class="cbp-l-caption-title">Many Websites Infancy</div>
+																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
+																		</div>
+																	</div>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+
+											</li>
+											<!-- end section -->
+
+
+											<li>
+
+												<div class="grid-container cbp-l-grid-fullScreen sidebar">
+													<ul>
+														<li class="cbp-item motion graphic">
+															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Words Believable<br>by GSRthemes9">
+																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
+																<div class="cbp-caption-activeWrap">
+																	<div class="cbp-l-caption-alignLeft">
+																		<div class="cbp-l-caption-body">
+																			<div class="margin_top7"></div>
+																			<div class="cbp-l-caption-title">Words Believable</div>
+																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
+																		</div>
+																	</div>
+																</div>
+															</a>
+														</li>
+													</ul>
+												</div>
+
+											</li>
+											<!-- end section -->
+
+										</ul>
+									</div>
+								</section>
+
+							</div>
+
+						</div>
+
+					</div>
+					<!-- end section -->
+
+					<div class="clearfix mar_top5"></div>
+
+					<div class="sidebar_widget">
+
+						<div class="sidebar_title">
+							<h3>Site <i>Advertisements</i></h3></div>
+
+						<ul class="adsbanner-list">
+							<li>
+								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
+							</li>
+							<li class="last">
+								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
+							</li>
+						</ul>
+
+						<ul class="adsbanner-list">
+							<li>
+								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
+							</li>
+							<li class="last">
+								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
+							</li>
+						</ul>
+
+					</div>
+					<!-- end section -->
+
+					<div class="clearfix margin_top4"></div>
+
+					<div class="sidebar_widget">
+
+						<div class="sidebar_title">
+							<h3>Site <i>Archives</i></h3></div>
+
+						<ul class="arrows_list1">
+							<li><a href="#"><i class="fa fa-angle-right"></i> March 2014</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> February 2014</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> January 2014</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> December 2013</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> November 2013</a></li>
+						</ul>
+
+					</div>
+					<!-- end section -->
+
+				</div>
+				<!-- end right sidebar -->
+
+			</div>
+
+			<div class="clearfix margin_top7"></div>
+
+			<!-- footer -->
+			{% module Template("elos/block-footer.html") %}
+			<!-- footer -->
+
+			<div class="clearfix"></div>
+
+			<!-- copyright -->
+			{% module Template("elos/block-copyright.html") %}
+			<!-- copyright -->
+
+			<a href="#" class="scrollup">Scroll</a>
+			<!-- end scroll to top of the page-->
+
+		</div>
+	</div>
+
+
+	<!-- ######### JS FILES ######### -->
+	<!-- get jQuery from the google apis -->
+	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
+	<!-- style switcher -->
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
+	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
+	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
+	<!-- mega menu -->
+	<script src="{{ static_url('elos/js/mainmenu/bootstrap.min.js') }}"></script>
+	<script src="{{ static_url('elos/js/mainmenu/fhmm.js') }}"></script>
+	<!-- jquery jcarousel -->
+	<script type="text/javascript" src="{{ static_url('elos/js/carousel/jquery.jcarousel.min.js') }}"></script>
+	<!-- scroll up -->
+	<script src="{{ static_url('elos/js/scrolltotop/totop.js') }}" type="text/javascript"></script>
+	<!-- tabs -->
+	<script src="{{ static_url('elos/js/tabs/assets/js/responsive-tabs.min.js') }}" type="text/javascript"></script>
+
+	<!-- jquery jcarousel -->
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('#mycarouselthree').jcarousel();
+		});
+	</script>
+
+	<!-- accordion -->
+	<script type="text/javascript" src="{{ static_url('elos/js/accordion/custom.js') }}"></script>
+	<!-- REVOLUTION SLIDER -->
+	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/custom.js') }}"></script>
+	<!-- sticky menu -->
+	<script type="text/javascript" src="{{ static_url('elos/js/mainmenu/sticky.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/mainmenu/modernizr.custom.75180.js') }}"></script>
+
+	<!-- progress bar -->
+	<script src="{{ static_url('elos/js/progressbar/progress.js') }}" type="text/javascript" charset="utf-8"></script>
+
+	<!-- cubeportfolio -->
+	<script type="text/javascript" src="{{ static_url('elos/js/cubeportfolio/jquery.cubeportfolio.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/cubeportfolio/main.js') }}"></script>
+	<!-- carousel -->
+	<script defer src="{{ static_url('elos/js/carousel/jquery.flexslider.js') }}"></script>
+	<script defer src="{{ static_url('elos/js/carousel/custom.js') }}"></script>
+	<!-- lightbox -->
+	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/jquery.fancybox.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/custom.js') }}"></script>
+
+	<script type="text/javascript">
+		// Menu drop down effect
+		$('.dropdown-toggle').dropdownHover().dropdown();
+		$(document).on('click', '.fhmm .dropdown-menu', function(e) {
+			e.stopPropagation()
+		})
+	</script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/froala_editor.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/code_beautifier.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/code_view.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/draggable.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/font_size.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/fullscreen.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/align.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/font_family.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/paragraph_style.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/lists.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/image.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/link.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/video.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('froala/js/plugins/table.min.js') }}"></script>
+
+
+	<script>
+		$(function() {
+			$.FroalaEditor.DefineIcon('alert', {
+				NAME: 'info'
+			});
+			$.FroalaEditor.RegisterCommand('alert', {
+				title: 'Hello',
+				focus: false,
+				undo: false,
+				refreshAfterCallback: false,
+				callback: function() {
+					alert('Hello!');
+				}
+			});
+
+			$.FroalaEditor.DefineIcon('clear', {
+				NAME: 'remove'
+			});
+			$.FroalaEditor.RegisterCommand('clear', {
+				title: 'Clear HTML',
+				focus: false,
+				undo: true,
+				refreshAfterCallback: true,
+				callback: function() {
+					this.html.set('');
+					this.events.focus();
+				}
+			});
+
+			$.FroalaEditor.DefineIcon('insert', {
+				NAME: 'plus'
+			});
+			$.FroalaEditor.RegisterCommand('insert', {
+				title: 'Insert Code',
+				focus: true,
+				undo: true,
+				refreshAfterCallback: true,
+				callback: function() {
+					var html = '<pre class="brush: js; ruler: true; first-line: 1; highlight: [1, 3, 5]">Insert your code here</pre>';
+					this.html.insert(html);
+				}
+			});
+
+			$('#edit').froalaEditor({
+				enter: $.FroalaEditor.ENTER_P,
+				heightMax: 500,
+				toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'subscript', 'superscript',
+					'|', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle',
+					'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
+					'|', 'insertLink', 'insertTable', 'insertHR',
+					'|', 'undo', 'redo', 'clearFormatting', 'html',
+					'|', 'insert'
+				],
+				toolbarButtonsMD: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize',
+					'|', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle',
+					'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
+					'|', 'insertLink', 'insertHR',
+					'|', 'undo', 'redo', 'html',
+					'|', 'insert'
+				],
+				toolbarButtonsSM: ['bold', 'italic', 'underline', 'fontFamily', 'fontSize',
+					'|', 'color', 'paragraphFormat', 'align', 'formatOL', 'formatUL',
+					'|', 'insertLink',
+					'|', 'undo', 'redo', 'html',
+					'|', 'insert'
+				],
+				toolbarButtonsXS: ['bold', 'fontSize',
+					'|', 'align', 'formatOL', 'formatUL',
+					'|', 'insert'
+				],
+			})
+		});
+	</script>
+
+	<script type="text/javascript">
+		SyntaxHighlighter.config.bloggerMode = true;
+		SyntaxHighlighter.defaults['toolbar'] = false;
+		SyntaxHighlighter.defaults['gutter'] = true;
+		SyntaxHighlighter.defaults['smart-tabs'] = true;
+		SyntaxHighlighter.defaults['tab-size'] = 4;
+		SyntaxHighlighter.all();
+	</script>
+
+</body>
+
+</html>

@@ -13,6 +13,7 @@ from foo.portal import quicktravel
 from foo.portal import foodee
 from foo.portal import story
 from foo.portal import verb
+from foo.portal import elos
 
 
 def map():
@@ -24,11 +25,29 @@ def map():
         (r'/foodee', getattr(foodee, 'FoodeeIndexHandler')),
         (r'/story', getattr(story, 'StoryIndexHandler')),
         (r'/story/single', getattr(story, 'StorySingleHandler')),
+
         (r'/verb', getattr(verb, 'VerbHomeHandler')),
         (r'/verb/clubs/([a-z0-9]*)/index', getattr(verb, 'VerbClubIndexHandler')),
         (r'/verb/clubs/([a-z0-9]*)/info', getattr(verb, 'VerbClubInfoHandler')),
         (r'/verb/clubs/([a-z0-9]*)/categoies/([a-z0-9]*)', getattr(verb, 'VerbCategoryHandler')),
         (r'/verb/clubs/([a-z0-9]*)/articles/([a-z0-9]*)', getattr(verb, 'VerbArticleHandler')),
+
+        (r'/elos', getattr(elos, 'ElosHomeHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/index', getattr(elos, 'ElosClubIndexHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs', getattr(elos, 'ElosBlogIndexHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs/([a-z0-9]*)', getattr(elos, 'ElosBlogPostHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs/([a-z0-9]*)/edit', getattr(elos, 'ElosBlogPostEditHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs/([a-z0-9]*)/edit-inline', getattr(elos, 'ElosBlogPostEditInlineHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs/([a-z0-9]*)/edit-syntaxhighlighter', getattr(elos, 'ElosBlogPostEditSyntaxhighlighterHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs/([a-z0-9]*)/edit-customer-button', getattr(elos, 'ElosBlogPostEditCustomerButtonHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/categories/([a-z0-9]*)', getattr(elos, 'ElosBlogCategoryHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/login', getattr(elos, 'ElosLoginHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/register', getattr(elos, 'ElosRegisterHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/about', getattr(elos, 'ElosAboutHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/contact', getattr(elos, 'ElosContactHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/services', getattr(elos, 'ElosServiceHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/portfolio', getattr(elos, 'ElosPortfolioHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/portfolio-images', getattr(elos, 'ElosPortfolioImagesHandler')),
 
         (r'/club/auth/login', getattr(auth_email, 'AuthEmailLoginHandler')),
         (r'/club/auth/register', getattr(auth_email, 'AuthEmailRegisterHandler')),

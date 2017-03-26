@@ -1,0 +1,229 @@
+<!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+
+<head>
+	<title>{{ club['name'] }}</title>
+
+	<meta charset="utf-8">
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+
+	<!-- this styles only adds some repairs on idevices  -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- ######### CSS STYLES ######### -->
+	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ static_url('elos/css/style.css') }}" type="text/css" />
+	<link rel="stylesheet" href="{{ static_url('elos/css/font-awesome/css/font-awesome.min.css') }}">
+	<!-- responsive devices styles -->
+	<link rel="stylesheet" media="screen" href="{{ static_url('elos/css/responsive-leyouts.css') }}" type="text/css" />
+
+	<!-- just remove the below comments witch color skin you want to use -->
+	<!--<link rel="stylesheet" href="css/colors/blue.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/green.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/cyan.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/orange.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/lightblue.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/pink.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/purple.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/bridge.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/slate.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/yellow.css" />-->
+	<!--<link rel="stylesheet" href="css/colors/darkred.css" />-->
+
+	<!-- just remove the below comments witch bg patterns you want to use -->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-default.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-one.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-two.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-three.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-four.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-five.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-six.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-seven.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eight.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-nine.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-ten.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eleven.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-twelve.css" />-->
+	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-thirteen.css" />-->
+
+	<!-- mega menu -->
+	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
+	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ static_url('elos/js/mainmenu/fhmm.css') }}" rel="stylesheet">
+	<!-- REVOLUTION SLIDER -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/rs-plugin/css/settings.css') }}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/css/slider_main.css') }}" media="screen" />
+	<!-- cubeportfolio -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/cubeportfolio/cubeportfolio.min.css') }}">
+	<!-- tabs -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs2.css') }}">
+	<!-- carousel -->
+	<link rel="stylesheet" href="{{ static_url('elos/js/carousel/flexslider.css') }}" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/carousel/skin.css') }}" />
+	<!-- accordion -->
+	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
+	<!-- Lightbox -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
+
+</head>
+
+<body>
+
+
+	<div class="wrapper_boxed">
+
+		<div class="site_wrapper">
+
+			<!-- top header bar -->
+			{% module Template("elos/block-header.html", club=club, categories=categories) %}
+			<!-- /top header bar -->
+
+			<div class="clearfix"></div>
+
+			<!-- Contant
+======================================= -->
+
+			<div class="page_title2">
+				<div class="container">
+
+					<div class="title">
+						<h1>Image Gallery</h1></div>
+
+					<div class="pagenation">&nbsp;<a href="index.html">Home</a> <i>/</i> <a href="#">Portfolio</a> <i>/</i> Image Gallery</div>
+
+				</div>
+			</div>
+			<!-- end page title -->
+
+			<div class="clearfix"></div>
+
+			<div class="container">
+				<br /><br /><br />
+
+				<div id="grid-container" class="cbp-l-grid-fullScreen">
+
+					<ul>
+						{% for multimedia in multimedias %}
+						<li class="cbp-item identity logo">
+							<div class="cbp-item-wrapper">
+								<div class="cbp-caption">
+									<div class="cbp-caption-defaultWrap"><img src="{{ multimedia['url'] }}!800x640" alt="" /></div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignCenter">
+											<div class="cbp-l-caption-body">
+												<a href="portfolio-one.html" class="portfolioicons"><i class="fa fa-link"></i></a>
+												<a href="{{ multimedia['url'] }}" class="cbp-lightbox portfolioicons" data-title="{{ multimedia['publish_time'] }}"><i class="fa fa-search-plus"></i></a>
+												<br />
+												<div class="cbp-l-caption-desc">{{ multimedia['publish_time'] }}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="cbp-l-grid-projects-title">Events and More</div>
+								<div class="cbp-l-grid-projects-desc">
+									<span class="cbp-l-grid-projects-inlineFilters" data-filter=".web-design">Web Design</span> / <span class="cbp-l-grid-projects-inlineFilters" data-filter=".graphic">Graphic</span>
+								</div>
+							</div>
+						</li>
+						{% end %}
+					</ul>
+
+				</div>
+				<div class="cbp-l-loadMore-text">
+					<div data-href="#" class="cbp-l-loadMore-text-link"></div>
+				</div>
+
+			</div>
+			<!-- end content area -->
+
+
+			<div class="clearfix margin_top5"></div>
+
+			<!-- footer -->
+			{% module Template("elos/block-footer.html") %}
+			<!-- footer -->
+
+			<div class="clearfix"></div>
+
+			<!-- copyright -->
+			{% module Template("elos/block-copyright.html") %}
+			<!-- copyright -->
+
+			<a href="#" class="scrollup">Scroll</a>
+			<!-- end scroll to top of the page-->
+
+		</div>
+	</div>
+
+	<!-- ######### JS FILES ######### -->
+	<!-- get jQuery from the google apis -->
+	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
+	<!-- style switcher -->
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
+	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
+	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
+	<!-- mega menu -->
+	<script src="{{ static_url('elos/js/mainmenu/bootstrap.min.js') }}"></script>
+	<script src="{{ static_url('elos/js/mainmenu/fhmm.js') }}"></script>
+	<!-- jquery jcarousel -->
+	<script type="text/javascript" src="{{ static_url('elos/js/carousel/jquery.jcarousel.min.js') }}"></script>
+	<!-- scroll up -->
+	<script src="{{ static_url('elos/js/scrolltotop/totop.js') }}" type="text/javascript"></script>
+	<!-- tabs -->
+	<script src="{{ static_url('elos/js/tabs/assets/js/responsive-tabs.min.js') }}" type="text/javascript"></script>
+
+	<!-- jquery jcarousel -->
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('#mycarouselthree').jcarousel();
+		});
+	</script>
+
+	<!-- accordion -->
+	<script type="text/javascript" src="{{ static_url('elos/js/accordion/custom.js') }}"></script>
+	<!-- REVOLUTION SLIDER -->
+	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/custom.js') }}"></script>
+	<!-- sticky menu -->
+	<script type="text/javascript" src="{{ static_url('elos/js/mainmenu/sticky.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/mainmenu/modernizr.custom.75180.js') }}"></script>
+
+	<!-- progress bar -->
+	<script src="{{ static_url('elos/js/progressbar/progress.js') }}" type="text/javascript" charset="utf-8"></script>
+
+	<!-- cubeportfolio -->
+	<script type="text/javascript" src="{{ static_url('elos/js/cubeportfolio/jquery.cubeportfolio.min.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/cubeportfolio/main.js') }}"></script>
+	<!-- carousel -->
+	<script defer src="{{ static_url('elos/js/carousel/jquery.flexslider.js') }}"></script>
+	<script defer src="{{ static_url('elos/js/carousel/custom.js') }}"></script>
+	<!-- lightbox -->
+	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/jquery.fancybox.js') }}"></script>
+	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/custom.js') }}"></script>
+
+	<script type="text/javascript">
+		// Menu drop down effect
+		$('.dropdown-toggle').dropdownHover().dropdown();
+		$(document).on('click', '.fhmm .dropdown-menu', function(e) {
+			e.stopPropagation()
+		})
+	</script>
+
+</body>
+
+</html>

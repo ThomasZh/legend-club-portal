@@ -1,0 +1,97 @@
+<header id="header">
+
+  <!-- top header bar -->
+  <div id="topHeader">
+    <div class="wrapper">
+      <div class="top_nav">
+        <div class="container">
+          <div class="left">
+            <ul>
+              <li><a href="mailto:{{ club['email'] }}"><i class="fa fa-envelope"></i> {{ club['email'] }}</a></li>
+              <li><i class="fa fa-phone-square"></i> {{ club['phone'] }}</li>
+            </ul>
+          </div>
+          <!-- end left links -->
+          <div class="right">
+            <ul>
+              <li class="link"><a href="/elos/clubs/{{ club['_id'] }}/login">Login</a></li>
+              <li class="link"><a href="/elos/clubs/{{ club['_id'] }}/register">Register</a></li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+              <li><a href="#"><i class="fa fa-rss"></i></a></li>
+            </ul>
+          </div>
+          <!-- end right social links -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end top navigation -->
+
+
+  <div id="trueHeader">
+    <div class="wrapper">
+      <div class="container">
+
+        <!-- Logo -->
+        <div class="logo">
+          <a href="/elos/clubs/{{ club['_id'] }}/services" id="logo"></a>
+        </div>
+        <!-- Menu -->
+        <div class="menu_main">
+          <nav class="navbar navbar-default fhmm" role="navigation">
+            <div class="navbar-header">
+              <button type="button" data-toggle="collapse" data-target="#defaultmenu" class="navbar-toggle">Menu <i class="fa fa-bars tbars"></i></button>
+            </div>
+            <!-- end navbar-header -->
+
+            <div id="defaultmenu" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown active"><a href="/elos/clubs/{{ club['_id'] }}/services">Home</a>
+                </li>
+
+                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/portfolio">Portfolio</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/portfolio-images">Image Gallery</a></li>
+                  </ul>
+                  <!-- end dropdown-menu -->
+                </li>
+
+                <li class="dropdown"><a href="/elos/clubs/{{ club['_id'] }}/blogs" data-toggle="dropdown" class="dropdown-toggle">Blog</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs">All</a></li>
+                    {% for category in categories %}
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/categories/{{ category['_id'] }}">{{ category['title'] }}</a></li>
+                    {% end %}
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs/2d4448f40fae11e7866600163e023e51/edit">Edit</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs/2d4448f40fae11e7866600163e023e51/edit-inline">Edit Inline</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs/2d4448f40fae11e7866600163e023e51/edit-syntaxhighlighter">Edit Syntaxhighlighter</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs/2d4448f40fae11e7866600163e023e51/edit-customer-button">Edit Customer Button</a></li>
+                  </ul>
+                  <!-- end dropdown-menu -->
+                </li>
+
+                <li><a href="/elos/clubs/{{ club['_id'] }}/about">About</a>
+                </li>
+
+              </ul>
+              <!-- end nav navbar-nav -->
+
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/elos/clubs/{{ club['_id'] }}/contact">Contact</a>
+                </li>
+              </ul>
+
+            </div>
+            <!-- end #navbar-collapse-1 -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

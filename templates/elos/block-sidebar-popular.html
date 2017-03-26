@@ -1,0 +1,83 @@
+<div class="sidebar_widget">
+
+  <div id="tabs">
+
+    <ul class="tabs">
+      <li class="active"><a href="#tab1">Popular</a></li>
+      <li><a href="#tab2">Recent</a></li>
+      <li class="last"><a href="#tab3">Tags</a></li>
+    </ul>
+    <!-- /# end tab links -->
+
+    <div class="tab_container">
+      <div id="tab1" class="tab_content">
+        <ul class="recent_posts_list">
+          {% for popular in populars %}
+          <li>
+            <span><a href="#"><img src="{{ popular['img'] }}!100x100" alt="" /></a></span>
+            <a href="#">{{ popular['title'] }}</a>
+            <i>March 13, 2014</i>
+          </li>
+          {% end %}
+        </ul>
+      </div>
+      <!-- end popular posts -->
+
+      <div id="tab2" class="tab_content">
+        <ul class="recent_posts_list">
+          <li>
+            <span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+            <a href="#">Various versions has evolved over the years</a>
+            <i>March 18, 2014</i>
+          </li>
+          <li>
+            <span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+            <a href="#">Rarious versions has evolve over the years</a>
+            <i>March 17, 2014</i>
+          </li>
+          <li class="last">
+            <span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+            <a href="#">Marious versions has evolven over the years</a>
+            <i>March 16, 2014</i>
+          </li>
+        </ul>
+      </div>
+      <!-- end popular articles -->
+
+      <div id="tab3" class="tab_content">
+        <ul class="tags">
+
+          <li><a href="#">2013</a></li>
+          <li><a href="#"><b>Amazing</b></a></li>
+          <li><a href="#">Animation</a></li>
+          <li><a href="#">Beautiful</a></li>
+          <li><a href="#"><b>Cartoon</b></a></li>
+          <li><a href="#">Comedy</a></li>
+          <li><a href="#"><b>Cool</b></a></li>
+          <li><a href="#">Dance</a></li>
+          <li><a href="#">Drive</a></li>
+          <li><a href="#"><b>Family</b></a></li>
+          <li><a href="#"><b>Fantasy</b></a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#"><b>Friends</b></a></li>
+          <li><a href="#">Funny</a></li>
+          <li><a href="#"><b>Games</b></a></li>
+          <li><a href="#">Love</a></li>
+          <li><a href="#"><b>Music</b></a></li>
+          <li><a href="#">Nature</a></li>
+          <li><a href="#"><b>Party</b></a></li>
+          <li><a href="#">Pictures</a></li>
+          <li><a href="#">Sports</a></li>
+          <li><a href="#"><b>Best</b></a></li>
+          <li><a href="#">Wedding</a></li>
+          <li><a href="#">Weight</a></li>
+          <li><a href="#"><b>Youtube</b></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- end section -->
