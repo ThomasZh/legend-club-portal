@@ -22,9 +22,12 @@ def map():
 
         # homepage
         (r'/', getattr(elos, 'ElosHomeHandler')),
+        (r'/quicktravel', getattr(quicktravel, 'QuickTravelIndexHandler')),
         (r'/foodee', getattr(foodee, 'FoodeeIndexHandler')),
-        (r'/story', getattr(story, 'StoryIndexHandler')),
-        (r'/story/single', getattr(story, 'StorySingleHandler')),
+
+        (r'/story', getattr(story, 'StoryHomeHandler')),
+        (r'/story/clubs/([a-z0-9]*)/index', getattr(story, 'StoryIndexHandler')),
+        (r'/story/clubs/([a-z0-9]*)/articles/([a-z0-9]*)', getattr(story, 'StoryArticleHandler')),
 
         (r'/verb', getattr(verb, 'VerbHomeHandler')),
         (r'/verb/clubs/([a-z0-9]*)/index', getattr(verb, 'VerbClubIndexHandler')),

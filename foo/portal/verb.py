@@ -49,14 +49,16 @@ class VerbClubIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         # recently articles(最近文章)
         params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
@@ -64,7 +66,8 @@ class VerbClubIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        articles = json_decode(response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
         for article in articles:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -74,7 +77,8 @@ class VerbClubIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -93,14 +97,16 @@ class VerbClubInfoHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         html = club['paragraphs']
         # 为图片延迟加载准备数据
@@ -127,7 +133,8 @@ class VerbClubInfoHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -145,20 +152,23 @@ class VerbCategoryHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/categories/"+category_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        category = json_decode(response.body)
+        rs = json_decode(response.body)
+        category = rs['rs']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         # recently articles(最近文章)
         params = {"filter":"club", "club_id":club_id, "status":"publish", "category":category_id, "idx":0, "limit":10}
@@ -166,7 +176,8 @@ class VerbCategoryHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        articles = json_decode(response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
         for article in articles:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -176,7 +187,8 @@ class VerbCategoryHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -196,20 +208,23 @@ class VerbArticleHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        article_info = json_decode(response.body)
+        rs = json_decode(response.body)
+        article_info = rs['rs']
 
         html = article_info['paragraphs']
         # 为图片延迟加载准备数据
@@ -237,7 +252,8 @@ class VerbArticleHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 

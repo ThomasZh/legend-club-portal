@@ -41,7 +41,8 @@ class FoodeeIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
 
         self.render('foodee/index.html',
                 club=club)
