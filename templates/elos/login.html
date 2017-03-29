@@ -83,31 +83,24 @@
 
 			<div class="clearfix"></div>
 
-			<!-- Contant
-======================================= -->
+			<!-- Contant ======================================= -->
 
 			<div class="page_title2">
 				<div class="container">
-
 					<div class="title">
 						<h1>Login Form</h1></div>
-
 					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">Home</a> <i>/</i> Login Form</div>
-
 				</div>
 			</div>
 			<!-- end page title -->
 
-
 			<div class="clearfix"></div>
 
 			<div class="container">
-
 				<div class="content_fullwidth">
 
-
 					<div class="login_form">
-						<form id="sky-form" class="sky-form">
+						<form id="sky-form" class="sky-form" onsubmit="return false;">
 							<header>Login form</header>
 
 							<fieldset>
@@ -116,9 +109,9 @@
 										<label class="label col col-4">E-mail</label>
 										<div class="col col-8">
 											<label class="input">
-									<i class="icon-append icon-user"></i>
-									<input type="email" name="email">
-								</label>
+												<i class="icon-append icon-user"></i>
+												<input type="email" name="email">
+											</label>
 										</div>
 									</div>
 								</section>
@@ -128,9 +121,9 @@
 										<label class="label col col-4">Password</label>
 										<div class="col col-8">
 											<label class="input">
-									<i class="icon-append icon-lock"></i>
-									<input type="password" name="password">
-								</label>
+												<i class="icon-append icon-lock"></i>
+												<input type="password" name="password">
+											</label>
 											<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
 										</div>
 									</div>
@@ -162,9 +155,9 @@
 							<section>
 								<label class="label">E-mail</label>
 								<label class="input">
-						<i class="icon-append icon-user"></i>
-						<input type="email" name="email" id="email">
-					</label>
+									<i class="icon-append icon-user"></i>
+									<input type="email" name="email" id="email">
+								</label>
 							</section>
 						</fieldset>
 
@@ -221,6 +214,10 @@
 	<script src="{{ static_url('elos/js/form/jquery.validate.min.js') }}"></script>
 	<script src="{{ static_url('elos/js/form/jquery.modal.js') }}"></script>
 
+	<!-- login -->
+  <script type="text/javascript" src="{{ static_url('js/md5.min.js') }}"></script>
+  <script type="text/javascript" src="{{ static_url('js/json2.js') }}"></script>
+
 	<script type="text/javascript">
 		$(function() {
 			// Validation for login form
@@ -233,7 +230,7 @@
 					},
 					password: {
 						required: true,
-						minlength: 3,
+						minlength: 6,
 						maxlength: 20
 					}
 				},
@@ -276,6 +273,16 @@
 
 				// Ajax form submition
 				submitHandler: function(form) {
+					console.log(form);
+					var data = {
+            action: 'login',
+            login_type: 'email',
+            phone: $('#email').val(),
+            pwd: $.md5($('#password').val()),
+          };
+          var json = JSON.stringify(data);
+          console.log(json);
+
 					$(form).ajaxSubmit({
 						success: function() {
 							$("#sky-form2").addClass('submited');

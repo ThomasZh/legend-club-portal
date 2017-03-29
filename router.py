@@ -21,7 +21,7 @@ def map():
     config = [
 
         # homepage
-        (r'/', getattr(quicktravel, 'QuickTravelIndexHandler')),
+        (r'/', getattr(elos, 'ElosHomeHandler')),
         (r'/foodee', getattr(foodee, 'FoodeeIndexHandler')),
         (r'/story', getattr(story, 'StoryIndexHandler')),
         (r'/story/single', getattr(story, 'StorySingleHandler')),

@@ -49,14 +49,16 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         # recently articles(最近文章)
         params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
@@ -64,7 +66,8 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        articles = json_decode(response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
         for article in articles:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -74,7 +77,8 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -93,14 +97,16 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         # recently articles(最近文章)
         params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
@@ -108,7 +114,8 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        articles = json_decode(response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
         for article in articles:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -118,7 +125,8 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -137,20 +145,23 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/categories/"+category_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        category = json_decode(response.body)
+        rs = json_decode(response.body)
+        category = rs['rs']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         # recently articles(最近文章)
         params = {"filter":"club", "club_id":club_id, "status":"publish", "category":category_id, "idx":0, "limit":10}
@@ -158,7 +169,8 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        articles = json_decode(response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
         for article in articles:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -168,7 +180,8 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -188,20 +201,23 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        article_info = json_decode(response.body)
+        rs = json_decode(response.body)
+        article_info = rs['rs']
 
         html = article_info['paragraphs']
         # 为图片延迟加载准备数据
@@ -229,7 +245,8 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -248,20 +265,23 @@ class ElosBlogPostEditHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        article_info = json_decode(response.body)
+        rs = json_decode(response.body)
+        article_info = rs['rs']
 
         html = article_info['paragraphs']
         # 为图片延迟加载准备数据
@@ -289,7 +309,8 @@ class ElosBlogPostEditHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -308,20 +329,23 @@ class ElosBlogPostEditInlineHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        article_info = json_decode(response.body)
+        rs = json_decode(response.body)
+        article_info = rs['rs']
 
         html = article_info['paragraphs']
         # 为图片延迟加载准备数据
@@ -349,7 +373,8 @@ class ElosBlogPostEditInlineHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -368,20 +393,23 @@ class ElosBlogPostEditSyntaxhighlighterHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        article_info = json_decode(response.body)
+        rs = json_decode(response.body)
+        article_info = rs['rs']
 
         html = article_info['paragraphs']
         # 为图片延迟加载准备数据
@@ -409,7 +437,8 @@ class ElosBlogPostEditSyntaxhighlighterHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -430,20 +459,23 @@ class ElosBlogPostEditCustomerButtonHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        article_info = json_decode(response.body)
+        rs = json_decode(response.body)
+        article_info = rs['rs']
 
         html = article_info['paragraphs']
         # 为图片延迟加载准备数据
@@ -471,7 +503,8 @@ class ElosBlogPostEditCustomerButtonHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        populars = json_decode(response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
@@ -492,14 +525,16 @@ class ElosLoginHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         self.render('elos/login.html',
                 club=club,
@@ -514,14 +549,16 @@ class ElosRegisterHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         self.render('elos/register.html',
                 club=club,
@@ -536,14 +573,16 @@ class ElosContactHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         self.render('elos/contact.html',
                 club=club,
@@ -558,14 +597,16 @@ class ElosAboutHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         self.render('elos/about.html',
                 club=club,
@@ -580,14 +621,16 @@ class ElosServiceHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         self.render('elos/services.html',
                 club=club,
@@ -602,14 +645,16 @@ class ElosPortfolioHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         self.render('elos/portfolio.html',
                 club=club,
@@ -624,14 +669,16 @@ class ElosPortfolioImagesHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        club = json_decode(response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
         league_id = club['league_id']
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        categories = json_decode(response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
 
         # multimedia
         params = {"filter":"league", "league_id":league_id, "idx":0, "limit":8}
@@ -639,7 +686,8 @@ class ElosPortfolioImagesHandler(tornado.web.RequestHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        multimedias = json_decode(response.body)
+        rs = json_decode(response.body)
+        multimedias = rs['rs']
         for multimedia in multimedias:
             multimedia['publish_time'] = timestamp_friendly_date(multimedia['publish_time'])
 
