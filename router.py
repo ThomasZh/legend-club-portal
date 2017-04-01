@@ -45,6 +45,7 @@ def map():
         (r'/elos/clubs/([a-z0-9]*)/blogs/([a-z0-9]*)/edit-customer-button', getattr(elos, 'ElosBlogPostEditCustomerButtonHandler')),
         (r'/elos/clubs/([a-z0-9]*)/categories/([a-z0-9]*)', getattr(elos, 'ElosBlogCategoryHandler')),
         (r'/elos/clubs/([a-z0-9]*)/login', getattr(elos, 'ElosLoginHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/logout', getattr(elos, 'ElosLogoutHandler')),
         (r'/elos/clubs/([a-z0-9]*)/register', getattr(elos, 'ElosRegisterHandler')),
         (r'/elos/clubs/([a-z0-9]*)/about', getattr(elos, 'ElosAboutHandler')),
         (r'/elos/clubs/([a-z0-9]*)/contact', getattr(elos, 'ElosContactHandler')),
@@ -52,7 +53,9 @@ def map():
         (r'/elos/clubs/([a-z0-9]*)/portfolio', getattr(elos, 'ElosPortfolioHandler')),
         (r'/elos/clubs/([a-z0-9]*)/portfolio-images', getattr(elos, 'ElosPortfolioImagesHandler')),
 
+
         (r'/club/auth/login', getattr(auth_email, 'AuthEmailLoginHandler')),
+        (r'/club/auth/clubs/([a-z0-9]*)/signup', getattr(auth_email, 'AuthClubSignupXHR')),
         (r'/club/auth/register', getattr(auth_email, 'AuthEmailRegisterHandler')),
         (r'/club/auth/forgot-pwd', getattr(auth_email, 'AuthEmailForgotPwdHandler')),
         (r'/club/auth/reset-pwd', getattr(auth_email, 'AuthEmailResetPwdHandler')),

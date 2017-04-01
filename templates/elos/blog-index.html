@@ -30,35 +30,6 @@
 	<!-- responsive devices styles -->
 	<link rel="stylesheet" media="screen" href="{{ static_url('elos/css/responsive-leyouts.css') }}" type="text/css" />
 
-	<!-- just remove the below comments witch color skin you want to use -->
-	<!--<link rel="stylesheet" href="css/colors/blue.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/green.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/cyan.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/orange.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/lightblue.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/pink.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/purple.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/bridge.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/slate.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/yellow.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/darkred.css" />-->
-
-	<!-- just remove the below comments witch bg patterns you want to use -->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-default.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-one.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-two.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-three.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-four.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-five.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-six.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-seven.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eight.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-nine.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-ten.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eleven.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-twelve.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-thirteen.css" />-->
-
 	<!-- mega menu -->
 	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
@@ -89,7 +60,7 @@
 		<div class="site_wrapper">
 
 			<!-- top header bar -->
-			{% module Template("elos/block-header.html", club=club, categories=categories) %}
+			{% module Template("elos/block-header.html", club=club, categories=categories, is_login=is_login) %}
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
@@ -114,40 +85,13 @@
 
 			<div class="container">
 
-				<div class="content_left">
-
-					{% for article in articles %}
-					<div class="blog_post">
-						<div class="blog_postcontent">
-							<div class="image_frame small">
-								<a href="#"><img src="{{ article['img'] }}!800x370" alt="" /></a>
-							</div>
-							<div class="post_info_content_small">
-								<a href="blog-archive.html" class="date"><strong>18</strong><i>March</i></a>
-								<h3><a href="/elos/clubs/{{ club['_id'] }}/blogs/{{ article['_id'] }}">{{ article['title'] }}</a></h3>
-								<ul class="post_meta_links_small">
-									<li class="post_by"><a href="#">{{ article['nickname'] }}</a></li>
-									<li class="post_categoty"><a href="#">Web tutorials</a></li>
-									<li class="post_comments"><a href="#">18 Comments</a></li>
-								</ul>
-								<div class="clearfix"></div>
-								<p>{{ article['subtitle'] }}</p>
-							</div>
-						</div>
-					</div>
-					<!-- /# end post -->
-
-					<div class="clearfix divider_dashed9"></div>
-					{% end %}
+				<div class="content_left" >
+					<div id="articleBox"></div>
 
 					<div class="pagination">
-						<b>Page 2 of 18</b>
-						<a href="#" class="navlinks">&lt; Previous</a>
-						<a href="#" class="navlinks">1</a>
-						<a href="#" class="navlinks current">2</a>
-						<a href="#" class="navlinks">3</a>
-						<a href="#" class="navlinks">4</a>
-						<a href="#" class="navlinks">Next ></a>
+						<a class="navlinks" id="prev" style="cursor:pointer">&lt; 上一页</a>
+						<div class="pageBox" style="display:inline-block"></div>
+						<a class="navlinks" id="next" style="cursor:pointer">下一页 ></a>
 					</div>
 					<!-- end pagination -->
 
@@ -420,6 +364,149 @@
 		})
 	</script>
 
+	<script>
+
+	        function getLocalTime(nS) { //时间戳转换
+						 var  d = new Date(parseInt(nS) * 1000);
+						 var year = d.getFullYear();
+						 var month = d.getMonth()+1;
+						 var day = d.getDay();
+						 var date_info = {"month":month+'月',"day":day+'日'};
+						 return date_info;
+	        };
+
+	        var limit = 9;//每页显示数
+	        var currentPage = 0;//当前页
+	        var total_page = 0;//总页数
+	        function query(pageNum) {
+	          $.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&page=1&limit="+limit+"",function(data,status){
+	                console.log(data);
+	                data_obj = JSON.parse(data);
+	                data = data_obj.rs;
+	                currentPage = 1;
+	            var pageData = data.data;
+	                total_page = data.total_pgae;//总页
+	            // num = ajaxobj.length;
+	            for (var i in pageData) {
+
+	              var inner_html = '<div class="blog_post">';
+	              inner_html += '<div class="blog_postcontent">';
+	              inner_html += '<div class="image_frame small">';
+	              inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
+	              inner_html += '</div>';
+	              inner_html += '<div class="post_info_content_small">';
+	              inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
+	              inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/blogs/'+ pageData[i]._id + '">'+ pageData[i].title + '</a></h3>';
+	              inner_html += '<ul class="post_meta_links_small">'
+	              inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
+	              inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
+	              inner_html += '<li class="post_comments"><a href="#">18 Comments</a></li>';
+	              inner_html += '<div class="clear"></div>';
+	              inner_html += '</ul>';
+								inner_html += '<div class="clearfix"></div>';
+								inner_html += '<p>'+ pageData[i].subtitle + '</p>';
+								inner_html += '</div></div></div>';
+								inner_html += '<div class="clearfix divider_dashed9"></div>';
+
+	              $('#articleBox').append(inner_html);
+	              // member_num += 1;
+	            };
+	          if(total_page>5){
+	              for (var k=1;k<=5;k++){
+	                var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
+	                $(".pageBox").append(inner_html);
+	              };
+	            }else if(total_page<=5){
+	              for (var k=1;k<=total_page;k++){
+	                var inner_html = '<a class="navlinks"  style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
+	                $(".pageBox").append(inner_html);
+	              };
+	            }
+	            $("#num1").addClass("current");
+	          });
+	        };
+
+	        function gotoPage(pageNum) {
+	          $.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&page="+pageNum+"&limit="+limit+"",function(data,status){
+	                //  console.log(data);
+	                data_obj = JSON.parse(data);
+	                data = data_obj.rs;
+	                currentPage = pageNum;
+	            var pageData = data.data;
+	                total_page = data.total_pgae;//总页
+	            $('#articleBox').html("");
+
+	            for (var i in pageData) {
+								var inner_html = '<div class="blog_post">';
+	              inner_html += '<div class="blog_postcontent">';
+	              inner_html += '<div class="image_frame small">';
+	              inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
+	              inner_html += '</div>';
+	              inner_html += '<div class="post_info_content_small">';
+	              inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
+	              inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/blogs/'+ pageData[i]._id + '">'+ pageData[i].title + '</a></h3>';
+	              inner_html += '<ul class="post_meta_links_small">'
+	              inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
+	              inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
+	              inner_html += '<li class="post_comments"><a href="#">18 Comments</a></li>';
+	              inner_html += '<div class="clear"></div>';
+	              inner_html += '</ul>';
+								inner_html += '<div class="clearfix"></div>';
+								inner_html += '<p>'+ pageData[i].subtitle + '</p>';
+								inner_html += '</div></div></div>';
+								inner_html += '<div class="clearfix divider_dashed9"></div>';
+
+	              $('#articleBox').append(inner_html);
+	              // member_num += 1;
+	            };
+
+	            pageNext = parseInt((currentPage-1)/5) + 1;
+
+	              start = (pageNext-1)*5+1;
+	              end = pageNext*5;
+	              if(end > total_page){
+	                end = total_page;
+	              }
+
+	              $(".pageBox").html("");
+	              for (var k=start;k<=end;k++){
+	                var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
+
+	                $(".pageBox").append(inner_html);
+	              };
+	               $("#num"+currentPage).addClass("current").siblings().removeClass("current");
+
+	          });
+
+	        };
+
+	        $(function(){
+	          query();
+	          $(document).on('click','.pageBox > a',function(){
+	            var num = $(this).text();
+	            gotoPage(num);
+	            //  $(this).addClass("current").siblings().removeClass("current");
+	          })
+
+	          $("#prev").on("click",function(){
+	              if(currentPage<=1){
+
+	              }else{
+	                  gotoPage(--currentPage);
+	                  // $("#num"+currentPage).addClass("current").siblings().removeClass("current");
+	              }
+	          });
+
+	          $("#next").on("click",function(){
+	              if(currentPage>=total_page){
+
+	              }else{
+	                  gotoPage(++currentPage);
+	                  // $("#num"+currentPage).addClass("current").siblings().removeClass("current");
+	              }
+	          })
+	        });
+	</script>
 </body>
 
 </html>

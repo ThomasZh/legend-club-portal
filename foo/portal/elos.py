@@ -82,7 +82,14 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/index.html',
+                is_login=is_login,
                 club=club,
                 categories=categories,
                 articles=articles,
@@ -130,7 +137,14 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-index.html',
+                is_login=is_login,
                 club=club,
                 categories=categories,
                 articles=articles,
@@ -185,8 +199,15 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-category.html',
                 club=club,
+                is_login=is_login,
                 category=category,
                 categories=categories,
                 articles=articles,
@@ -250,8 +271,15 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-post.html',
                 club=club,
+                is_login=is_login,
                 categories=categories,
                 article=article_info,
                 populars=populars)
@@ -314,8 +342,15 @@ class ElosBlogPostEditHandler(tornado.web.RequestHandler):
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-post-edit.html',
                 club=club,
+                is_login=is_login,
                 categories=categories,
                 article=article_info,
                 populars=populars)
@@ -378,8 +413,15 @@ class ElosBlogPostEditInlineHandler(tornado.web.RequestHandler):
         for article in populars:
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-post-edit-inline.html',
                 club=club,
+                is_login=is_login,
                 categories=categories,
                 article=article_info,
                 populars=populars)
@@ -444,8 +486,15 @@ class ElosBlogPostEditSyntaxhighlighterHandler(tornado.web.RequestHandler):
 
         # Tornado模板引擎一直有一个坑，有时候你可能觉得并不影响正常使用，但使用代码格式化控制就不行了：模板会去掉每行前后的空格。
         # 模板文件不为.html或.js后缀，可以为.htm或.tpl等。
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-post-edit-syntaxhighlighter.htm',
                 club=club,
+                is_login=is_login,
                 categories=categories,
                 article=article_info,
                 populars=populars)
@@ -510,8 +559,15 @@ class ElosBlogPostEditCustomerButtonHandler(tornado.web.RequestHandler):
 
         # Tornado模板引擎一直有一个坑，有时候你可能觉得并不影响正常使用，但使用代码格式化控制就不行了：模板会去掉每行前后的空格。
         # 模板文件不为.html或.js后缀，可以为.htm或.tpl等。
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/blog-post-edit-customer-button.htm',
                 club=club,
+                is_login=is_login,
                 categories=categories,
                 article=article_info,
                 populars=populars)
@@ -536,9 +592,35 @@ class ElosLoginHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/login.html',
+                is_login=is_login,
                 club=club,
                 categories=categories)
+
+
+class ElosLogoutHandler(tornado.web.RequestHandler):
+    def get(self, club_id):
+        logging.info(self.request)
+        access_token = self.get_secure_cookie("access_token")
+
+        # logout
+        url = API_DOMAIN+"/api/auth/tokens"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="DELETE", headers={"Authorization":"Bearer "+access_token})
+        logging.info("got response %r", response.body)
+
+        self.clear_cookie("access_token")
+        self.clear_cookie("expires_at")
+        self.clear_cookie("login_next")
+        self.clear_cookie("refresh_token")
+
+        self.redirect("/elos/clubs/"+club_id+"/services")
 
 
 class ElosRegisterHandler(tornado.web.RequestHandler):
@@ -560,8 +642,15 @@ class ElosRegisterHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/register.html',
                 club=club,
+                is_login=is_login,
                 categories=categories)
 
 
@@ -584,8 +673,15 @@ class ElosContactHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/contact.html',
                 club=club,
+                is_login=is_login,
                 categories=categories)
 
 
@@ -608,8 +704,15 @@ class ElosAboutHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/about.html',
                 club=club,
+                is_login=is_login,
                 categories=categories)
 
 
@@ -632,8 +735,15 @@ class ElosServiceHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/services.html',
                 club=club,
+                is_login=is_login,
                 categories=categories)
 
 
@@ -656,8 +766,15 @@ class ElosPortfolioHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/portfolio.html',
                 club=club,
+                is_login=is_login,
                 categories=categories)
 
 
@@ -691,7 +808,14 @@ class ElosPortfolioImagesHandler(tornado.web.RequestHandler):
         for multimedia in multimedias:
             multimedia['publish_time'] = timestamp_friendly_date(multimedia['publish_time'])
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         self.render('elos/portfolio-images.html',
+                is_login=is_login,
                 club=club,
                 categories=categories,
                 multimedias=multimedias)

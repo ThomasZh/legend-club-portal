@@ -124,3 +124,29 @@ class AuthRegisterIntoLeagueXHR(BaseHandler):
         self.set_status(200) # OK
         self.finish()
         return
+
+
+class AuthClubSignupXHR(BaseHandler):
+    def post(self,club_id):
+        logging.info(self.request)
+        logging.info(self.request.body)
+        club_id = self.get_argument("club_id","")
+        logging.info("got club_id %r",club_id)
+        session_ticket = json_decode(self.request.body)
+
+        self.set_secure_cookie("access_token", session_ticket['access_token'])
+        self.set_secure_cookie("expires_at", str(session_ticket['expires_at']))
+
+        # signup into club
+        url = API_DOMAIN+"/api/clubs/"+club_id+"/signup"
+        http_client = HTTPClient()
+        headers={"Authorization":"Bearer "+session_ticket['access_token']}
+        body = {"role":"user"}
+        _json = json_encode(body)
+        response = http_client.fetch(url, method="POST", headers=headers, body=_json)
+        logging.info("got response %r", response.body)
+
+        self.set_status(200) # OK
+        self.write(JSON.dumps({"err_code":200, "err_msg":"success"}))
+        self.finish()
+        return

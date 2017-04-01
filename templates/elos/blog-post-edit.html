@@ -19,46 +19,12 @@
 	<!-- this styles only adds some repairs on idevices  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- ######### CSS STYLES ######### -->
 	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ static_url('elos/css/style.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ static_url('elos/css/font-awesome/css/font-awesome.min.css') }}">
 	<!-- responsive devices styles -->
 	<link rel="stylesheet" media="screen" href="{{ static_url('elos/css/responsive-leyouts.css') }}" type="text/css" />
-
-	<!-- just remove the below comments witch color skin you want to use -->
-	<!--<link rel="stylesheet" href="css/colors/blue.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/green.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/cyan.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/orange.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/lightblue.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/pink.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/purple.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/bridge.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/slate.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/yellow.css" />-->
-	<!--<link rel="stylesheet" href="css/colors/darkred.css" />-->
-
-	<!-- just remove the below comments witch bg patterns you want to use -->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-default.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-one.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-two.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-three.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-four.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-five.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-six.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-seven.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eight.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-nine.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-ten.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-eleven.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-twelve.css" />-->
-	<!--<link rel="stylesheet" href="css/bg-patterns/pattern-thirteen.css" />-->
-
 	<!-- mega menu -->
 	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
@@ -98,9 +64,8 @@
 	<div class="wrapper_boxed">
 
 		<div class="site_wrapper">
-
 			<!-- top header bar -->
-			{% module Template("elos/block-header.html", club=club, categories=categories) %}
+			{% module Template("elos/block-header.html", club=club, categories=categories, is_login=is_login) %}
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
@@ -387,11 +352,7 @@
 	</div>
 
 
-	<!-- ######### JS FILES ######### -->
-	<!-- get jQuery from the google apis -->
-	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
-	<!-- style switcher -->
-	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
+	<script src="{{ static_url('js/jquery-3.2.0.min.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
@@ -472,9 +433,55 @@
 -->
 	<script>
 		$(function() {
+
+			$.FroalaEditor.DefineIcon('insert', {
+				NAME: 'plus'
+			});
+			$.FroalaEditor.RegisterCommand('insert', {
+				title: 'Insert Code',
+				focus: true,
+				undo: true,
+				refreshAfterCallback: true,
+				callback: function() {
+					var html = '<pre class="brush: js; ruler: true; first-line: 1; highlight: [1, 3, 5]">Insert your code here</pre>';
+					this.html.insert(html);
+				}
+			});
+
+
+
 			$('#init').on('click', function(e) {
 				console.log("Initializing Froala Editor...");
-				$('#edit').removeClass('fr-view').froalaEditor();
+				$('#edit').removeClass('fr-view').froalaEditor(
+					{
+						enter: $.FroalaEditor.ENTER_P,
+						heightMax: 500,
+						toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', 'subscript', 'superscript',
+							'|', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle',
+							'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
+							'|', 'insertLink', 'insertTable', 'insertHR',
+							'|', 'undo', 'redo', 'clearFormatting', 'html',
+							'|', 'insert','insertImage'
+						],
+						toolbarButtonsMD: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize',
+							'|', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle',
+							'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
+							'|', 'insertLink', 'insertHR',
+							'|', 'undo', 'redo', 'html',
+							'|', 'insert'
+						],
+						toolbarButtonsSM: ['bold', 'italic', 'underline', 'fontFamily', 'fontSize',
+							'|', 'color', 'paragraphFormat', 'align', 'formatOL', 'formatUL',
+							'|', 'insertLink',
+							'|', 'undo', 'redo', 'html',
+							'|', 'insert'
+						],
+						toolbarButtonsXS: ['bold', 'fontSize',
+							'|', 'align', 'formatOL', 'formatUL',
+							'|', 'insert'
+						],
+					}
+				);
 			})
 			$('#init2').on('click', function(e) {
 				console.log("Initializing Froala Editor...");

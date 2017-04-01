@@ -14,15 +14,12 @@
           <!-- end left links -->
           <div class="right">
             <ul>
-              <li class="link"><a href="/elos/clubs/{{ club['_id'] }}/login">Login</a></li>
-              <li class="link"><a href="/elos/clubs/{{ club['_id'] }}/register">Register</a></li>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-flickr"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fa fa-rss"></i></a></li>
+              {% if is_login %}
+                <li class="link"><a href="/elos/clubs/{{ club['_id'] }}/logout">登出</a></li>
+              {% else %}
+                <li class="link"><a href="/elos/clubs/{{ club['_id'] }}/login">登录</a></li>
+              {% end %}
+              <li><a href="#"><i class="fa  fa-user"></i></a></li>
             </ul>
           </div>
           <!-- end right social links -->
