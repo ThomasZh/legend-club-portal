@@ -29,17 +29,17 @@
 	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/fhmm.css') }}" rel="stylesheet">
-	<!-- REVOLUTION SLIDER -->
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/rs-plugin/css/settings.css') }}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/css/slider_main.css') }}" media="screen" />
 	<!-- cubeportfolio -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/cubeportfolio/cubeportfolio.min.css') }}">
 	<!-- tabs -->
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs2.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs3.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/tabwidget/tabwidget.css') }}" />
 	<!-- carousel -->
 	<link rel="stylesheet" href="{{ static_url('elos/js/carousel/flexslider.css') }}" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/carousel/skin.css') }}" />
+	<!-- progressbar -->
+  	<link rel="stylesheet" href="js/progressbar/ui.progress-bar.css">
+
 	<!-- accordion -->
 	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
@@ -69,9 +69,6 @@
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
-
-			<!-- Contant
-======================================= -->
 
 			<div class="page_title2">
 				<div class="container">
@@ -394,7 +391,11 @@
 	<!-- lightbox -->
 	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/jquery.fancybox.js') }}"></script>
 	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/custom.js') }}"></script>
-
+	<!-- fileinput -->
+	<script src="{{ static_url('upyun/js/fileinput.min.js') }}"></script>
+	<script src="{{ static_url('upyun/js/spark-md5.min.js') }}"></script>
+	<script src="{{ static_url('upyun/js/async.js') }}"></script>
+	<script src="{{ static_url('upyun/js/upyun-mu.js') }}"></script>
 	<script type="text/javascript">
 		// Menu drop down effect
 		$('.dropdown-toggle').dropdownHover().dropdown();
@@ -431,8 +432,89 @@
 		});
 	</script>
 -->
+	<input type="file" id="file" name="file" style="display:none;">
 	<script>
+
+var vFroalaEditor;
+
+	  function uuid() {
+	    var s = [];
+	    var hexDigits = "0123456789abcdef";
+	    for (var i = 0; i < 36; i++) {
+	      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+	    }
+	    s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+	    s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+	    s[8] = s[13] = s[18] = s[23] = "-";
+
+	    var uuid = s.join("");
+	    return uuid;
+	  }
+
+	  function uploadUpyun(file, elementId) {
+	    var ext = '.' + file.name.split('.').pop();
+
+	    var config = {
+	      // 空间名称
+	      bucket: 'tripc2c-club-title',
+	      // 上传请求过期时间
+	      expiration: parseInt((new Date().getTime() + 3600000) / 1000),
+	      // 尽量不要使用直接传表单 API 的方式，以防泄露造成安全隐患
+	      form_api_secret: 'CRKAOsKHGbbCnU+yztBxUT0bYR0='
+	    };
+
+	    var instance = new Sand(config);
+	    var options = {
+	      'notify_url': 'http://upyun.com'
+	    };
+	    instance.setOptions(options);
+	    instance.setElementId(elementId);
+
+	    var d = new Date();
+	    var month = d.getMonth() + 1;
+	    var filename = '/avatar/' + d.getFullYear() + '/' + month + '/' + d.getDate() + '/' + uuid() + ext;
+	    console.log(filename);
+	    instance.upload(filename);
+
+	    return 'https://tripc2c-club-title.b0.upaiyun.com' + filename;
+	  };
+
+	  $("#file").on("change",function(){
+	      var times = 0;
+	      var imgUrl = uploadUpyun(this.files[0],"file");
+	      $('#loadingToast').show();
+	      document.addEventListener('uploaded',function(e){
+	        if(times == 0){
+						var html = '<img src="'+ imgUrl +'" alt="" />';
+						vFroalaEditor.insert(html);
+	          $('#loadingToast').hide();
+	        }
+	        times ++;
+	      });
+
+	  });
+
 		$(function() {
+
+		 $.FroalaEditor.PLUGINS.customPlugin = function (editor) {
+
+			 function openBrowse () {
+				 var ie=navigator.appName=="Microsoft Internet Explorer" ? true : false;
+         if(ie){
+             document.getElementById("file").click();
+             document.getElementById("filename").value=document.getElementById("file").value;
+         }else{
+             var a=document.createEvent("MouseEvents");//FF的处理
+             a.initEvent("click", true, true);
+             document.getElementById("file").dispatchEvent(a);
+         }
+			 };
+ 		    // Methods visible outside the plugin.
+ 		    return {
+ 		      openBrowse: openBrowse
+ 		    }
+
+		 };
 
 			$.FroalaEditor.DefineIcon('insert', {
 				NAME: 'plus'
@@ -444,10 +526,22 @@
 				refreshAfterCallback: true,
 				callback: function() {
 					var html = '<pre class="brush: js; ruler: true; first-line: 1; highlight: [1, 3, 5]">Insert your code here</pre>';
+					console.log(this == $.FroalaEditor.RegisterCommand);
 					this.html.insert(html);
 				}
 			});
 
+			$.FroalaEditor.DefineIcon('imageInfo', {NAME: 'image'});
+      $.FroalaEditor.RegisterCommand('imageInfo', {
+        title: 'Info',
+        focus: false,
+        undo: false,
+        refreshAfterCallback: false,
+        callback: function () {
+					vFroalaEditor = this.html;
+					this.customPlugin.openBrowse();
+        }
+      });
 
 
 			$('#init').on('click', function(e) {
@@ -461,7 +555,7 @@
 							'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
 							'|', 'insertLink', 'insertTable', 'insertHR',
 							'|', 'undo', 'redo', 'clearFormatting', 'html',
-							'|', 'insert','insertImage'
+							'|', 'insert','imageInfo'
 						],
 						toolbarButtonsMD: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize',
 							'|', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle',
