@@ -74,7 +74,7 @@
 				<div class="container">
 
 					<div class="title">
-						<h1>Blog Creat</h1></div>
+						<h1>Blog Edit</h1></div>
 
 					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">首页</a> <i>/</i> <a href="#">发布博客</a></div>
 
@@ -111,25 +111,25 @@
                   </div>
               </div>
 							<form action="/elos/clubs/{{ club['_id'] }}/articles/creat" method="post" id="sky-form" class="sky-form">
-								<header>创建 <strong>文章</strong></header>
+								<header>编辑 <strong>文章</strong></header>
 								<fieldset>
 									<section>
 										<label class="label">文章标题</label>
 										<label class="input"> <i class="icon-append icon-tag"></i>
-                			<input type="text" name="title" id="title">
+                			<input type="text" name="title" id="title" value="{{ article['title'] }}">
               			</label>
 									</section>
 									<section>
 										<label class="label">副标题</label>
 										<label class="textarea"> <i class="icon-append icon-comment"></i>
-              			  <textarea rows="4" name="subtitle" id="subtitle"></textarea>
+              			  <textarea rows="4" name="subtitle" id="subtitle">{{ article['subtitle'] }}</textarea>
             			  </label>
 									</section>
                   <section>
 										<label class="label">封面图片</label>
                         <div class="form-group">
                           <div class="rst-account-img" style="position:static;">
-                            <img id="article_img" name="article_img" src="http://tripc2c-club-title.b0.upaiyun.com/default/bg.jpg" alt="俱乐部背景图" />
+                            <img id="article_img" name="article_img" src="{{ article['img'] }}" alt="俱乐部背景图" />
                             <input type="hidden" name="article_img" id="i_article_img">
                             <a class="elos-loadbutton" type="button" onclick="openBrowse('file1')">上传封面图</a>
                             <input type="file" id="file1" name="file1" style="display:none;">
@@ -139,7 +139,7 @@
 									</section>
                   <section>
 										<label class="label">文章内容</label>
-                      <div id='edit'></div>
+                      <div id='edit'>{% raw article['paragraphs'] %}</div>
                       <input type="hidden" name="paragraphs" id="paragraphs">
 									</section>
 								</fieldset>

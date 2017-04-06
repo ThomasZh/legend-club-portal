@@ -25,14 +25,11 @@
 	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/fhmm.css') }}" rel="stylesheet">
-	<!-- REVOLUTION SLIDER -->
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/rs-plugin/css/settings.css') }}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/css/slider_main.css') }}" media="screen" />
 	<!-- cubeportfolio -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/cubeportfolio/cubeportfolio.min.css') }}">
-	<!-- tabs -->
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs2.css') }}">
+  <!-- tabs -->
+  <link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs3.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/tabwidget/tabwidget.css') }}" />
 	<!-- carousel -->
 	<link rel="stylesheet" href="{{ static_url('elos/js/carousel/flexslider.css') }}" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/carousel/skin.css') }}" />
@@ -63,9 +60,9 @@
 				<div class="container">
 
 					<div class="title">
-						<h1>Blog Category</h1></div>
+						<h1>已公开文章列表</h1></div>
 
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">Home</a> <i>/</i> <a href="#">Blog</a> <i>/</i> {{ category['title'] }} </div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">首页</a> <i>/</i> <a href="#">文章列表</a> </div>
 
 				</div>
 			</div>
@@ -370,9 +367,9 @@
 					var currentPage = 0;//当前页
 					var total_page = 0;//总页数
 					function query(pageNum) {
-						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&category={{ category['_id'] }}&page=1&limit="+limit+"",function(data,status){
+						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&status=publish&category=all&page=1&limit="+limit+"",function(data,status){
 									console.log(data);
-									data_obj = JSON.parse(data);
+									data_obj = JSON.parse(data);s
 									data = data_obj.rs;
 									currentPage = 1;
 							var pageData = data.data;
@@ -387,7 +384,7 @@
 								inner_html += '</div>';
 								inner_html += '<div class="post_info_content_small">';
 								inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
-								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/blogs/'+ pageData[i]._id + '">'+ pageData[i].title + '</a></h3>';
+								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/edit">'+ pageData[i].title + '</a></h3>';
 								inner_html += '<ul class="post_meta_links_small">'
 								inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
 								inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
@@ -418,7 +415,7 @@
 					};
 
 					function gotoPage(pageNum) {
-						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&category={{ category['_id'] }}&page="+pageNum+"&limit="+limit+"",function(data,status){
+						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&status=publish&category=all&page="+pageNum+"&limit="+limit+"",function(data,status){
 									//  console.log(data);
 									data_obj = JSON.parse(data);
 									data = data_obj.rs;
@@ -435,7 +432,7 @@
 								inner_html += '</div>';
 								inner_html += '<div class="post_info_content_small">';
 								inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
-								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/blogs/'+ pageData[i]._id + '">'+ pageData[i].title + '</a></h3>';
+								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/edit">'+ pageData[i].title + '</a></h3>';
 								inner_html += '<ul class="post_meta_links_small">'
 								inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
 								inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
