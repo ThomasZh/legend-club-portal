@@ -10,6 +10,7 @@ import ssl
 import tornado.ioloop
 from tornado.options import define, options
 import tornado.web
+from foo.global_const import *
 
 # all the route config
 import router
@@ -30,7 +31,7 @@ def main():
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         xsrf_cookies=False,
         debug=options.debug,
-        login_url="/club/auth/login",
+        login_url="/elos/clubs/"+CLUB_ID+"/login",
         ssl_options={
            "certfile": os.path.join(os.path.abspath("."), "7x24hs.com.crt"),
            "keyfile": os.path.join(os.path.abspath("."), "7x24hs.com.key"),

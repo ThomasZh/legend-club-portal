@@ -53,6 +53,11 @@ def map():
         (r'/elos/clubs/([a-z0-9]*)/portfolio', getattr(elos, 'ElosPortfolioHandler')),
         (r'/elos/clubs/([a-z0-9]*)/portfolio-images', getattr(elos, 'ElosPortfolioImagesHandler')),
 
+        (r'/elos/clubs/([a-z0-9]*)/articles/creat', getattr(elos, 'ElosBlogCreatHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/articles/draft', getattr(elos, 'ElosBlogDraftHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/articles/publish', getattr(elos, 'ElosBlogPublishHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/blogs/user-info', getattr(elos, 'ElosBlogUserInfoHandler')),
+
 
         (r'/club/auth/login', getattr(auth_email, 'AuthEmailLoginHandler')),
         (r'/club/auth/clubs/([a-z0-9]*)/signup', getattr(auth_email, 'AuthClubSignupXHR')),

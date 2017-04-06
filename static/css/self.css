@@ -1,0 +1,25 @@
+.elos-loadbutton{
+  display: block;
+  margin: 10px 0 10px;
+  /*width: 267px;*/
+  max-width: 100%;
+  height: 30px;
+  border: 1px solid #e2e6e5;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.elos-loadbutton:hover{
+  background-color: #272727;
+  color: #fff;
+}
+#article_img{
+  max-width:100%;
+  height:225px;
+  border:1px solid #e2e6e5;
+}
+@media screen and (min-width:768px){
+    .elos-loadbutton{
+      width: 334px;
+     }
+}

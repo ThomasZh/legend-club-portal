@@ -48,20 +48,19 @@
 
             <div id="defaultmenu" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="dropdown active"><a href="/elos/clubs/{{ club['_id'] }}/services">Home</a>
+                <li class="dropdown active"><a href="/elos/clubs/{{ club['_id'] }}/services">首页</a>
                 </li>
 
-                <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio</a>
+                <!-- <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio</a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="/elos/clubs/{{ club['_id'] }}/portfolio">Portfolio</a></li>
                     <li><a href="/elos/clubs/{{ club['_id'] }}/portfolio-images">Image Gallery</a></li>
                   </ul>
-                  <!-- end dropdown-menu -->
-                </li>
+                </li> -->
 
-                <li class="dropdown"><a href="/elos/clubs/{{ club['_id'] }}/blogs" data-toggle="dropdown" class="dropdown-toggle">Blog</a>
+                <li class="dropdown"><a href="/elos/clubs/{{ club['_id'] }}/blogs" data-toggle="dropdown" class="dropdown-toggle">博客</a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs">All</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs">全部</a></li>
                     {% for category in categories %}
                     <li><a href="/elos/clubs/{{ club['_id'] }}/categories/{{ category['_id'] }}">{{ category['title'] }}</a></li>
                     {% end %}
@@ -73,14 +72,22 @@
                   <!-- end dropdown-menu -->
                 </li>
 
-                <li><a href="/elos/clubs/{{ club['_id'] }}/about">About</a>
+                <li><a href="/elos/clubs/{{ club['_id'] }}/about">关于</a>
+                </li>
+                <li class="dropdown"><a href="/elos/clubs/{{ club['_id'] }}/contact" data-toggle="dropdown" class="dropdown-toggle">我的</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/articles/creat">创建</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/articles/draft">草稿箱</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/articles/publish">公开</a></li>
+                    <li><a href="/elos/clubs/{{ club['_id'] }}/blogs/user-info">个人信息</a></li>
+                  </ul>
                 </li>
 
               </ul>
               <!-- end nav navbar-nav -->
 
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/elos/clubs/{{ club['_id'] }}/contact">Contact</a>
+                <li><a href="/elos/clubs/{{ club['_id'] }}/contact">联系我们</a>
                 </li>
               </ul>
 
