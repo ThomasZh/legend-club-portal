@@ -38,7 +38,12 @@ class ElosHomeHandler(tornado.web.RequestHandler):
     def get(self):
         logging.info(self.request)
 
-        self.redirect("/elos/clubs/"+CLUB_ID+"/services")
+        login_next = self.get_secure_cookie("login_next")
+        logging.info("got login_next %r",login_next)
+        if login_next:
+            self.redirect(login_next)
+        else:
+            self.redirect("/elos/clubs/"+CLUB_ID+"/services")
 
 
 class ElosClubIndexHandler(tornado.web.RequestHandler):
@@ -1164,6 +1169,12 @@ class ElosBlogUserInfoHandler(AuthorizationHandler):
     def get(self, club_id):
         logging.info(self.request)
 
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
         url = "http://api.7x24hs.com/api/clubs/"+club_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1179,38 +1190,17 @@ class ElosBlogUserInfoHandler(AuthorizationHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
-        # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
-        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        headers = {"Authorization":"Bearer "+access_token}
+        url = "http://api.7x24hs.com/api/myinfo?filter=login"
         http_client = HTTPClient()
-        response = http_client.fetch(url, method="GET")
+        response = http_client.fetch(url, method="GET", headers=headers)
         logging.info("got response %r", response.body)
-        rs = json_decode(response.body)
-        articles = rs['rs']
-        for article in articles:
-            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
-
-        # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
-        url = url_concat("http://api.7x24hs.com/api/articles", params)
-        http_client = HTTPClient()
-        response = http_client.fetch(url, method="GET")
-        logging.info("got response %r", response.body)
-        rs = json_decode(response.body)
-        populars = rs['rs']
-        for article in populars:
-            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
-
-        is_login = False
-        access_token = self.get_secure_cookie("access_token")
-        logging.info("got access_token>>>>> %r",access_token)
-        if access_token:
-            is_login = True
+        data = json_decode(response.body)
+        user = data['rs']
 
         self.render('elos/user-info.html',
                 is_login=is_login,
                 access_token=access_token,
                 club=club,
                 categories=categories,
-                articles=articles,
-                populars=populars)
+                user=user)

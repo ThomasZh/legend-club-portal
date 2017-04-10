@@ -44,10 +44,6 @@
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
-
-			<!-- Contant
-======================================= -->
-
 			<div class="page_title2">
 				<div class="container">
 
@@ -77,46 +73,27 @@
 						<div class="cforms">
 
 							<form action="demo-contacts.php" method="post" id="sky-form" class="sky-form">
-								<header>Contact <strong>Form</strong></header>
+								<header>联系 <strong>我们</strong></header>
 								<fieldset>
 									<div class="row">
 										<section class="col col-6">
-											<label class="label">Name</label>
+											<label class="label">手机号或Email</label>
 											<label class="input"> <i class="icon-append icon-user"></i>
-                			  <input type="text" name="name" id="name">
-                			</label>
-										</section>
-										<section class="col col-6">
-											<label class="label">E-mail</label>
-											<label class="input"> <i class="icon-append icon-envelope-alt"></i>
-                  			<input type="email" name="email" id="email">
+                			  <input type="text" name="phone" id="phone">
                 			</label>
 										</section>
 									</div>
 									<section>
-										<label class="label">Subject</label>
-										<label class="input"> <i class="icon-append icon-tag"></i>
-                			<input type="text" name="subject" id="subject">
-              			</label>
-									</section>
-									<section>
-										<label class="label">Message</label>
+										<label class="label">留言内容</label>
 										<label class="textarea"> <i class="icon-append icon-comment"></i>
               			  <textarea rows="4" name="message" id="message"></textarea>
             			  </label>
 									</section>
-									<section>
-										<label class="checkbox">
-                			<input type="checkbox" name="copy" id="copy">
-                			<i></i>Send a copy to my e-mail address</label>
-									</section>
 								</fieldset>
+								<div class="send-ok-message"></div>
 								<footer>
-									<button type="submit" class="button">Send message</button>
+									<button type="submit" class="button">留言</button>
 								</footer>
-								<div class="message"> <i class="icon-ok"></i>
-									<p>Your message was successfully sent!</p>
-								</div>
 							</form>
 
 						</div>
@@ -170,13 +147,9 @@
 			$("#sky-form").validate({
 				// Rules for form validation
 				rules: {
-					name: {
+					phone: {
 						required: true
-					},
-					email: {
-						required: true,
-						email: true
-					},
+					}
 					message: {
 						required: true,
 						minlength: 10
@@ -186,25 +159,52 @@
 				// Messages for form validation
 				messages: {
 					name: {
-						required: 'Please enter your name',
-					},
-					email: {
-						required: 'Please enter your email address',
-						email: 'Please enter a VALID email address'
+						required: '请输入有效电话或邮箱',
 					},
 					message: {
-						required: 'Please enter your message'
+						required: '请输入留言内容',
+						minlength: "至少10个字符！",
 					}
 				},
 
 				// Ajax form submition
 				submitHandler: function(form) {
-					$(form).ajaxSubmit({
-						success: function() {
-							$("#sky-form").addClass('submited');
-						}
-					});
-				},
+          var data = {
+            phone: $('#phone').val(),
+            message: $('#message').val(),
+            league_id: "{{ league_info['_id'] }}",
+            club_id: "00000000000000000000000000000000"
+          };
+          var json = JSON.stringify(data);
+          console.log(json);
+          function hide(){
+            $(".send-ok-message").hide(1000);
+            $("#message").val("");
+            $("#phone").val("");
+          }
+          $.ajax({
+            type: "POST",
+            data: json,
+            url:"http://7x24hs.com/api/guest-book",
+            dataType: "json",
+            contentType: 'application/json',
+            success: function(data, status, xhr) {
+              console.log(data);
+              $(".send-ok-message").html("留言成功！");
+              setTimeout(hide,2500);
+              $("#message").val("");
+              $("#phone").val("");
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              console.log("XMLHttpRequest.status: " + XMLHttpRequest.status);
+                $('.appy-form-main-message').addClass('show error').html('网络异常,刷新重试');
+            },
+            complete: function(XMLHttpRequest, textStatus) {
+              this; // 调用本次AJAX请求时传递的options参数
+            }
+          });
+        },
 
 				// Do not change code below
 				errorPlacement: function(error, element) {

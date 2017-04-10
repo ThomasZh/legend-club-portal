@@ -89,7 +89,7 @@
 							<ul class="post_meta_links">
 								<li class="post_by"><a href="#">{{ article['nickname'] }}</a></li>
 								<li class="post_categoty"><a href="#">Web tutorials</a></li>
-								<li class="post_comments"><a href="#">18 Comments</a></li>
+								<li class="post_comments"><a href="#">{{ article['comment_num'] }} 条评论</a></li>
                 <li class="post_edit"><a href="/elos/clubs/{{club['_id']}}/articles/{{article['_id']}}/edit">编辑</a></li>
 							</ul>
 
@@ -107,81 +107,34 @@
 
 
 
+					<div id="comment_wrap">
+							<h4>评论内容</h4>
+							<div class="mar_top_bottom_lines_small3"></div>
+							<div class="comment_wrap" v-for="comment in comments">
+								<div class="gravatar">
+									<img style="width:30px;height:30px;" v-bind:src="comment.avatar" alt="" />
+								</div>
+								<div class="comment_content">
+									<div class="comment_meta">
 
-					<h4>Comments</h4>
-					<div class="mar_top_bottom_lines_small3"></div>
-					<div class="comment_wrap">
-						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
-						<div class="comment_content">
-							<div class="comment_meta">
+										<div class="comment_author">{{! comment.nickname }} - <i>{{! comment.create_time }}</i></div>
 
-								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
-
+									</div>
+									<div class="comment_text">
+										<p>{{! comment.comment }}</p>
+									</div>
+								</div>
 							</div>
-							<div class="comment_text">
-								<p>Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.</p>
-								<a href="#">Reply</a>
+							<!-- end section -->
+
+
+							<div class="comment_form">
+								<h4>添加评论</h4>
+									<textarea id="comment" class="comment_textarea_bg" rows="20" cols="7" placeholder="添加评论内容" ></textarea>
+									<div class="clearfix"></div>
+									<div class="send-ok-message"></div>
+									<input name="send" type="submit" value="评论" class="comment_submit" v-on:click="sendComment" />
 							</div>
-						</div>
-					</div>
-					<!-- end section -->
-
-					<div class="comment_wrap chaild">
-						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
-						<div class="comment_content">
-							<div class="comment_meta">
-
-								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
-
-							</div>
-							<div class="comment_text">
-								<p>Lorem ipsum dolor sit amet, consectetur rius a auctor enim accumsan.</p>
-								<a href="#">Reply</a>
-							</div>
-						</div>
-					</div>
-					<!-- end section -->
-
-					<div class="comment_wrap chaild">
-						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
-						<div class="comment_content">
-							<div class="comment_meta">
-
-								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
-
-							</div>
-							<div class="comment_text">
-								<p>Lorem ipsum dolor sit amet, consectetur rius a auctor enim accumsan.</p>
-								<a href="#">Reply</a>
-							</div>
-						</div>
-					</div>
-					<!-- end section -->
-
-					<div class="comment_wrap chaild">
-						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
-						<div class="comment_content">
-							<div class="comment_meta">
-
-								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
-
-							</div>
-							<div class="comment_text">
-								<p>Lorem ipsum dolor sit amet, consectetur rius a auctor enim accumsan.</p>
-								<a href="#">Reply</a>
-							</div>
-						</div>
-					</div>
-					<!-- end section -->
-
-
-					<div class="comment_form">
-						<h4>Leave a Comment</h4>
-						<form action="blog-post.html" method="post">
-							<textarea name="comment" class="comment_textarea_bg" rows="20" cols="7"></textarea>
-							<div class="clearfix"></div>
-							<input name="send" type="submit" value="Submit Comment" class="comment_submit" />
-						</form>
 					</div>
 					<!-- end comment form -->
 
@@ -217,7 +170,8 @@
 
 						<img src="{{ article['avatar'] }}!200x200" alt="" />
 
-						<a href="http://themeforest.net/user/gsrthemes9/portfolio" target="_blank">{{ article['nickname'] }}</a><br /> I'm a freelance designer with satisfied clients worldwide. I design simple, clean websites and develop easy-to-use applications. Web Design
+						<a href="#" target="_blank">{{ article['nickname'] }}</a><br /> I'm a freelance designer with satisfied clients worldwide. I design simple,
+						 clean websites and develop easy-to-use applications. Web Design
 						is not just my job it's my passion. You need professional web designer you are welcome.
 					</div>
 					<!-- end about author -->
@@ -318,7 +272,8 @@
 
 						<img src="http://placehold.it/50x50" alt="" />
 						<strong>- Henry Brodie</strong>
-						<p>Lorem Ipsum passage, and going through the cites of the word here classical literature passage disvered undou btable source. which looks reasonable the generated charac eristic words.</p>
+						<p>Lorem Ipsum passage, and going through the cites of the word here classical literature passage disvered undou btable source.
+							 which looks reasonable the generated charac eristic words.</p>
 
 					</div>
 					<!-- end section -->
@@ -495,8 +450,6 @@
 	<!-- ######### JS FILES ######### -->
 	<!-- get jQuery from the google apis -->
 	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
-	<!-- style switcher -->
-	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
@@ -517,7 +470,6 @@
 			jQuery('#mycarouselthree').jcarousel();
 		});
 	</script>
-
 	<!-- accordion -->
 	<script type="text/javascript" src="{{ static_url('elos/js/accordion/custom.js') }}"></script>
 	<!-- REVOLUTION SLIDER -->
@@ -538,13 +490,134 @@
 	<!-- lightbox -->
 	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/jquery.fancybox.js') }}"></script>
 	<script type="text/javascript" src="{{ static_url('elos/js/lightbox/custom.js') }}"></script>
-
+	<script type="text/javascript" src="{{ static_url('js/json2.js') }}"></script>
+	<script src="{{ static_url('js/vue-2.1.4.js') }}" type="text/javascript"></script>
 	<script type="text/javascript">
 		// Menu drop down effect
 		$('.dropdown-toggle').dropdownHover().dropdown();
 		$(document).on('click', '.fhmm .dropdown-menu', function(e) {
 			e.stopPropagation()
-		})
+		});
+
+		$(function(){
+			new Vue({
+				el:'#comment_wrap',
+				data: {
+	        comments: [],
+	        comment_num: 0,
+	        limlt: 10
+	      },
+	      created: function() {
+	        this.queryComments(0, this.limlt);
+	      },
+				methods:{
+	        sendComment: function() {
+	          var _self = this;
+	          var comment = $("#comment").val();
+	          console.log(comment);
+	          var data = {
+	            "comment": comment,
+	          };
+	          var json = JSON.stringify(data);
+	          console.log(json);
+	          function hide(){
+	            $(".send-ok-message").hide(1000);
+	          }
+	          $.ajax({
+	            type: "POST",
+	            url: "http://7x24hs.com/api/articles/{{ article['_id'] }}/comment",
+	            dataType: "json",
+	            data: json,
+	            contentType: 'application/json',
+	            headers: {"Authorization":"Bearer {{access_token}}"},
+	            success: function(data, status, xhr) {
+	              console.log(data);
+	              $("#comment").val("");
+	              $(".send-ok-message").html("评论成功！");
+	              setTimeout(hide,3000);
+	              $("#comment").val("");
+	              _self.queryNewComment();
+
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) {
+	              console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+	            },
+	            complete: function(XMLHttpRequest, textStatus) {
+	              this; // 调用本次AJAX请求时传递的options参数
+	            }
+	          });
+	        },
+	        loadMore: function() {
+	          var _self = this;
+	          $("#loadMoreBtn").text('加载中...');
+	          _self.queryComments(_self.comment_num, _self.limlt);
+	          setTimeout(function(){
+	            if (_self.comment_num % _self.limlt == 0){
+	              $("#loadMoreBtn").text('更多评论');
+	            } else {
+	              $("#loadMoreBtn").css('display','none');
+	            }
+	          }, 1000);
+	          // setTimeout(function(){
+	          //   $("#loadMoreBtn").css('display','none');
+	          // }, 1000);
+	        },
+	        getLocalTime: function(nS) { //时间戳转换
+	           return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+	        },
+	        queryComments: function(idx, limit) {
+	          var _self = this;
+	          $.ajax({
+	            type: "GET",
+	            url: "http://7x24hs.com/api/articles/{{ article['_id'] }}/comment?idx=" + idx + "&limit=" + limit,
+	            async: false,
+	            dataType: "json",
+	            contentType: 'application/json',
+	            success: function(datas, status, xhr) {
+	              console.log(datas.rs);
+	              for(var i = 0, l = datas.rs.length; i < l; i++) {
+	                datas.rs[i].create_time = _self.getLocalTime(datas.rs[i].create_time);
+	                // console.log(datas[i].create_time);
+	                _self.comments.push(datas.rs[i]);
+	                _self.comment_num += 1;
+	              }
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) {
+	              console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+	            },
+	            complete: function(XMLHttpRequest, textStatus) {
+	              this; // 调用本次AJAX请求时传递的options参数
+	            }
+	          });
+	        },
+	        queryNewComment: function() {
+	          var _self = this;
+	          $.ajax({
+	            type: "GET",
+	            url: "http://7x24hs.com/api/articles/{{ article['_id'] }}/comment?idx=0&limit=1",
+	            async: false,
+	            dataType: "json",
+	            contentType: 'application/json',
+	            success: function(datas, status, xhr) {
+	              console.log(datas.rs);
+	              for(var i = 0, l = datas.rs.length; i < l; i++) {
+	                datas.rs[i].create_time = _self.getLocalTime(datas.rs[i].create_time);
+	                _self.comments.splice(0, 0, datas.rs[i]);
+	                _self.comment_num += 1;
+	              }
+	            },
+	            error: function(XMLHttpRequest, textStatus, errorThrown) {
+	              console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+	            },
+	            complete: function(XMLHttpRequest, textStatus) {
+	              this; // 调用本次AJAX请求时传递的options参数
+	            }
+	          });
+	        },
+	      }
+
+			});
+		});
 	</script>
 
 </body>
