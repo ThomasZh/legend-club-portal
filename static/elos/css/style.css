@@ -4663,6 +4663,10 @@ ul.post_meta_links {
 	padding: 0px 0px 0px 22px;
 	background: url(../images/blog/icon-comments.png) no-repeat 2px 5px;
 }
+.post_meta_links li.post_edit {
+	padding: 0px 0px 0px 22px;
+	background: url(../images/blog/icon-edit.png) no-repeat 2px 5px;
+}
 .post_meta_links li a {
 	color: #a1a1a1;
 	padding: 0px 18px 0px 0px;

@@ -110,7 +110,7 @@
                       <p class="weui_toast_content">图片上传中...</p>
                   </div>
               </div>
-							<form action="/elos/clubs/{{ club['_id'] }}/articles/creat" method="post" id="sky-form" class="sky-form">
+							<form action="#" method="post" id="sky-form" class="sky-form">
 								<header>编辑 <strong>文章</strong></header>
 								<fieldset>
 									<section>
@@ -139,7 +139,7 @@
 									</section>
                   <section>
 										<label class="label">文章内容</label>
-                      <div id='edit'>{% raw article['paragraphs'] %}</div>
+                      <div id='edit' style="margin-top:30px;">{% raw article['paragraphs'] %}</div>
                       <input type="hidden" name="paragraphs" id="paragraphs">
 									</section>
 								</fieldset>
@@ -148,7 +148,7 @@
                     <div class="clearfix divider_dashed9"></div>
                     <div id="buttons">
                       <ul class="list_empty">
-                        <!-- <li><a id="init2" href="#" class="but_ok_2"><i class="fa fa-pencil fa-lg"></i> 编辑</a></li> -->
+                        <li><a id="init2" href="#" class="but_ok_2"><i class="fa fa-pencil fa-lg"></i> 编辑</a></li>
                         <li><a id="destroy2" href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> 保存</a></li>
                       </ul>
                     </div>
@@ -621,17 +621,47 @@
 			});
 			$('#destroy2').on('click', function(e) {
         e.preventDefault();
+        var title = $("#title").val();
+        var subtitle = $("#subtitle").val();
+        var img = $("#i_article_img").val();
 				var html = $('#edit').froalaEditor('html.get');
         $("#paragraphs").val(html);
 				console.log(html);
-					$("#sky-form").submit();
-
+        var data = {
+          "title": title,
+          "subtitle": subtitle,
+          "img": img,
+          "paragraphs": html,
+        };
+        var json = JSON.stringify(data);
+        console.log(json);
+        $.ajax({
+          type: "PUT",
+          url: "http://7x24hs.com/api/articles/{{ article['_id'] }}",
+          data: json,
+          dataType: "json",
+          contentType: 'application/json',
+          headers: {"Authorization":"Bearer {{access_token}}"},
+          success: function(data, status, xhr) {
+              weui.Loading.success();
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+            $('.lostpwd-form-main-message').addClass('show error').html(XMLHttpRequest.status + ": 服务器异常,请稍后重试!");
+          },
+          complete: function(XMLHttpRequest, textStatus) {
+            this; // 调用本次AJAX请求时传递的options参数
+          }
+        });
 				console.log("Destroying Froala Editor...");
 				$('#edit').froalaEditor('destroy');
 				$('#edit').addClass('fr-view');
 			});
+
 		});
+
 	</script>
+
 
 </body>
 

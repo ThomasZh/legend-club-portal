@@ -1,4 +1,8 @@
 <!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="en-gb" class="no-js">
 <!--<![endif]-->
 
@@ -21,14 +25,18 @@
 	<link rel="stylesheet" href="{{ static_url('elos/css/font-awesome/css/font-awesome.min.css') }}">
 	<!-- responsive devices styles -->
 	<link rel="stylesheet" media="screen" href="{{ static_url('elos/css/responsive-leyouts.css') }}" type="text/css" />
+
 	<!-- mega menu -->
 	<link href="{{ static_url('elos/js/mainmenu/sticky.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ static_url('elos/js/mainmenu/fhmm.css') }}" rel="stylesheet">
+	<!-- REVOLUTION SLIDER -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/rs-plugin/css/settings.css') }}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/revolutionslider/css/slider_main.css') }}" media="screen" />
 	<!-- cubeportfolio -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/cubeportfolio/cubeportfolio.min.css') }}">
-  <!-- tabs -->
-  <link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs3.css') }}">
+	<!-- tabs -->
+	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/assets/css/responsive-tabs3.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/tabs/tabwidget/tabwidget.css') }}" />
 	<!-- carousel -->
 	<link rel="stylesheet" href="{{ static_url('elos/js/carousel/flexslider.css') }}" type="text/css" media="screen" />
@@ -52,17 +60,13 @@
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
-
-			<!-- Contant
-======================================= -->
-
 			<div class="page_title2">
 				<div class="container">
 
 					<div class="title">
-						<h1>已公开文章列表</h1></div>
+						<h1>Blog   </h1></div>
 
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">首页</a> <i>/</i> <a href="#">文章列表</a> </div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">首页</a> <i>/</i> <a href="#">博客</a> <i>/</i> 文章页</div>
 
 				</div>
 			</div>
@@ -75,14 +79,205 @@
 
 				<div class="content_left">
 
-					<div id="articleBox"></div>
+					<div class="blog_post">
+						<div class="blog_postcontent">
+							<div class="image_frame">
+								<a href="#"><img src="{{ article['img'] }}!800x370" alt="" /></a>
+							</div>
+							<a href="blog-archive.html" class="date"><strong>18</strong><i>March</i></a>
+							<h3><a href="blog-post.html">{{ article['title'] }}</a></h3>
+							<ul class="post_meta_links">
+								<li class="post_by"><a href="#">{{ article['nickname'] }}</a></li>
+								<li class="post_categoty"><a href="#">Web tutorials</a></li>
+								<li class="post_comments"><a href="#">18 Comments</a></li>
+                <li class="post_edit"><a href="/elos/clubs/{{club['_id']}}/articles/{{article['_id']}}/edit">编辑</a></li>
+							</ul>
 
-					<div class="pagination">
-						<a class="navlinks" id="prev" style="cursor:pointer">&lt; 上一页</a>
-						<div class="pageBox" style="display:inline-block"></div>
-						<a class="navlinks" id="next" style="cursor:pointer">下一页 ></a>
+							<div class="post_info_content">
+								<p>{{ article['subtitle'] }}</p>
+							</div>
+							<div class="post_info_content">
+								<p>{% raw article['paragraphs'] %}</p>
+							</div>
+						</div>
 					</div>
-					<!-- end pagination -->
+					<!-- /# end post -->
+
+					<div class="clearfix divider_dashed9"></div>
+
+
+
+
+					<h4>Comments</h4>
+					<div class="mar_top_bottom_lines_small3"></div>
+					<div class="comment_wrap">
+						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
+						<div class="comment_content">
+							<div class="comment_meta">
+
+								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
+
+							</div>
+							<div class="comment_text">
+								<p>Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.</p>
+								<a href="#">Reply</a>
+							</div>
+						</div>
+					</div>
+					<!-- end section -->
+
+					<div class="comment_wrap chaild">
+						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
+						<div class="comment_content">
+							<div class="comment_meta">
+
+								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
+
+							</div>
+							<div class="comment_text">
+								<p>Lorem ipsum dolor sit amet, consectetur rius a auctor enim accumsan.</p>
+								<a href="#">Reply</a>
+							</div>
+						</div>
+					</div>
+					<!-- end section -->
+
+					<div class="comment_wrap chaild">
+						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
+						<div class="comment_content">
+							<div class="comment_meta">
+
+								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
+
+							</div>
+							<div class="comment_text">
+								<p>Lorem ipsum dolor sit amet, consectetur rius a auctor enim accumsan.</p>
+								<a href="#">Reply</a>
+							</div>
+						</div>
+					</div>
+					<!-- end section -->
+
+					<div class="comment_wrap chaild">
+						<div class="gravatar"><img src="images/blog/people_img.jpg" alt="" /></div>
+						<div class="comment_content">
+							<div class="comment_meta">
+
+								<div class="comment_author">Admin - <i>March 12, 2014</i></div>
+
+							</div>
+							<div class="comment_text">
+								<p>Lorem ipsum dolor sit amet, consectetur rius a auctor enim accumsan.</p>
+								<a href="#">Reply</a>
+							</div>
+						</div>
+					</div>
+					<!-- end section -->
+
+
+					<div class="comment_form">
+						<h4>Leave a Comment</h4>
+						<form action="blog-post.html" method="post">
+							<textarea name="comment" class="comment_textarea_bg" rows="20" cols="7"></textarea>
+							<div class="clearfix"></div>
+							<input name="send" type="submit" value="Submit Comment" class="comment_submit" />
+						</form>
+					</div>
+					<!-- end comment form -->
+
+					<div class="clearfix divider_dashed9"></div>
+
+					<div class="clearfix mar_top2"></div>
+
+					<div class="sharepost">
+						<h4>Share this Post</h4>
+						<ul>
+							<li><a href="#">&nbsp;<i class="fa fa-facebook fa-lg"></i>&nbsp;</a></li>
+							<li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-flickr fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-html5 fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-youtube fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-linux fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-android fa-lg"></i></a></li>
+							<li><a href="#"><i class="fa fa-rss fa-lg"></i></a></li>
+						</ul>
+
+					</div>
+					<!-- end share post links -->
+
+					<div class="clearfix"></div>
+
+					<h4>About the Author</h4>
+					<div class="about_author">
+
+						<img src="{{ article['avatar'] }}!200x200" alt="" />
+
+						<a href="http://themeforest.net/user/gsrthemes9/portfolio" target="_blank">{{ article['nickname'] }}</a><br /> I'm a freelance designer with satisfied clients worldwide. I design simple, clean websites and develop easy-to-use applications. Web Design
+						is not just my job it's my passion. You need professional web designer you are welcome.
+					</div>
+					<!-- end about author -->
+
+					<div class="clearfix margin_top5"></div>
+
+					<div class="one_half">
+						<div class="popular-posts-area">
+							<h4>Recent Posts</h4>
+							<ul class="recent_posts_list">
+								<li>
+									<span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+									<a href="#">Many desktop uncure publish package webpages simple</a>
+									<i>March 18, 2014</i>
+								</li>
+
+								<li>
+									<span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+									<a href="#">Many desktop uncure publish package webpages simple</a>
+									<i>March 17, 2014</i>
+								</li>
+
+								<li>
+									<span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+									<a href="#">Many desktop uncure publish package webpages simple</a>
+									<i>March 16, 2014</i>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+					<!-- end recent posts -->
+
+
+					<div class="one_half last">
+						<div class="popular-posts-area">
+							<h4>Popular Posts</h4>
+							<ul class="recent_posts_list">
+								<li>
+									<span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+									<a href="#">Many desktop uncure publish package webpages simple</a>
+									<i>March 13, 2014</i>
+								</li>
+
+								<li>
+									<span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+									<a href="#">Many desktop uncure publish package webpages simple</a>
+									<i>March 12, 2014</i>
+								</li>
+
+								<li>
+									<span><a href="#"><img src="http://placehold.it/50x50" alt="" /></a></span>
+									<a href="#">Many desktop uncure publish package webpages simple</a>
+									<i>March 11, 2014</i>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+					<!-- end popular posts -->
 
 				</div>
 				<!-- end content left side -->
@@ -278,8 +473,7 @@
 
 			</div>
 
-
-			<div class="clearfix margin_top4"></div>
+			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
 			{% module Template("elos/block-footer.html") %}
@@ -352,149 +546,7 @@
 			e.stopPropagation()
 		})
 	</script>
-	<script>
 
-					function getLocalTime(nS) { //时间戳转换
-						 var  d = new Date(parseInt(nS) * 1000);
-						 var year = d.getFullYear();
-						 var month = d.getMonth()+1;
-						 var day = d.getDay();
-						 var date_info = {"month":month+'月',"day":day+'日'};
-						 return date_info;
-					};
-
-					var limit = 9;//每页显示数
-					var currentPage = 0;//当前页
-					var total_page = 0;//总页数
-					function query(pageNum) {
-						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&status=publish&category=all&page=1&limit="+limit+"",function(data,status){
-									console.log(data);
-									data_obj = JSON.parse(data);s
-									data = data_obj.rs;
-									currentPage = 1;
-							var pageData = data.data;
-									total_page = data.total_pgae;//总页
-							// num = ajaxobj.length;
-							for (var i in pageData) {
-
-								var inner_html = '<div class="blog_post">';
-								inner_html += '<div class="blog_postcontent">';
-								inner_html += '<div class="image_frame small">';
-								inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
-								inner_html += '</div>';
-								inner_html += '<div class="post_info_content_small">';
-								inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
-								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/detail">'+ pageData[i].title + '</a></h3>';
-								inner_html += '<ul class="post_meta_links_small">'
-								inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
-								inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
-								inner_html += '<li class="post_comments"><a href="#">18 Comments</a></li>';
-								inner_html += '<div class="clear"></div>';
-								inner_html += '</ul>';
-								inner_html += '<div class="clearfix"></div>';
-								inner_html += '<p>'+ pageData[i].subtitle + '</p>';
-								inner_html += '</div></div></div>';
-								inner_html += '<div class="clearfix divider_dashed9"></div>';
-
-								$('#articleBox').append(inner_html);
-								// member_num += 1;
-							};
-						if(total_page>5){
-								for (var k=1;k<=5;k++){
-									var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
-									$(".pageBox").append(inner_html);
-								};
-							}else if(total_page<=5){
-								for (var k=1;k<=total_page;k++){
-									var inner_html = '<a class="navlinks"  style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
-									$(".pageBox").append(inner_html);
-								};
-							}
-							$("#num1").addClass("current");
-						});
-					};
-
-					function gotoPage(pageNum) {
-						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&status=publish&category=all&page="+pageNum+"&limit="+limit+"",function(data,status){
-									//  console.log(data);
-									data_obj = JSON.parse(data);
-									data = data_obj.rs;
-									currentPage = pageNum;
-							var pageData = data.data;
-									total_page = data.total_pgae;//总页
-							$('#articleBox').html("");
-
-							for (var i in pageData) {
-								var inner_html = '<div class="blog_post">';
-								inner_html += '<div class="blog_postcontent">';
-								inner_html += '<div class="image_frame small">';
-								inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
-								inner_html += '</div>';
-								inner_html += '<div class="post_info_content_small">';
-								inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
-								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/detail">'+ pageData[i].title + '</a></h3>';
-								inner_html += '<ul class="post_meta_links_small">'
-								inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
-								inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
-								inner_html += '<li class="post_comments"><a href="#">18 Comments</a></li>';
-								inner_html += '<div class="clear"></div>';
-								inner_html += '</ul>';
-								inner_html += '<div class="clearfix"></div>';
-								inner_html += '<p>'+ pageData[i].subtitle + '</p>';
-								inner_html += '</div></div></div>';
-								inner_html += '<div class="clearfix divider_dashed9"></div>';
-
-								$('#articleBox').append(inner_html);
-								// member_num += 1;
-							};
-
-							pageNext = parseInt((currentPage-1)/5) + 1;
-
-								start = (pageNext-1)*5+1;
-								end = pageNext*5;
-								if(end > total_page){
-									end = total_page;
-								}
-
-								$(".pageBox").html("");
-								for (var k=start;k<=end;k++){
-									var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
-
-									$(".pageBox").append(inner_html);
-								};
-								 $("#num"+currentPage).addClass("current").siblings().removeClass("current");
-
-						});
-
-					};
-
-					$(function(){
-						query();
-						$(document).on('click','.pageBox > a',function(){
-							var num = $(this).text();
-							gotoPage(num);
-							//  $(this).addClass("current").siblings().removeClass("current");
-						})
-
-						$("#prev").on("click",function(){
-								if(currentPage<=1){
-
-								}else{
-										gotoPage(--currentPage);
-										// $("#num"+currentPage).addClass("current").siblings().removeClass("current");
-								}
-						});
-
-						$("#next").on("click",function(){
-								if(currentPage>=total_page){
-
-								}else{
-										gotoPage(++currentPage);
-										// $("#num"+currentPage).addClass("current").siblings().removeClass("current");
-								}
-						})
-					});
-	</script>
 </body>
 
 </html>
