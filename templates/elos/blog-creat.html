@@ -166,10 +166,10 @@
 
 					<div class="site-search-area">
 
-						<form method="get" id="site-searchform" action="blog.html">
+						<form id="site-searchform">
 							<div>
-								<input class="input-text" name="s" id="s" value="Enter Search keywords..." onFocus="if (this.value == 'Enter Search keywords...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Enter Search keywords...';}" type="text" />
-								<input id="searchsubmit" value="Search" type="submit" />
+								<input class="input-text" name="s" id="s" value="关键词..." onFocus="if (this.value == '关键词...') {this.value = '';}" onBlur="if (this.value == '') {this.value = '关键词...';}" type="text" />
+								<input id="searchsubmit" value="Search" type="button" />
 							</div>
 						</form>
 
@@ -179,7 +179,7 @@
 					<div class="clearfix margin_top4"></div>
 
 					<!-- sidebar category widget -->
-					{% module Template("elos/block-sidebar-category.html", categories=categories) %}
+					{% module Template("elos/block-sidebar-category.html", categories=categories, club=club) %}
 					<!-- /sidebar category widget -->
 
 					<div class="clearfix margin_top4"></div>

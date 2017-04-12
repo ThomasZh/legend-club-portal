@@ -5,7 +5,7 @@
   </div>
   <ul class="arrows_list1">
     {% for category in categories %}
-    <li><a href="#"><i class="fa fa-angle-right"></i> {{ category['title'] }}</a></li>
+    <li><a href="/elos/clubs/{{ club['_id'] }}/categories/{{ category['_id'] }}"><i class="fa fa-angle-right"></i> {{ category['title'] }}</a></li>
     {% end %}
   </ul>
 
