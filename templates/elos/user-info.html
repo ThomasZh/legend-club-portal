@@ -30,6 +30,7 @@
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
   <link rel="stylesheet" href="{{ static_url('css/self.css') }}">
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 </head>
 
 <body>
@@ -50,7 +51,7 @@
 					<div class="title">
 						<h1>User</h1></div>
 
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">Home</a> <i>/</i> <a href="#">Edit</a></div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/blogs">首页</a><i>/</i> <a href="#">我的</a>  <i>/</i> <a href="#">个人信息</a></div>
 
 				</div>
 			</div>
@@ -128,7 +129,7 @@
 			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories, articles=articles) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -143,10 +144,6 @@
 		</div>
 	</div>
 
-
-	<script src="{{ static_url('js/jquery-3.2.0.min.js') }}"></script>
-  <!-- style switcher -->
-  <script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
   <script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
   <!-- mega menu -->
   <script src="{{ static_url('elos/js/mainmenu/bootstrap.min.js') }}"></script>
@@ -271,6 +268,7 @@
 
 				// Ajax form submition
 				submitHandler: function(form) {
+					weui.alert("123")
             var data = { nickname:$("#name").val(),
                          avatar:$("#user_img").attr('src'),
                        };

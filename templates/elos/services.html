@@ -44,7 +44,7 @@
 	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
-
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 </head>
 
 <body>
@@ -458,7 +458,7 @@
 			<div class="clearfix margin_top1"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories, articles=articles) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -477,9 +477,6 @@
 		</div>
 	</div>
 
-	<!-- ######### JS FILES ######### -->
-	<!-- get jQuery from the google apis -->
-	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
 	<!-- style switcher -->
 	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>

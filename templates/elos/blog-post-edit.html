@@ -38,8 +38,8 @@
 	<link rel="stylesheet" href="{{ static_url('elos/js/carousel/flexslider.css') }}" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/carousel/skin.css') }}" />
 	<!-- progressbar -->
-  	<link rel="stylesheet" href="js/progressbar/ui.progress-bar.css">
-
+  <link rel="stylesheet" href="js/progressbar/ui.progress-bar.css">
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<!-- accordion -->
 	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
@@ -76,7 +76,7 @@
 					<div class="title">
 						<h1>Blog Post</h1></div>
 
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">Home</a> <i>/</i> <a href="#">Blog</a> <i>/</i> Post</div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/blogs">Home</a> <i>/</i> <a href="#">Blog</a> <i>/</i> Post</div>
 
 				</div>
 			</div>
@@ -163,7 +163,7 @@
 					<div class="clearfix margin_top4"></div>
 
 					<!-- sidebar popular widget -->
-					{% module Template("elos/block-sidebar-popular.html", populars=populars) %}
+					{% module Template("elos/block-sidebar-popular.html", populars=populars, articles=articles) %}
 					<!-- /sidebar popular widget -->
 
 					<div class="clearfix margin_top5"></div>
@@ -333,7 +333,7 @@
 			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>

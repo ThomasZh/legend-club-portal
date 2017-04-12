@@ -43,7 +43,7 @@
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
   <link rel="stylesheet" href="{{ static_url('css/self.css') }}">
-
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 
 	<link rel="stylesheet" href="{{ static_url('froala/css/froala_editor.min.css') }}">
 	<link rel="stylesheet" href="{{ static_url('froala/css/froala_style.min.css') }}">
@@ -76,7 +76,7 @@
 					<div class="title">
 						<h1>Blog Edit</h1></div>
 
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">首页</a> <i>/</i> <a href="#">发布博客</a></div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/blogs">首页</a> <i>/</i> <a href="#">发布博客</a></div>
 
 				</div>
 			</div>
@@ -185,167 +185,8 @@
 					<div class="clearfix margin_top4"></div>
 
 					<!-- sidebar popular widget -->
-					{% module Template("elos/block-sidebar-popular.html", populars=populars) %}
+					{% module Template("elos/block-sidebar-popular.html", populars=populars, articles=articles) %}
 					<!-- /sidebar popular widget -->
-
-					<div class="clearfix margin_top5"></div>
-
-					<div class="clientsays_widget">
-
-						<div class="sidebar_title">
-							<h3>Happy <i>Client Say's</i></h3></div>
-
-						<img src="http://placehold.it/50x50" alt="" />
-						<strong>- Henry Brodie</strong>
-						<p>Lorem Ipsum passage, and going through the cites of the word here classical literature passage disvered undou btable source. which looks reasonable the generated charac eristic words.</p>
-
-					</div>
-					<!-- end section -->
-
-					<div class="clearfix margin_top5"></div>
-
-					<div class="sidebar_widget">
-
-						<div class="sidebar_title">
-							<h3>Portfolio <i>Widget</i></h3></div>
-
-						<div class="features_sec15 two">
-
-							<div>
-								<section class="slider nosidearrows">
-									<div class="flexslider carousel">
-
-										<ul class="slides">
-
-											<li>
-
-												<div class="grid-container cbp-l-grid-fullScreen sidebar">
-													<ul>
-														<li class="cbp-item identity logo">
-															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Consectetuer Adipiscing<br>by GSRthemes9">
-																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
-																<div class="cbp-caption-activeWrap">
-																	<div class="cbp-l-caption-alignLeft">
-																		<div class="cbp-l-caption-body">
-																			<div class="margin_top7"></div>
-																			<div class="cbp-l-caption-title">Consectetuer Adipiscing</div>
-																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
-																		</div>
-																	</div>
-																</div>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-											</li>
-											<!-- end section -->
-
-											<li>
-
-												<div class="grid-container cbp-l-grid-fullScreen sidebar">
-													<ul>
-														<li class="cbp-item">
-															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Many Websites Infancy<br>by GSRthemes9">
-																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
-																<div class="cbp-caption-activeWrap">
-																	<div class="cbp-l-caption-alignLeft">
-																		<div class="cbp-l-caption-body">
-																			<div class="margin_top7"></div>
-																			<div class="cbp-l-caption-title">Many Websites Infancy</div>
-																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
-																		</div>
-																	</div>
-																</div>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-											</li>
-											<!-- end section -->
-
-
-											<li>
-
-												<div class="grid-container cbp-l-grid-fullScreen sidebar">
-													<ul>
-														<li class="cbp-item motion graphic">
-															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Words Believable<br>by GSRthemes9">
-																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
-																<div class="cbp-caption-activeWrap">
-																	<div class="cbp-l-caption-alignLeft">
-																		<div class="cbp-l-caption-body">
-																			<div class="margin_top7"></div>
-																			<div class="cbp-l-caption-title">Words Believable</div>
-																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
-																		</div>
-																	</div>
-																</div>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-											</li>
-											<!-- end section -->
-
-										</ul>
-									</div>
-								</section>
-
-							</div>
-
-						</div>
-
-					</div>
-					<!-- end section -->
-
-					<div class="clearfix mar_top5"></div>
-
-					<div class="sidebar_widget">
-
-						<div class="sidebar_title">
-							<h3>Site <i>Advertisements</i></h3></div>
-
-						<ul class="adsbanner-list">
-							<li>
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-							<li class="last">
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-						</ul>
-
-						<ul class="adsbanner-list">
-							<li>
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-							<li class="last">
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-						</ul>
-
-					</div>
-					<!-- end section -->
-
-					<div class="clearfix margin_top4"></div>
-
-					<div class="sidebar_widget">
-
-						<div class="sidebar_title">
-							<h3>Site <i>Archives</i></h3></div>
-
-						<ul class="arrows_list1">
-							<li><a href="#"><i class="fa fa-angle-right"></i> March 2014</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> February 2014</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> January 2014</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> December 2013</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> November 2013</a></li>
-						</ul>
-
-					</div>
-					<!-- end section -->
 
 				</div>
 				<!-- end right sidebar -->
@@ -355,7 +196,7 @@
 			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories, articles=articles) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -370,8 +211,6 @@
 		</div>
 	</div>
 
-
-	<script src="{{ static_url('js/jquery-3.2.0.min.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>

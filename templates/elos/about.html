@@ -15,10 +15,6 @@
 	<!-- this styles only adds some repairs on idevices  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- ######### CSS STYLES ######### -->
 	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ static_url('elos/css/style.css') }}" type="text/css" />
@@ -44,7 +40,7 @@
 	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
-
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 </head>
 
 <body>
@@ -66,7 +62,7 @@
 			<div class="page_title">
 				<div class="container">
 
-					<h1>About One</h1> Web page editors now use Lorem Ipsum as their default model text.
+					<h1>About 7x24hs</h1> Web page editors now use Lorem Ipsum as their default model text.
 
 				</div>
 			</div>
@@ -364,7 +360,7 @@
 			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories, articles=articles) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -383,7 +379,6 @@
 	<!-- get jQuery from the google apis -->
 	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
 	<!-- style switcher -->
-	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>

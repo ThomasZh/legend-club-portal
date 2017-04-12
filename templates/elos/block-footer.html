@@ -3,11 +3,11 @@
 
     <div class="one_fourth">
       <ul class="faddress">
-        <li><img src="images/footer-logo.png" alt="" /></li>
-        <li><i class="fa fa-map-marker fa-lg"></i>&nbsp; 2901 Marmora Road, Glassgow,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seattle, WA 98122-1090</li>
-        <li><i class="fa fa-phone"></i>&nbsp; 1 -234 -456 -7890</li>
-        <li><i class="fa fa-print"></i>&nbsp; 1 -234 -456 -7890</li>
-        <li><a href="mailto:info@yourdomain.com"><i class="fa fa-envelope"></i> info@yourdomain.com</a></li>
+        <li><img src="{{ static_url('elos/images/footer-logo.png') }}" alt="" /></li>
+        <li><i class="fa fa-map-marker fa-lg"></i>&nbsp; 北京市朝阳区望京,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;启阳路金辉大厦</li>
+        <li><i class="fa fa-phone"></i>&nbsp; 18625219583</li>
+        <li><i class="fa fa-print"></i>&nbsp; 18625219583</li>
+        <li><a href="thomas.zh@qq.com"><i class="fa fa-envelope"></i>  thomas.zh@qq.com</a></li>
       </ul>
     </div>
     <!-- end address -->
@@ -16,15 +16,9 @@
       <div class="ftags">
         <h3 class="nocaps">Tags</h3>
         <ul>
-          <li><a href="#">Awesome</a></li>
-          <li><a href="#">Photography</a></li>
-          <li><a href="#">UI Design</a></li>
-          <li><a href="#">Branding</a></li>
-          <li><a href="#">All</a></li>
-          <li><a href="#">Business</a></li>
-          <li><a href="#">Creative</a></li>
-          <li><a href="#">Design</a></li>
-          <li><a href="#">Wireframe</a></li>
+          {% for category in categories %}
+          <li><a href="/elos/clubs/{{ club['_id'] }}/categories/{{ category['_id'] }}">{{ category['title'] }}</a></li>
+          {% end %}
         </ul>
       </div>
     </div>
@@ -32,15 +26,13 @@
 
     <div class="one_fourth">
       <div class="twitter_feed">
-        <h3 class="nocaps">Latest Tweets</h3>
-        <div class="left"><i class="fa fa-twitter fa-lg"></i></div>
-        <div class="right"><a href="https://twitter.com/gsrthemes9" target="_blank">gsrthemes9</a>: Liwo - Responsive Template on ThemeForest.<br />
-          <a href="#" class="small">.9 days ago</a> .<a href="#" class="small">reply</a> .<a href="#" class="small">retweet</a> .<a href="#" class="small">favorite</a>
-        </div>
-        <div class="clearfix margin_top3"></div>
-        <div class="left"><i class="fa fa-twitter fa-lg"></i></div>
-        <div class="right"><a href="https://twitter.com/gsrthemes9" target="_blank">gsrthemes9</a>: Joosa - Responsive HTML5 / CSS3, Corporate Theme.<br />
-          <a href="#" class="small">.10 days ago</a> .<a href="#" class="small">reply</a> .<a href="#" class="small">retweet</a> .<a href="#" class="small">favorite</a>
+        <h3 class="nocaps">最近更新</h3>
+        <div class="right">
+          {% for article in articles %}
+          <li>
+            <a href="/elos/clubs/{{ article['club_id'] }}/blogs/{{ article['_id'] }}">{{ article['title'] }}</a>
+          </li>
+          {% end %}
         </div>
       </div>
     </div>
@@ -55,4 +47,15 @@
 
   </div>
 </div>
+<script type="text/javascript">
+  $(function(){
+
+      $("#searchsubmit").on('click',function(){
+        var q = $("#s").val();
+        var club_id = "{{ club['_id'] }}";
+        location.href="/elos/clubs/"+club_id+"/articles/search?q="+q;
+      });
+  });
+</script>
+
 <!-- end footer -->

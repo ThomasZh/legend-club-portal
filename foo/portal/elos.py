@@ -43,7 +43,7 @@ class ElosHomeHandler(tornado.web.RequestHandler):
         if login_next:
             self.redirect(login_next)
         else:
-            self.redirect("/elos/clubs/"+CLUB_ID+"/services")
+            self.redirect("/elos/clubs/"+CLUB_ID+"/blogs")
 
 
 class ElosClubIndexHandler(tornado.web.RequestHandler):
@@ -66,7 +66,7 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -77,7 +77,7 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -121,7 +121,7 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -132,7 +132,7 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -183,7 +183,7 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":category_id, "idx":0, "limit":10}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -194,7 +194,7 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":CLUB_ID, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":CLUB_ID, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -238,6 +238,17 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -263,10 +274,10 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
             html = html.replace(img, "<img width='100%' src='"+url+"' />")
         logging.info("got html %r", html)
         article_info['paragraphs'] = html
-        article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
+        # article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -284,8 +295,10 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
 
         self.render('elos/blog-post.html',
                 club=club,
+                access_token=access_token,
                 is_login=is_login,
                 categories=categories,
+                articles=articles,
                 article=article_info,
                 populars=populars)
 
@@ -337,7 +350,7 @@ class ElosBlogPostEditHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -408,7 +421,7 @@ class ElosBlogPostEditInlineHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -479,7 +492,7 @@ class ElosBlogPostEditSyntaxhighlighterHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -552,7 +565,7 @@ class ElosBlogPostEditCustomerButtonHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -625,7 +638,7 @@ class ElosLogoutHandler(tornado.web.RequestHandler):
         self.clear_cookie("login_next")
         self.clear_cookie("refresh_token")
 
-        self.redirect("/elos/clubs/"+club_id+"/services")
+        self.redirect("/elos/clubs/"+club_id+"/blogs")
 
 
 class ElosRegisterHandler(tornado.web.RequestHandler):
@@ -671,6 +684,17 @@ class ElosContactHandler(tornado.web.RequestHandler):
         club = rs['rs']
         league_id = club['league_id']
 
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -687,6 +711,7 @@ class ElosContactHandler(tornado.web.RequestHandler):
         self.render('elos/contact.html',
                 club=club,
                 is_login=is_login,
+                articles=articles,
                 categories=categories)
 
 
@@ -701,6 +726,17 @@ class ElosAboutHandler(tornado.web.RequestHandler):
         rs = json_decode(response.body)
         club = rs['rs']
         league_id = club['league_id']
+
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
         http_client = HTTPClient()
@@ -718,6 +754,7 @@ class ElosAboutHandler(tornado.web.RequestHandler):
         self.render('elos/about.html',
                 club=club,
                 is_login=is_login,
+                articles=articles,
                 categories=categories)
 
 
@@ -847,7 +884,7 @@ class ElosBlogCreatHandler(AuthorizationHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -858,7 +895,7 @@ class ElosBlogCreatHandler(AuthorizationHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -924,6 +961,17 @@ class ElosBlogDetailHandler(AuthorizationHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -949,10 +997,10 @@ class ElosBlogDetailHandler(AuthorizationHandler):
             html = html.replace(img, "<img width='100%' src='"+url+"' />")
         logging.info("got html %r", html)
         article_info['paragraphs'] = html
-        article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
+        # article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -973,6 +1021,7 @@ class ElosBlogDetailHandler(AuthorizationHandler):
                 is_login=is_login,
                 access_token=access_token,
                 categories=categories,
+                articles=articles,
                 article=article_info,
                 populars=populars)
 
@@ -1025,7 +1074,7 @@ class ElosBlogEditHandler(AuthorizationHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1071,7 +1120,7 @@ class ElosBlogDraftHandler(AuthorizationHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1082,7 +1131,7 @@ class ElosBlogDraftHandler(AuthorizationHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1128,7 +1177,7 @@ class ElosBlogPublishHandler(AuthorizationHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":10}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1139,7 +1188,7 @@ class ElosBlogPublishHandler(AuthorizationHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":3}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
         url = url_concat("http://api.7x24hs.com/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1156,6 +1205,62 @@ class ElosBlogPublishHandler(AuthorizationHandler):
             is_login = True
 
         self.render('elos/blog-publish.html',
+                is_login=is_login,
+                access_token=access_token,
+                club=club,
+                categories=categories,
+                articles=articles,
+                populars=populars)
+
+
+class ElosBlogSearchResultHandler(tornado.web.RequestHandler):
+    def get(self, club_id):
+        logging.info(self.request)
+
+        url = "http://api.7x24hs.com/api/clubs/"+club_id
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        club = rs['rs']
+        league_id = club['league_id']
+
+        url = "http://api.7x24hs.com/api/leagues/"+league_id+"/categories"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        categories = rs['rs']
+
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        # popular(流行)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        populars = rs['rs']
+        for article in populars:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
+        is_login = False
+        access_token = self.get_secure_cookie("access_token")
+        logging.info("got access_token>>>>> %r",access_token)
+        if access_token:
+            is_login = True
+
+        self.render('elos/search-result.html',
                 is_login=is_login,
                 access_token=access_token,
                 club=club,

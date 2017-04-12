@@ -14,11 +14,6 @@
 
 	<!-- this styles only adds some repairs on idevices  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- ######### CSS STYLES ######### -->
 	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ static_url('elos/css/style.css') }}" type="text/css" />
@@ -33,7 +28,7 @@
 	<link rel="stylesheet" href="{{ static_url('elos/js/form/sky-forms.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
-
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 </head>
 
 <body>
@@ -54,8 +49,8 @@
 			<div class="page_title2">
 				<div class="container">
 					<div class="title">
-						<h1>Login Form</h1></div>
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">Home</a> <i>/</i> Login Form</div>
+						<h1>登录页</h1></div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/blogs">首页</a> <i>/</i> 登录</div>
 				</div>
 			</div>
 			<!-- end page title -->
@@ -67,12 +62,12 @@
 
 					<div class="login_form">
 						<form id="sky-form" class="sky-form" onsubmit="return false;">
-							<header>Login form</header>
+							<header>登录</header>
 
 							<fieldset>
 								<section>
 									<div class="row">
-										<label class="label col col-4">Phone</label>
+										<label class="label col col-4">手机号</label>
 										<div class="col col-8">
 											<label class="input">
 												<i class="icon-append icon-user"></i>
@@ -84,13 +79,13 @@
 
 								<section>
 									<div class="row">
-										<label class="label col col-4">Password</label>
+										<label class="label col col-4">密码</label>
 										<div class="col col-8">
 											<label class="input">
 												<i class="icon-append icon-lock"></i>
 												<input type="password" name="password" id="lg_pwd">
 											</label>
-											<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
+											<div class="note"><a href="#sky-form2" class="modal-opener">忘记密码?</a></div>
 										</div>
 									</div>
 								</section>
@@ -99,27 +94,27 @@
 									<div class="row">
 										<div class="col col-4"></div>
 										<div class="col col-8">
-											<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>Keep me logged in</label>
+											<label class="checkbox"><input type="checkbox" name="remember" checked><i></i>记住密码</label>
 										</div>
 									</div>
 								</section>
 							</fieldset>
 							<footer>
 								<div class="fright">
-									<a href="register.html" class="button button-secondary">Register</a>
-									<button type="submit" class="button">Log in</button>
+									<a href="register.html" class="button button-secondary">注册</a>
+									<button type="submit" class="button">登录</button>
 								</div>
 
 							</footer>
 						</form>
 					</div>
 
-					<form action="demo-recovery.php" id="sky-form2" class="sky-form sky-form-modal">
-						<header>Password recovery</header>
+					<form action="#" id="sky-form2" class="sky-form sky-form-modal">
+						<header>密码找回</header>
 
 						<fieldset>
 							<section>
-								<label class="label">E-mail</label>
+								<label class="label">注册邮箱</label>
 								<label class="input">
 									<i class="icon-append icon-user"></i>
 									<input type="email" name="email" id="email">
@@ -128,8 +123,8 @@
 						</fieldset>
 
 						<footer>
-							<button type="submit" name="submit" class="button">Submit</button>
-							<a href="#" class="button button-secondary modal-closer">Close</a>
+							<button type="submit" name="submit" class="button">发送</button>
+							<a href="#" class="button button-secondary modal-closer">关闭</a>
 						</footer>
 
 						<div class="message">
@@ -146,7 +141,7 @@
 			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories, articles=articles) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -161,9 +156,6 @@
 		</div>
 	</div>
 
-	<!-- ######### JS FILES ######### -->
-	<!-- get jQuery from the google apis -->
-	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
 	<!-- style switcher -->
 	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
@@ -204,11 +196,11 @@
 				// Messages for form validation
 				messages: {
 					email: {
-						required: 'Please enter your email address',
-						email: 'Please enter a VALID email address'
+						required: '请输入手机号',
+						email: '请输入正确的手机号'
 					},
 					password: {
-						required: 'Please enter your password'
+						required: '请输入密码'
 					}
 				},
 

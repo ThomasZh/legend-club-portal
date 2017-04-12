@@ -37,7 +37,7 @@
 	<link rel="stylesheet" href="{{ static_url('elos/js/accordion/accordion.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
-
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 </head>
 
 <body>
@@ -52,17 +52,13 @@
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
-
-			<!-- Contant
-======================================= -->
-
 			<div class="page_title2">
 				<div class="container">
 
 					<div class="title">
 						<h1>草稿箱文章列表</h1></div>
 
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/index">首页</a> <i>/</i> <a href="#">文章列表</a> </div>
+					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/blogs">首页</a><i>/</i> <a href="#">我的</a> <i>/</i> <a href="#">草稿箱</a> </div>
 
 				</div>
 			</div>
@@ -92,9 +88,9 @@
 
 					<div class="site-search-area">
 
-						<form method="get" id="site-searchform" action="blog.html">
+						<form method="get" id="site-searchform" action="#">
 							<div>
-								<input class="input-text" name="s" id="s" value="Enter Search keywords..." onFocus="if (this.value == 'Enter Search keywords...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Enter Search keywords...';}" type="text" />
+								<input class="input-text" name="s" id="s" value="关键词..." onFocus="if (this.value == '关键词...') {this.value = '';}" onBlur="if (this.value == '') {this.value = '关键词...';}" type="text" />
 								<input id="searchsubmit" value="Search" type="submit" />
 							</div>
 						</form>
@@ -111,167 +107,8 @@
 					<div class="clearfix margin_top4"></div>
 
 					<!-- sidebar popular widget -->
-					{% module Template("elos/block-sidebar-popular.html", populars=populars) %}
+					{% module Template("elos/block-sidebar-popular.html", populars=populars, articles=articles) %}
 					<!-- /sidebar popular widget -->
-
-					<div class="clearfix margin_top5"></div>
-
-					<div class="clientsays_widget">
-
-						<div class="sidebar_title">
-							<h3>Happy <i>Client Say's</i></h3></div>
-
-						<img src="http://placehold.it/50x50" alt="" />
-						<strong>- Henry Brodie</strong>
-						<p>Lorem Ipsum passage, and going through the cites of the word here classical literature passage disvered undou btable source. which looks reasonable the generated charac eristic words.</p>
-
-					</div>
-					<!-- end section -->
-
-					<div class="clearfix margin_top5"></div>
-
-					<div class="sidebar_widget">
-
-						<div class="sidebar_title">
-							<h3>Portfolio <i>Widget</i></h3></div>
-
-						<div class="features_sec15 two">
-
-							<div>
-								<section class="slider nosidearrows">
-									<div class="flexslider carousel">
-
-										<ul class="slides">
-
-											<li>
-
-												<div class="grid-container cbp-l-grid-fullScreen sidebar">
-													<ul>
-														<li class="cbp-item identity logo">
-															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Consectetuer Adipiscing<br>by GSRthemes9">
-																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
-																<div class="cbp-caption-activeWrap">
-																	<div class="cbp-l-caption-alignLeft">
-																		<div class="cbp-l-caption-body">
-																			<div class="margin_top7"></div>
-																			<div class="cbp-l-caption-title">Consectetuer Adipiscing</div>
-																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
-																		</div>
-																	</div>
-																</div>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-											</li>
-											<!-- end section -->
-
-											<li>
-
-												<div class="grid-container cbp-l-grid-fullScreen sidebar">
-													<ul>
-														<li class="cbp-item">
-															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Many Websites Infancy<br>by GSRthemes9">
-																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
-																<div class="cbp-caption-activeWrap">
-																	<div class="cbp-l-caption-alignLeft">
-																		<div class="cbp-l-caption-body">
-																			<div class="margin_top7"></div>
-																			<div class="cbp-l-caption-title">Many Websites Infancy</div>
-																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
-																		</div>
-																	</div>
-																</div>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-											</li>
-											<!-- end section -->
-
-
-											<li>
-
-												<div class="grid-container cbp-l-grid-fullScreen sidebar">
-													<ul>
-														<li class="cbp-item motion graphic">
-															<a href="http://placehold.it/800x600" class="cbp-caption cbp-lightbox" data-title="Words Believable<br>by GSRthemes9">
-																<div class="cbp-caption-defaultWrap"> <img src="http://placehold.it/800x600" alt="" /> </div>
-																<div class="cbp-caption-activeWrap">
-																	<div class="cbp-l-caption-alignLeft">
-																		<div class="cbp-l-caption-body">
-																			<div class="margin_top7"></div>
-																			<div class="cbp-l-caption-title">Words Believable</div>
-																			<div class="cbp-l-caption-desc">Rutrum adipiscing luctus</div>
-																		</div>
-																	</div>
-																</div>
-															</a>
-														</li>
-													</ul>
-												</div>
-
-											</li>
-											<!-- end section -->
-
-										</ul>
-									</div>
-								</section>
-
-							</div>
-
-						</div>
-
-					</div>
-					<!-- end section -->
-
-					<div class="clearfix mar_top5"></div>
-
-					<div class="sidebar_widget">
-
-						<div class="sidebar_title">
-							<h3>Site <i>Advertisements</i></h3></div>
-
-						<ul class="adsbanner-list">
-							<li>
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-							<li class="last">
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-						</ul>
-
-						<ul class="adsbanner-list">
-							<li>
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-							<li class="last">
-								<a href="#"><img src="images/sample-ad-banner.jpg" alt="" /></a>
-							</li>
-						</ul>
-
-					</div>
-					<!-- end section -->
-
-					<div class="clearfix margin_top4"></div>
-
-					<div class="sidebar_widget">
-
-						<div class="sidebar_title">
-							<h3>Site <i>Archives</i></h3></div>
-
-						<ul class="arrows_list1">
-							<li><a href="#"><i class="fa fa-angle-right"></i> March 2014</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> February 2014</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> January 2014</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> December 2013</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> November 2013</a></li>
-						</ul>
-
-					</div>
-					<!-- end section -->
 
 				</div>
 				<!-- end right sidebar -->
@@ -282,7 +119,7 @@
 			<div class="clearfix margin_top4"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -302,7 +139,6 @@
 	<!-- get jQuery from the google apis -->
 	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
 	<!-- style switcher -->
-	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
 	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 	<script type="text/javascript" src="{{ static_url('elos/js/revolutionslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script>
@@ -363,107 +199,120 @@
 						 return date_info;
 					};
 
-					var limit = 9;//每页显示数
+					var limit = 5;//每页显示数
 					var currentPage = 0;//当前页
 					var total_page = 0;//总页数
 					function query(pageNum) {
-						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&status=draft&category=all&page=1&limit="+limit+"",function(data,status){
-									console.log(data);
-									data_obj = JSON.parse(data);s
-									data = data_obj.rs;
-									currentPage = 1;
-							var pageData = data.data;
-									total_page = data.total_pgae;//总页
-							// num = ajaxobj.length;
-							for (var i in pageData) {
+						$.ajax({
+							type:"GET",
+							url:"http://7x24hs.com/api/articles-pagination?filter=mine&status=draft&page=1&limit="+limit+"",
+	            contentType: 'application/json',
+							headers: {"Authorization":"Bearer {{access_token}}"},
+							success:function(data){
+										// console.log(data);
+										data_obj = JSON.parse(data);
+										data = data_obj.rs;
+										currentPage = 1;
+								var pageData = data.data;
+										total_page = data.total_pgae;//总页
+								// num = ajaxobj.length;
+								for (var i in pageData) {
 
-								var inner_html = '<div class="blog_post">';
-								inner_html += '<div class="blog_postcontent">';
-								inner_html += '<div class="image_frame small">';
-								inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
-								inner_html += '</div>';
-								inner_html += '<div class="post_info_content_small">';
-								inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
-								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/detail">'+ pageData[i].title + '</a></h3>';
-								inner_html += '<ul class="post_meta_links_small">'
-								inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
-								inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
-								inner_html += '<li class="post_comments"><a href="#">'+ pageData[i].comment_num +' 条评论</a></li>';
-								inner_html += '<div class="clear"></div>';
-								inner_html += '</ul>';
-								inner_html += '<div class="clearfix"></div>';
-								inner_html += '<p>'+ pageData[i].subtitle + '</p>';
-								inner_html += '</div></div></div>';
-								inner_html += '<div class="clearfix divider_dashed9"></div>';
+									var inner_html = '<div class="blog_post">';
+									inner_html += '<div class="blog_postcontent">';
+									inner_html += '<div class="image_frame small">';
+									inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
+									inner_html += '</div>';
+									inner_html += '<div class="post_info_content_small">';
+									inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
+									inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/detail">'+ pageData[i].title + '</a></h3>';
+									inner_html += '<ul class="post_meta_links_small">'
+									inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
+									inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
+									inner_html += '<li class="post_comments"><a href="#">'+ pageData[i].comment_num +' 条评论</a></li>';
+									inner_html += '<div class="clear"></div>';
+									inner_html += '</ul>';
+									inner_html += '<div class="clearfix"></div>';
+									inner_html += '<p>'+ pageData[i].subtitle + '</p>';
+									inner_html += '</div></div></div>';
+									inner_html += '<div class="clearfix divider_dashed9"></div>';
 
-								$('#articleBox').append(inner_html);
-								// member_num += 1;
-							};
-						if(total_page>5){
-								for (var k=1;k<=5;k++){
-									var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
-									$(".pageBox").append(inner_html);
+									$('#articleBox').append(inner_html);
+									// member_num += 1;
 								};
-							}else if(total_page<=5){
-								for (var k=1;k<=total_page;k++){
-									var inner_html = '<a class="navlinks"  style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
-									$(".pageBox").append(inner_html);
-								};
+							if(total_page>5){
+									for (var k=1;k<=5;k++){
+										var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
+										$(".pageBox").append(inner_html);
+									};
+								}else if(total_page<=5){
+									for (var k=1;k<=total_page;k++){
+										var inner_html = '<a class="navlinks"  style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
+										$(".pageBox").append(inner_html);
+									};
+								}
+								$("#num1").addClass("current");
+
 							}
-							$("#num1").addClass("current");
+
 						});
 					};
 
 					function gotoPage(pageNum) {
-						$.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&status=draft&category=all&page="+pageNum+"&limit="+limit+"",function(data,status){
-									//  console.log(data);
-									data_obj = JSON.parse(data);
-									data = data_obj.rs;
-									currentPage = pageNum;
-							var pageData = data.data;
-									total_page = data.total_pgae;//总页
-							$('#articleBox').html("");
+						$.ajax({
+							type:"GET",
+							url:"http://7x24hs.com/api/articles-pagination?filter=mine&status=draft&page="+pageNum+"&limit="+limit+"",
+							contentType: 'application/json',
+							headers: {"Authorization":"Bearer {{access_token}}"},
+							success:function(data){
+										//  console.log(data);
+										data_obj = JSON.parse(data);
+										data = data_obj.rs;
+										currentPage = pageNum;
+								var pageData = data.data;
+										total_page = data.total_pgae;//总页
+								$('#articleBox').html("");
 
-							for (var i in pageData) {
-								var inner_html = '<div class="blog_post">';
-								inner_html += '<div class="blog_postcontent">';
-								inner_html += '<div class="image_frame small">';
-								inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
-								inner_html += '</div>';
-								inner_html += '<div class="post_info_content_small">';
-								inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
-								inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/detail">'+ pageData[i].title + '</a></h3>';
-								inner_html += '<ul class="post_meta_links_small">'
-								inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
-								inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
-								inner_html += '<li class="post_comments"><a href="#">'+ pageData[i].comment_num +' 条评论</a></li>';
-								inner_html += '<div class="clear"></div>';
-								inner_html += '</ul>';
-								inner_html += '<div class="clearfix"></div>';
-								inner_html += '<p>'+ pageData[i].subtitle + '</p>';
-								inner_html += '</div></div></div>';
-								inner_html += '<div class="clearfix divider_dashed9"></div>';
+								for (var i in pageData) {
+									var inner_html = '<div class="blog_post">';
+									inner_html += '<div class="blog_postcontent">';
+									inner_html += '<div class="image_frame small">';
+									inner_html += '<a href="#"><img src="'+ pageData[i].img +'!800x370" alt="" /></a>';
+									inner_html += '</div>';
+									inner_html += '<div class="post_info_content_small">';
+									inner_html += '<a href="blog-archive.html" class="date"><strong>'+getLocalTime(pageData[i].publish_time).day+'</strong><i>'+getLocalTime(pageData[i].publish_time).month+'</i></a>';
+									inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/articles/'+ pageData[i]._id + '/detail">'+ pageData[i].title + '</a></h3>';
+									inner_html += '<ul class="post_meta_links_small">'
+									inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
+									inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
+									inner_html += '<li class="post_comments"><a href="#">'+ pageData[i].comment_num +' 条评论</a></li>';
+									inner_html += '<div class="clear"></div>';
+									inner_html += '</ul>';
+									inner_html += '<div class="clearfix"></div>';
+									inner_html += '<p>'+ pageData[i].subtitle + '</p>';
+									inner_html += '</div></div></div>';
+									inner_html += '<div class="clearfix divider_dashed9"></div>';
 
-								$('#articleBox').append(inner_html);
-								// member_num += 1;
-							};
-
-							pageNext = parseInt((currentPage-1)/5) + 1;
-
-								start = (pageNext-1)*5+1;
-								end = pageNext*5;
-								if(end > total_page){
-									end = total_page;
-								}
-
-								$(".pageBox").html("");
-								for (var k=start;k<=end;k++){
-									var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
-
-									$(".pageBox").append(inner_html);
+									$('#articleBox').append(inner_html);
+									// member_num += 1;
 								};
-								 $("#num"+currentPage).addClass("current").siblings().removeClass("current");
 
+								pageNext = parseInt((currentPage-1)/5) + 1;
+
+									start = (pageNext-1)*5+1;
+									end = pageNext*5;
+									if(end > total_page){
+										end = total_page;
+									}
+
+									$(".pageBox").html("");
+									for (var k=start;k<=end;k++){
+										var inner_html = '<a class="navlinks" style="cursor:pointer;margin-left:5px;" id="num'+k+'">'+ k +'</a>';
+
+										$(".pageBox").append(inner_html);
+									};
+									 $("#num"+currentPage).addClass("current").siblings().removeClass("current");
+									}
 						});
 
 					};

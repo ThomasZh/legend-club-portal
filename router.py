@@ -59,6 +59,7 @@ def map():
         (r'/elos/clubs/([a-z0-9]*)/articles/draft', getattr(elos, 'ElosBlogDraftHandler')),
         (r'/elos/clubs/([a-z0-9]*)/articles/publish', getattr(elos, 'ElosBlogPublishHandler')),
         (r'/elos/clubs/([a-z0-9]*)/blogs/user-info', getattr(elos, 'ElosBlogUserInfoHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/articles/search', getattr(elos, 'ElosBlogSearchResultHandler')),
 
 
         (r'/club/auth/login', getattr(auth_email, 'AuthEmailLoginHandler')),

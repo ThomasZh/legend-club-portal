@@ -19,10 +19,6 @@
 	<!-- this styles only adds some repairs on idevices  -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 	<!-- ######### CSS STYLES ######### -->
 	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ static_url('elos/css/style.css') }}" type="text/css" />
@@ -37,7 +33,7 @@
 	<link rel="stylesheet" href="{{ static_url('elos/js/form/sky-forms.css') }}" type="text/css" media="all">
 	<!-- Lightbox -->
 	<link rel="stylesheet" type="text/css" href="{{ static_url('elos/js/lightbox/jquery.fancybox.css') }}" media="screen" />
-
+	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 </head>
 
 <body>
@@ -52,9 +48,6 @@
 			<!-- /top header bar -->
 
 			<div class="clearfix"></div>
-
-			<!-- Contant
-======================================= -->
 
 			<div class="page_title2">
 				<div class="container">
@@ -160,7 +153,7 @@
 			<div class="clearfix margin_top7"></div>
 
 			<!-- footer -->
-			{% module Template("elos/block-footer.html") %}
+			{% module Template("elos/block-footer.html", club=club, categories=categories) %}
 			<!-- footer -->
 
 			<div class="clearfix"></div>
@@ -175,10 +168,6 @@
 		</div>
 	</div>
 
-
-	<!-- ######### JS FILES ######### -->
-	<!-- get jQuery from the google apis -->
-	<script type="text/javascript" src="{{ static_url('elos/js/universal/jquery.js') }}"></script>
 	<!-- style switcher -->
 	<script src="{{ static_url('elos/js/style-switcher/jquery-1.js') }}"></script>
 	<script src="{{ static_url('elos/js/style-switcher/styleselector.js') }}"></script>
