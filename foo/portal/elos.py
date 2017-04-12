@@ -1058,6 +1058,17 @@ class ElosBlogEditHandler(AuthorizationHandler):
         rs = json_decode(response.body)
         categories = rs['rs']
 
+        # recently articles(最近文章)
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        url = url_concat("http://api.7x24hs.com/api/articles", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got response %r", response.body)
+        rs = json_decode(response.body)
+        articles = rs['rs']
+        for article in articles:
+            article['publish_time'] = timestamp_friendly_date(article['publish_time'])
+
         url = "http://api.7x24hs.com/api/articles/"+article_id
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1107,6 +1118,7 @@ class ElosBlogEditHandler(AuthorizationHandler):
                 is_login=is_login,
                 access_token=access_token,
                 categories=categories,
+                articles=articles,
                 article=article_info,
                 populars=populars)
 
