@@ -1427,18 +1427,24 @@ ul.adsbanner-list {
 
 
 
-
-
 @media only screen and (max-width: 479px){
 
 .wrapper_boxed {
-	width: 320px;
+	width: 100%;
 }
 
 .site_wrapper {
-	width: 320px;
+	width: 100%;
 }
-
+#trueHeader {
+	width:100%;
+}
+#topHeader > .wrapper {
+	width:100%;
+}
+#topHeader > .container {
+	width:100%;
+}
 .container {
 	width: 300px;
 	margin: auto;

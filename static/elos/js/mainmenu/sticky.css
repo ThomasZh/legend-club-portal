@@ -41,7 +41,7 @@ body{font:12px/28px ;}
 
 
 @media only screen and (min-width: 480px) and (max-width: 767px){
-	
+
 .menu_main {
 	padding: 0px 0px 0px 0px;
 }
@@ -63,11 +63,14 @@ body{font:12px/28px ;}
 }
 
 #trueHeader {
-	width:320px;
+	width:100%;
+}
+#topHeader {
+	width:100%;
 }
 .wrapper,#page{
 	width:320px;
 }
 
-	
+
 }

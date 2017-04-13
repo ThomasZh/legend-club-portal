@@ -13,7 +13,7 @@
 	<link rel="shortcut icon" href="images/favicon.ico">
 
 	<!-- this styles only adds some repairs on idevices  -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 
 	<!-- ######### CSS STYLES ######### -->
 	<link rel="stylesheet" href="{{ static_url('elos/css/reset.css') }}" type="text/css" />
@@ -223,8 +223,8 @@
 	              inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/blogs/'+ pageData[i]._id + '">'+ pageData[i].title + '</a></h3>';
 	              inner_html += '<ul class="post_meta_links_small">'
 	              inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
-	              inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
-	              inner_html += '<li class="post_comments"><a href="#">18 Comments</a></li>';
+	              inner_html += '<li class="post_categoty"><a href="#">'+ pageData[i].read_num +' 条阅读</a></li>';
+	              inner_html += '<li class="post_comments"><a href="#">'+ pageData[i].comment_num +' 条评论</a></li>';
 	              inner_html += '<div class="clear"></div>';
 	              inner_html += '</ul>';
 								inner_html += '<div class="clearfix"></div>';
@@ -271,8 +271,8 @@
 	              inner_html += '<h3><a href="/elos/clubs/'+ pageData[i].club_id + '/blogs/'+ pageData[i]._id + '">'+ pageData[i].title + '</a></h3>';
 	              inner_html += '<ul class="post_meta_links_small">'
 	              inner_html += '<li class="post_by"><a href="#">'+ pageData[i].nickname + '</a></li>';
-	              inner_html += '<li class="post_categoty"><a href="#">Web tutorials</a></li>';
-	              inner_html += '<li class="post_comments"><a href="#">18 Comments</a></li>';
+	              inner_html += '<li class="post_categoty"><a href="#">'+ pageData[i].read_num +' 条阅读</a></li>';
+	              inner_html += '<li class="post_comments"><a href="#">'+ pageData[i].comment_num +' 条评论</a></li>';
 	              inner_html += '<div class="clear"></div>';
 	              inner_html += '</ul>';
 								inner_html += '<div class="clearfix"></div>';

@@ -2588,7 +2588,7 @@ ul.fun_facts {
 }
 
 .page_title2 {
-	position: relative;
+	/*position: relative;*/
 	float: left;
 	width: 100%;
 	margin-top: 0px;
@@ -4628,6 +4628,7 @@ ul.list_empty {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	font-size: 30px;
+	line-height: 1;
 }
 .blog_post h3 a:hover {
 	color: #383634;
