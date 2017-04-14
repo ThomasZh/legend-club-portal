@@ -209,7 +209,7 @@
 	            contentType: 'application/json',
 							headers: {"Authorization":"Bearer {{access_token}}"},
 							success:function(data){
-										// console.log(data);
+										console.log(data);
 										data_obj = JSON.parse(data);
 										data = data_obj.rs;
 										currentPage = 1;
