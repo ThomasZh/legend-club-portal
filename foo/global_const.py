@@ -27,3 +27,4 @@ UPYUN_FORM_API_SECRET = "CRKAOsKHGbbCnU+yztBxUT0bYR0="
 UPYUN_BUCKET = "tripc2c-club-title"
 
 API_DOMAIN = "http://7x24hs.com"
+ACTIVITY_API_DOMAIN = "http://club.activity.7x24hs.com"

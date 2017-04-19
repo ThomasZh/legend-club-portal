@@ -37,12 +37,23 @@ class FoodeeIndexHandler(tornado.web.RequestHandler):
     def get(self):
         logging.info(self.request)
 
-        url = "http://api.7x24hs.com/api/clubs/"+CLUB_ID
+        # club_info
+        url = API_DOMAIN + "/api/clubs/"+CLUB_ID
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
         logging.info("got response %r", response.body)
-        rs = json_decode(response.body)
-        club = rs['rs']
+        data = json_decode(response.body)
+        club = data['rs']
+
+        # popular activities
+        url = ACTIVITY_API_DOMAIN + "/bf/api/vendors/" + CLUB_ID + "/activitys/popular"
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET")
+        logging.info("got populars response %r", response.body)
+        populars = json_decode(response.body)
+
+
 
         self.render('foodee/index.html',
-                club=club)
+                club=club,
+                populars=populars)

@@ -167,11 +167,23 @@
 				<div class="row text-center fh5co-heading row-padded">
 					<div class="col-md-8 col-md-offset-2">
 						<h2 class="heading to-animate">推荐作品</h2>
-						<p class="sub-heading to-animate">我们的最爱，每次朋友聚合必带的。</p>
+						<p class="sub-heading to-animate">我的最爱，每次朋友聚会必带的。</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="fh5co-grid">
+					{% for i in range(len(populars)) %}
+						{% if i == 0 %}
+						<div class="fh5co-v-half to-animate-2">
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg)"></div>
+							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
+						{% end %}
+								<h2>{{ populars[i]['title'] }}</h2>
+								<span class="pricing">¥350</span>
+								<p>{{ populars[i]['location'] }}</p>
+							</div>
+						</div>
+					{% end %}
 						<div class="fh5co-v-half to-animate-2">
 							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg)"></div>
 							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
