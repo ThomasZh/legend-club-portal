@@ -476,7 +476,7 @@
         console.log(json);
         $.ajax({
           type: "PUT",
-          url: "http://7x24hs.com/api/articles/{{ article['_id'] }}",
+          url: "{{ API_DOMAIN }}/api/articles/{{ article['_id'] }}",
           data: json,
           dataType: "json",
           contentType: 'application/json',

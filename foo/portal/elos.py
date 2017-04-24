@@ -77,7 +77,7 @@ class ElosClubIndexHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -132,7 +132,7 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -151,6 +151,7 @@ class ElosBlogIndexHandler(tornado.web.RequestHandler):
         self.render('elos/blog-index.html',
                 is_login=is_login,
                 club=club,
+                API_DOMAIN=API_DOMAIN,
                 categories=categories,
                 articles=articles,
                 populars=populars)
@@ -194,7 +195,7 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":CLUB_ID, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":CLUB_ID, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -213,6 +214,7 @@ class ElosBlogCategoryHandler(tornado.web.RequestHandler):
         self.render('elos/blog-category.html',
                 club=club,
                 is_login=is_login,
+                API_DOMAIN=API_DOMAIN,
                 category=category,
                 categories=categories,
                 articles=articles,
@@ -277,7 +279,7 @@ class ElosBlogPostHandler(tornado.web.RequestHandler):
         # article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -350,7 +352,7 @@ class ElosBlogPostEditHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -421,7 +423,7 @@ class ElosBlogPostEditInlineHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -492,7 +494,7 @@ class ElosBlogPostEditSyntaxhighlighterHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -565,7 +567,7 @@ class ElosBlogPostEditCustomerButtonHandler(tornado.web.RequestHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -630,6 +632,7 @@ class ElosLoginHandler(tornado.web.RequestHandler):
         self.render('elos/login.html',
                 is_login=is_login,
                 club=club,
+                API_DOMAIN=API_DOMAIN,
                 articles=articles,
                 categories=categories)
 
@@ -681,6 +684,7 @@ class ElosRegisterHandler(tornado.web.RequestHandler):
         self.render('elos/register.html',
                 club=club,
                 is_login=is_login,
+                API_DOMAIN=API_DOMAIN,
                 categories=categories)
 
 
@@ -907,7 +911,7 @@ class ElosBlogCreatHandler(AuthorizationHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -926,6 +930,7 @@ class ElosBlogCreatHandler(AuthorizationHandler):
         self.render('elos/blog-creat.html',
                 is_login=is_login,
                 club=club,
+                API_DOMAIN=API_DOMAIN,
                 categories=categories,
                 articles=articles,
                 populars=populars)
@@ -1012,7 +1017,7 @@ class ElosBlogDetailHandler(AuthorizationHandler):
         # article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1031,6 +1036,7 @@ class ElosBlogDetailHandler(AuthorizationHandler):
         self.render('elos/blog-detail.html',
                 club=club,
                 is_login=is_login,
+                API_DOMAIN=API_DOMAIN,
                 access_token=access_token,
                 categories=categories,
                 articles=articles,
@@ -1097,7 +1103,7 @@ class ElosBlogEditHandler(AuthorizationHandler):
         article_info['publish_time'] = timestamp_friendly_date(article_info['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1116,6 +1122,7 @@ class ElosBlogEditHandler(AuthorizationHandler):
         self.render('elos/blog-edit.html',
                 club=club,
                 is_login=is_login,
+                API_DOMAIN=API_DOMAIN,
                 access_token=access_token,
                 categories=categories,
                 articles=articles,
@@ -1144,7 +1151,7 @@ class ElosBlogDraftHandler(AuthorizationHandler):
         categories = rs['rs']
 
         # recently articles(最近文章)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"all", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":0, "category":"all", "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1155,7 +1162,7 @@ class ElosBlogDraftHandler(AuthorizationHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1175,6 +1182,7 @@ class ElosBlogDraftHandler(AuthorizationHandler):
                 is_login=is_login,
                 access_token=access_token,
                 club=club,
+                API_DOMAIN=API_DOMAIN,
                 categories=categories,
                 articles=articles,
                 populars=populars)
@@ -1212,7 +1220,7 @@ class ElosBlogPublishHandler(AuthorizationHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")
@@ -1232,6 +1240,7 @@ class ElosBlogPublishHandler(AuthorizationHandler):
                 is_login=is_login,
                 access_token=access_token,
                 club=club,
+                API_DOMAIN=API_DOMAIN,
                 categories=categories,
                 articles=articles,
                 populars=populars)
@@ -1268,7 +1277,7 @@ class ElosBlogSearchResultHandler(tornado.web.RequestHandler):
             article['publish_time'] = timestamp_friendly_date(article['publish_time'])
 
         # popular(流行)
-        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":"3801d62cf73411e69a3c00163e023e51", "idx":0, "limit":6}
+        params = {"filter":"club", "club_id":club_id, "status":"publish", "category":ARTICLE_CATEGORY_POPULAR, "idx":0, "limit":6}
         url = url_concat(API_DOMAIN + "/api/articles", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET")

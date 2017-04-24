@@ -203,7 +203,7 @@
 	        var currentPage = 0;//当前页
 	        var total_page = 0;//总页数
 	        function query(pageNum) {
-	          $.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&page=1&limit="+limit+"",function(data,status){
+	          $.get("{{ API_DOMAIN }}/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&page=1&limit="+limit+"",function(data,status){
 	                console.log(data);
 	                data_obj = JSON.parse(data);
 	                data = data_obj.rs;
@@ -251,7 +251,7 @@
 	        };
 
 	        function gotoPage(pageNum) {
-	          $.get("http://7x24hs.com/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&page="+pageNum+"&limit="+limit+"",function(data,status){
+	          $.get("{{ API_DOMAIN }}/api/articles-pagination?filter=club&club_id={{ club['_id'] }}&page="+pageNum+"&limit="+limit+"",function(data,status){
 	                //  console.log(data);
 	                data_obj = JSON.parse(data);
 	                data = data_obj.rs;

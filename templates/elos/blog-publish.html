@@ -206,7 +206,7 @@
 					function query(pageNum) {
 						$.ajax({
 							type:"GET",
-							url:"http://7x24hs.com/api/articles-pagination?filter=mine&status=publish&page=1&limit="+limit+"",
+							url:"{{ API_DOMAIN }}/api/articles-pagination?filter=mine&status=publish&page=1&limit="+limit+"",
 	            contentType: 'application/json',
 							headers: {"Authorization":"Bearer {{access_token}}"},
 							success:function(data){
@@ -263,7 +263,7 @@
 					function gotoPage(pageNum) {
 						$.ajax({
 							type:"GET",
-							url:"http://7x24hs.com/api/articles-pagination?filter=mine&status=publish&page="+pageNum+"&limit="+limit+"",
+							url:"{{ API_DOMAIN }}/api/articles-pagination?filter=mine&status=publish&page="+pageNum+"&limit="+limit+"",
 							contentType: 'application/json',
 							headers: {"Authorization":"Bearer {{access_token}}"},
 							success:function(data){

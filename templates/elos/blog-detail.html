@@ -308,7 +308,7 @@
 			    console.log(id);
 			    $.ajax({
 			      type: "POST",
-			      url: "http://7x24hs.com/api/articles/"+id+"/publish",
+			      url: "{{ API_DOMAIN }}/api/articles/"+id+"/publish",
 			      dataType: "json",
 			      headers: {"Authorization":"Bearer {{access_token}}"},
 			      contentType: 'application/json',
@@ -331,7 +331,7 @@
 
 			    $.ajax({
 			      type: "DELETE",
-			      url: "http://7x24hs.com/api/articles/"+id,
+			      url: "{{ API_DOMAIN }}/api/articles/"+id,
 			      dataType: "json",
 			      headers: {"Authorization":"Bearer {{access_token}}"},
 			      contentType: 'application/json',
@@ -374,7 +374,7 @@
 	          }
 	          $.ajax({
 	            type: "POST",
-	            url: "http://7x24hs.com/api/articles/{{ article['_id'] }}/comment",
+	            url: "{{ API_DOMAIN }}/api/articles/{{ article['_id'] }}/comment",
 	            dataType: "json",
 	            data: json,
 	            contentType: 'application/json',
@@ -418,7 +418,7 @@
 	          var _self = this;
 	          $.ajax({
 	            type: "GET",
-	            url: "http://7x24hs.com/api/articles/{{ article['_id'] }}/comment?idx=" + idx + "&limit=" + limit,
+	            url: "{{ API_DOMAIN }}/api/articles/{{ article['_id'] }}/comment?idx=" + idx + "&limit=" + limit,
 	            async: false,
 	            dataType: "json",
 	            contentType: 'application/json',
@@ -443,7 +443,7 @@
 	          var _self = this;
 	          $.ajax({
 	            type: "GET",
-	            url: "http://7x24hs.com/api/articles/{{ article['_id'] }}/comment?idx=0&limit=1",
+	            url: "{{ API_DOMAIN }}/api/articles/{{ article['_id'] }}/comment?idx=0&limit=1",
 	            async: false,
 	            dataType: "json",
 	            contentType: 'application/json',
