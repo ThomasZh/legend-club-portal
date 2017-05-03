@@ -1,12 +1,12 @@
 $font-primary: 'Source Sans Pro', Arial, sans-serif;
 
 // Overrides
-$grid-gutter-width: 40px !default; 
+$grid-gutter-width: 40px !default;
 $border-radius-base:  4px !default;
 $padding-base-vertical: 14px !default;
 
 // $brand-primary: #52d3aa !default;
-// $brand-secondary: #3f95ea !default; 
+// $brand-secondary: #3f95ea !default;
 
 $brand-primary: 			#fb6e14 !default;
 $brand-success:         #58ca7e !default;
@@ -52,16 +52,16 @@ $font-secondary: 'Merriweather', serif;;
           border-radius: $radius;
 }
 @mixin flex() {
-	display: -webkit-box;      
-  	display: -moz-box;         
-  	display: -ms-flexbox;      
-  	display: -webkit-flex;     
-  	display: flex;             
+	display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
 }
 @mixin flexwrap() {
 	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap; 
-	-moz-flex-wrap: wrap; 
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
 }
 
 @font-face {
@@ -76,7 +76,7 @@ $font-secondary: 'Merriweather', serif;;
 }
 
 @mixin icomoon() {
-	
+
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -88,10 +88,10 @@ $font-secondary: 'Merriweather', serif;;
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	
+
 }
 
-// Import 
+// Import
 @import 'bootstrap/mixins';
 @import 'bootstrap/variables';
 
@@ -105,7 +105,7 @@ body {
 	line-height: 2;
 	color: #5e493a;
 	&.fh5co-overflow {
-		overflow-x: auto;	
+		overflow-x: auto;
 	}
 }
 
@@ -268,7 +268,7 @@ p {
 /*
  * Flexslider
  */
-#fh5co-home { 
+#fh5co-home {
 	min-height: 700px;
 	background: $brand-white url(../images/loader.gif) no-repeat center center;
 
@@ -285,7 +285,7 @@ p {
 			top: 50%;
 			margin-top: -212px;
 			text-align: center;
-			
+
 
 			@media screen and (max-width: $screen-sm) {
 				// margin-top: -66px;
@@ -326,7 +326,7 @@ p {
 					color: $brand-primary;
 				}
 			}
-			
+
 		}
 		.slides {
 			li {
@@ -360,7 +360,7 @@ p {
 		-ms-box-shadow: 0 0 7px 0 rgba(0, 0, 0, .3);
 		box-shadow: 0 0 7px 0 rgba(0, 0, 0, .3);
 	}
-	
+
 	&:before,
 	&:after {
 		content: "";
@@ -421,7 +421,7 @@ p {
 		width: 40.33%;
 	}
 
-	
+
 }
 
 .fh5co-heading {
@@ -544,7 +544,7 @@ p {
 					padding-left: 0;
 					border-left: none;
 					@media screen and (max-width: $screen-sm) {
-						padding: 0 20px;	
+						padding: 0 20px;
 					}
 					p {
 						font-size: 40px;
@@ -574,7 +574,7 @@ p {
 			}
 			li {
 				a {
-			
+
 					width: 14px;
 					height: 14px;
 					background: rgba(0,0,0,.2);
@@ -602,10 +602,10 @@ p {
 		padding: 5em 0;
 	}
 	.fh5co-heading {
-		.heading { 
+		.heading {
 			position: relative;
 			padding-top: 30px !important;
-			color: $brand-white; 
+			color: $brand-white;
 			&:before, &::before {
 				height: 64px;
 				width: 64px;
@@ -617,7 +617,7 @@ p {
 				margin-top: -50px;
 				margin-left: -32px;
 			}
-			
+
 		}
 		.sub-heading {
 			color: #a99c92;
@@ -658,12 +658,12 @@ p {
 				top: 50px;
 				left: 0;
 				margin-left: -15px;
-				width: 0; 
-				height: 0; 
+				width: 0;
+				height: 0;
 				border-top: 15px solid transparent;
-				border-bottom: 15px solid transparent; 
-				
-				border-right:15px solid #f5f5f5; 
+				border-bottom: 15px solid transparent;
+
+				border-right:15px solid #f5f5f5;
 				@media screen and (max-width: $screen-sm) {
 					right: auto!important;
 					left: 15px!important;
@@ -671,17 +671,17 @@ p {
 					margin-top: -15px!important;
 
 					margin-left: 0px!important;
-					border-top: none!important;	
+					border-top: none!important;
 
-					border-left:15px solid transparent!important; 
-					border-right:15px solid transparent!important; 
+					border-left:15px solid transparent!important;
+					border-right:15px solid transparent!important;
 					border-bottom: 15px solid #f5f5f5!important;
 				}
 			}
 		}
 
 		.arrow-right {
-			
+
 			&:before, &::before {
 				content : "";
 				position: absolute;
@@ -689,19 +689,19 @@ p {
 				top: 50px;
 				right: 0;
 				margin-right: -15px;
-				width: 0; 
-				height: 0; 
+				width: 0;
+				height: 0;
 				border-top: 15px solid transparent;
-				border-bottom: 15px solid transparent; 
-				
-				border-left:15px solid #f5f5f5; 
+				border-bottom: 15px solid transparent;
+
+				border-left:15px solid #f5f5f5;
 
 				@media screen and (max-width: $screen-md) {
 					right: auto!important;
 					left: 0!important;
 					margin-left: -15px!important;
 					border-left: none!important;
-					border-right:15px solid #f5f5f5!important; 	
+					border-right:15px solid #f5f5f5!important;
 				}
 				@media screen and (max-width: $screen-sm) {
 					right: auto!important;
@@ -710,14 +710,14 @@ p {
 					margin-top: -15px!important;
 
 					margin-left: 0px!important;
-					border-top: none!important;	
+					border-top: none!important;
 
-					border-left:15px solid transparent!important; 
-					border-right:15px solid transparent!important; 
+					border-left:15px solid transparent!important;
+					border-right:15px solid transparent!important;
 					border-bottom: 15px solid #f5f5f5!important;
 				}
 
-				
+
 			}
 		}
 		> .fh5co-v-half {
@@ -736,17 +736,17 @@ p {
 				background: #faebcd;
 				&.arrow-left {
 					&:before, &::before {
-						border-right:15px solid #faebcd; 
+						border-right:15px solid #faebcd;
 						@media screen and (max-width: $screen-sm) {
-							border-left:15px solid transparent!important; 
-							border-right:15px solid transparent!important; 
+							border-left:15px solid transparent!important;
+							border-right:15px solid transparent!important;
 							border-bottom: 15px solid #faebcd!important;
 						}
 					}
 				}
 
-				
-				
+
+
 			}
 			> .fh5co-v-col-2 {
 				width: 50%;
@@ -763,7 +763,7 @@ p {
 				@media screen and (max-width: $screen-sm) {
 					width: 100%;
 				}
-				
+
 			}
 			> .fh5co-h-row-2 {
 				width: 100%;
@@ -813,10 +813,10 @@ p {
 	}
 
 	.fh5co-heading {
-		.heading { 
+		.heading {
 			position: relative;
 			padding-top: 30px !important;
-			// color: $brand-white; 
+			// color: $brand-white;
 			&:before, &::before {
 				height: 64px;
 				width: 64px;
@@ -828,7 +828,7 @@ p {
 				margin-top: -50px;
 				margin-left: -32px;
 			}
-			
+
 		}
 		.sub-heading {
 			color: #a99c92;
@@ -836,9 +836,9 @@ p {
 	}
 
 	.fh5co-food-menu {
-		
+
 		float: left;
-		width: 100%;
+		width: 45%;
 		margin-bottom: 30px;
 
 		@media screen and (max-width: $screen-sm) {
@@ -851,7 +851,7 @@ p {
 			margin-bottom: 50px;
 			font-style: italic;
 			position: relative;
-			
+
 			&.fh5co-drinks {
 				padding-left: 50px;
 				&:before {
@@ -862,7 +862,7 @@ p {
 					left: 0;
 					width: 64px;
 					height: 64px;
-				}	
+				}
 			}
 			&.fh5co-dishes {
 				padding-left: 80px;
@@ -870,14 +870,14 @@ p {
 					background: url(../images/0302-steak.png) no-repeat;
 					content: "";
 					position: absolute;
-					
+
 					top: 0;
 					left: 0;
 					width: 64px;
 					height: 45px;
 				}
 			}
-			
+
 		}
 		ul {
 			padding: 0;
@@ -905,7 +905,7 @@ p {
 						}
 					}
 					> div {
-						
+
 						width: 75%;
 						float: left;
 						position: relative;
@@ -919,7 +919,7 @@ p {
 							padding: 0;
 							font-size: 20px;
 							color: $brand-black;
-						} 
+						}
 					}
 				}
 				.fh5co-food-pricing {
@@ -929,7 +929,7 @@ p {
 					font-size: 20px;
 					color: $brand-primary;
 				}
-				
+
 			}
 		}
 	}
@@ -955,10 +955,10 @@ p {
 		position: relative;
 	}
 	.fh5co-heading {
-		.heading { 
+		.heading {
 			position: relative;
 			padding-top: 30px !important;
-			color: $brand-white; 
+			color: $brand-white;
 			&:before, &::before {
 				height: 64px;
 				width: 49px;
@@ -970,7 +970,7 @@ p {
 				margin-top: -50px;
 				margin-left: -24px;
 			}
-			
+
 		}
 		.sub-heading {
 			color: #a99c92;
@@ -1049,7 +1049,7 @@ p {
 	}
 
 	.fh5co-heading {
-		.heading { 
+		.heading {
 			position: relative;
 			padding-top: 30px !important;
 			&:before, &::before {
@@ -1063,7 +1063,7 @@ p {
 				margin-top: -50px;
 				margin-left: -24px;
 			}
-			
+
 		}
 		.sub-heading {
 			color: #a99c92;
@@ -1183,7 +1183,7 @@ p {
 	.offcanvas-visible & {
 		@include fh5co-translate(0px);
 		@include transition(.5s);
-	} 
+	}
 }
 #fh5co-container, #fh5co-footer, .fh5co-nav-toggle {
 	@media screen and (max-width: $screen-sm) {
@@ -1195,15 +1195,15 @@ p {
 }
 
 .js-sticky {
-	display: block;	
+	display: block;
 	@media screen and (max-width: $screen-sm) {
-		display: none;	
+		display: none;
 	}
 }
 
 // Burger Menu
 .fh5co-nav-toggle {
- 
+
   cursor: pointer;
   text-decoration: none;
   &.active i {
@@ -1285,7 +1285,7 @@ p {
   @media screen and (max-width: $screen-sm) {
   	display: block;
   }
-  
+
 }
 
 #fh5co-type {
@@ -1308,7 +1308,7 @@ p {
 		z-index: 10;
 		position: relative;
 	}
-	
+
 	.fh5co-type {
 		float: left;
 		width: 100%;
@@ -1359,7 +1359,7 @@ p {
 					background: url(../images/type-4.png) no-repeat center center;
 				}
 			}
-			
+
 		}
 	}
 	p {
@@ -1369,7 +1369,7 @@ p {
 .to-animate,
 .to-animate-2 {
 	.js & {
-		opacity: 0;	
+		opacity: 0;
 	}
 }
 

@@ -47,7 +47,7 @@ class FoodeeIndexHandler(tornado.web.RequestHandler):
 
         # popular activities
         headers = {"Authorization":"Bearer " + DEFAULT_USER_ID}
-        params = {"filter":"club", "club_id":CLUB_ID, "_status":100, "private":0, "page":1, "limit":6}
+        params = {"filter":"club", "club_id":CLUB_ID, "_status":20, "popular":1, "page":1, "limit":6}
         url = url_concat(API_DOMAIN + "/api/activities", params)
         http_client = HTTPClient()
         response = http_client.fetch(url, method="GET", headers=headers)
@@ -56,6 +56,18 @@ class FoodeeIndexHandler(tornado.web.RequestHandler):
         rs = data['rs']
         populars = rs['data']
 
+        # popular activities
+        headers = {"Authorization":"Bearer " + DEFAULT_USER_ID}
+        params = {"filter":"club", "club_id":CLUB_ID, "_status":20, "page":1, "limit":16}
+        url = url_concat(API_DOMAIN + "/api/activities", params)
+        http_client = HTTPClient()
+        response = http_client.fetch(url, method="GET", headers=headers)
+        logging.info("got get_activities response.body=[%r]", response.body)
+        data = json_decode(response.body)
+        rs = data['rs']
+        activities = rs['data']
+
         self.render('foodee/index.html',
                 club=club,
-                populars=populars)
+                populars=populars,
+                activities = activities)

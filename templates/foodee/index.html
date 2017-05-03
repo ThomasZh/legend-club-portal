@@ -12,21 +12,6 @@
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
-
-  <!--
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -173,71 +158,65 @@
 				<div class="row">
 					<div class="fh5co-grid">
 					{% for i in range(len(populars)) %}
-						{% if i == 0 %}
+						{% if i == 0 or i == 5 %}
 						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg)"></div>
+							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url({{ populars[i]['img'] }})"></div>
 							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-						{% end %}
 								<h2>{{ populars[i]['title'] }}</h2>
-								<span class="pricing">¥350</span>
+								<span class="pricing">¥{{ float(populars[i]['amount'])/100 }}</span>
 								<p>{{ populars[i]['subtitle'] }}</p>
 							</div>
 						</div>
+						{% elif i==1 %}
+						<div class="fh5co-v-half">
+							{% for j in range(1,3) %}
+							{% if j == 1 %}
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url({{ populars[j]['img'] }})"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-left">
+									<h2>{{ populars[j]['title'] }}</h2>
+									<span class="pricing">¥{{ float(populars[j]['amount'])/100 }}</span>
+									<p>{{ populars[j]['subtitle'] }}</p>
+								</div>
+							</div>
+							{% else %}
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-text arrow-right">
+									<h2>{{ populars[j]['title'] }}</h2>
+									<span class="pricing">¥{{ float(populars[j]['amount'])/100 }}</span>
+									<p>{{ populars[j]['subtitle'] }}</p>
+								</div>
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url({{ populars[j]['img'] }})"></div>
+							</div>
+							{% end %}
+							{% end %}
+						</div>
+						{% elif i == 3 %}
+						<div class="fh5co-v-half">
+							{% for k in range(3,5) %}
+							{% if k == 3 %}
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-text arrow-right">
+									<h2>{{ populars[k]['title'] }}</h2>
+									<span class="pricing">¥{{ float(populars[k]['amount'])/100 }}</span>
+									<p>{{ populars[k]['subtitle'] }}</p>
+								</div>
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url({{ populars[k]['img'] }})"></div>
+							</div>
+							{% else %}
+							<div class="fh5co-h-row-2 to-animate-2">
+								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url({{ populars[k]['img'] }})"></div>
+								<div class="fh5co-v-col-2 fh5co-text arrow-left">
+									<h2>{{ populars[k]['title'] }}</h2>
+									<span class="pricing">¥{{ float(populars[k]['amount'])/100 }}</span>
+									<p>{{ populars[k]['subtitle'] }}</p>
+								</div>
+							</div>
+							{% end %}
+							{% end %}
+						</div>
 					{% end %}
-						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg)"></div>
-							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-								<h2>巧克力蛋糕</h2>
-								<span class="pricing">¥350</span>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							</div>
-						</div>
-						<div class="fh5co-v-half">
-							<div class="fh5co-h-row-2 to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-left">
-									<h2>水果夹层</h2>
-									<span class="pricing">¥350</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-right">
-									<h2>红丝绒</h2>
-									<span class="pricing">¥350</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="fh5co-v-half">
-							<div class="fh5co-h-row-2 fh5co-reversed to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-right">
-									<h2>黑森林</h2>
-									<span class="pricing">¥350</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-							<div class="fh5co-h-row-2 to-animate-2">
-								<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake005.jpeg)"></div>
-								<div class="fh5co-v-col-2 fh5co-text arrow-left">
-									<h2>水果裸蛋糕</h2>
-									<span class="pricing">¥350</span>
-									<p>Far far away, behind the word mountains.</p>
-								</div>
-							</div>
-						</div>
-						<div class="fh5co-v-half to-animate-2">
-							<div class="fh5co-v-col-2 fh5co-bg-img" style="background-image: url(http://tripc2c-club-title.b0.upaiyun.com/default/cake006.jpeg)"></div>
-							<div class="fh5co-v-col-2 fh5co-text fh5co-special-1 arrow-left">
-								<h2>缤纷糖豆</h2>
-								<span class="pricing">¥350</span>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							</div>
-						</div>
-
+					{% end %}
 					</div>
 				</div>
 
@@ -285,259 +264,20 @@
 					</div>
 				</div>
 				<div class="row row-padded">
-					<div class="col-md-6">
-						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-drinks">Drinks</h2>
-							<ul>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Pineapple Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Green Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Soft Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Carlo Rosee Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-							</ul>
+					<div class="col-md-12">
+						<div class="box">
+							<div class="fh5co-food-menu to-animate-2">
+								<h2 class="fh5co-drinks">Drinks</h2>
+								<ul id="x_Box"></ul>
+							</div>
+						</div>
+						<div class="box">
+							<div class="fh5co-food-menu to-animate-2" style="float:right;">
+								<h2 class="fh5co-drinks">Frinks</h2>
+								<ul id="r_Box"></ul>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-dishes">Steak</h2>
-							<ul>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake005.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Steak</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake006.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Tomato with Chicken</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Sausages from Italy</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Grilled</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-drinks">Drinks</h2>
-							<ul>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Pineapple Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Green Juice</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake005.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Soft Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake006.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Carlo Rosee Drinks</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="fh5co-food-menu to-animate-2">
-							<h2 class="fh5co-dishes">Steak</h2>
-							<ul>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake001.jpg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Steak</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake002.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Tomato with Chicken</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake003.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Sausages from Italy</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-								<li>
-									<div class="fh5co-food-desc">
-										<figure>
-											<img src="http://tripc2c-club-title.b0.upaiyun.com/default/cake004.jpeg" class="img-responsive" alt="Free HTML5 Templates by FREEHTML5.co">
-										</figure>
-										<div>
-											<h3>Beef Grilled</h3>
-											<p>Far far away, behind the word mountains.</p>
-										</div>
-									</div>
-									<div class="fh5co-food-pricing">
-										¥350
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
 						<p><a href="#" class="btn btn-primary btn-outline">更多作品</a></p>
@@ -661,11 +401,6 @@
 		</div>
 	</div>
 
-
-
-
-
-
 	<!-- jQuery -->
 	<script src="{{ static_url('foodee/js/jquery.min.js') }}"></script>
 	<!-- jQuery Easing -->
@@ -689,6 +424,101 @@
 	</script>
 	<!-- Main JS -->
 	<script src="{{ static_url('foodee/js/main.js') }}"></script>
+	<script>
+					function getLocalTime(nS) { //时间戳转换
+						 return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+					};
 
+					var limit = 8;//每页显示数
+					var currentPage = 0;//当前页
+					var total_page = 0;//总页数
+
+					function gotoPage(pageNum) {
+						$.get("http://7x24hs.com/api/activities?filter=club&club_id={{ club['_id'] }}&_status=20&page="+pageNum+"&limit="+limit+"",function(data,status){
+									console.log(data);
+									data_obj = JSON.parse(data);
+									data = data_obj.rs;
+									currentPage = pageNum;
+							var pageData = data.data;
+									total_page = data.total_page;//总页
+									$("#total_page").html(total_page);
+							var inner_html;
+							for (var i in pageData) {
+								if(i<=3){
+									inner_html = '<li>';
+									inner_html +=	'<div class="fh5co-food-desc">';
+									inner_html +=	'<figure><img src="'+pageData[i].img+'" class="img-responsive" alt="多米"></figure>';
+									inner_html +=	'<div>';
+									inner_html +=	'<h3>'+pageData[i].title+'</h3>';
+									inner_html +=	'<p>'+pageData[i].subtitle+'</p>';
+									inner_html +=	'</div></div>';
+									inner_html +=	'<div class="fh5co-food-pricing">¥350</div>';
+									inner_html +=	'</li>';
+									$('#x_Box').append(inner_html);
+								}
+								else if(i>=4 && i<=7){
+									inner_html = '<li>';
+									inner_html +=	'<div class="fh5co-food-desc">';
+									inner_html +=	'<figure><img src="'+pageData[i].img+'" class="img-responsive" alt="多米"></figure>';
+									inner_html +=	'<div>';
+									inner_html +=	'<h3>'+pageData[i].title+'</h3>';
+									inner_html +=	'<p>'+pageData[i].subtitle+'</p>';
+									inner_html +=	'</div></div>';
+									inner_html +=	'<div class="fh5co-food-pricing">¥350</div>';
+									inner_html +=	'</li>';
+									$('#r_Box').append(inner_html);
+								}
+
+								// member_num += 1;
+							};
+
+							pageNext = parseInt((currentPage-1)/5) + 1;
+
+								start = (pageNext-1)*5+1;
+								end = pageNext*5;
+								if(end > total_page){
+									end = total_page;
+								}
+
+								$(".pageBox").html("");
+								for (var k=start;k<=end;k++){
+									var inner_html = '<button class="btn btn-info" type="button" id="num'+k+'">'+k+'</button>';
+
+									$(".pageBox").append(inner_html);
+								};
+								 $("#num"+currentPage).addClass("on").siblings().removeClass("on");
+
+
+						});
+
+					};
+
+					$(function(){
+						gotoPage("1");
+						$(document).on('click','.pageBox > button',function(){
+							var num = $(this).text();
+							gotoPage(num);
+							//  $(this).addClass("current").siblings().removeClass("current");
+						})
+
+						$("#prev").on("click",function(){
+								if(currentPage<=1){
+
+								}else{
+										gotoPage(--currentPage);
+										// $("#num"+currentPage).addClass("current").siblings().removeClass("current");
+								}
+						});
+
+						$("#next").on("click",function(){
+								if(currentPage>=total_page){
+
+								}else{
+										gotoPage(++currentPage);
+										// $("#num"+currentPage).addClass("current").siblings().removeClass("current");
+								}
+						})
+					});
+	</script>
 	</body>
 </html>
