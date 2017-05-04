@@ -273,14 +273,14 @@
 						</div>
 						<div class="box">
 							<div class="fh5co-food-menu to-animate-2" style="float:right;">
-								<h2 class="fh5co-drinks">Frinks</h2>
+								<h2>&nbsp</h2>
 								<ul id="r_Box"></ul>
 							</div>
 						</div>
 					</div>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center to-animate-2">
-						<p><a href="#" class="btn btn-primary btn-outline">更多作品</a></p>
+						<p><a href="#" id="more_btn" class="btn btn-primary btn-outline">更多作品</a></p>
 					</div>
 				</div>
 			</div>
@@ -429,22 +429,20 @@
 						 return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
 					};
 
-					var limit = 8;//每页显示数
-					var currentPage = 0;//当前页
-					var total_page = 0;//总页数
+					var limit = 4;//每页显示数
+					var data_obj;
+					var total_page;
 
 					function gotoPage(pageNum) {
 						$.get("http://7x24hs.com/api/activities?filter=club&club_id={{ club['_id'] }}&_status=20&page="+pageNum+"&limit="+limit+"",function(data,status){
-									console.log(data);
-									data_obj = JSON.parse(data);
-									data = data_obj.rs;
-									currentPage = pageNum;
-							var pageData = data.data;
-									total_page = data.total_page;//总页
-									$("#total_page").html(total_page);
+									// console.log(data);
+								  data_obj = JSON.parse(data);
+									var data = data_obj.rs;
+									total_page = data.total_page;
+									var pageData = data.data;
 							var inner_html;
 							for (var i in pageData) {
-								if(i<=3){
+								if(i<=1){
 									inner_html = '<li>';
 									inner_html +=	'<div class="fh5co-food-desc">';
 									inner_html +=	'<figure><img src="'+pageData[i].img+'" class="img-responsive" alt="多米"></figure>';
@@ -452,11 +450,11 @@
 									inner_html +=	'<h3>'+pageData[i].title+'</h3>';
 									inner_html +=	'<p>'+pageData[i].subtitle+'</p>';
 									inner_html +=	'</div></div>';
-									inner_html +=	'<div class="fh5co-food-pricing">¥350</div>';
+									inner_html +=	'<div class="fh5co-food-pricing">¥'+pageData[i].amount+'</div>';
 									inner_html +=	'</li>';
 									$('#x_Box').append(inner_html);
 								}
-								else if(i>=4 && i<=7){
+								else if(i>=2 && i<=3){
 									inner_html = '<li>';
 									inner_html +=	'<div class="fh5co-food-desc">';
 									inner_html +=	'<figure><img src="'+pageData[i].img+'" class="img-responsive" alt="多米"></figure>';
@@ -464,60 +462,27 @@
 									inner_html +=	'<h3>'+pageData[i].title+'</h3>';
 									inner_html +=	'<p>'+pageData[i].subtitle+'</p>';
 									inner_html +=	'</div></div>';
-									inner_html +=	'<div class="fh5co-food-pricing">¥350</div>';
+									inner_html +=	'<div class="fh5co-food-pricing">¥'+pageData[i].amount+'</div>';
 									inner_html +=	'</li>';
 									$('#r_Box').append(inner_html);
 								}
-
-								// member_num += 1;
 							};
 
-							pageNext = parseInt((currentPage-1)/5) + 1;
-
-								start = (pageNext-1)*5+1;
-								end = pageNext*5;
-								if(end > total_page){
-									end = total_page;
-								}
-
-								$(".pageBox").html("");
-								for (var k=start;k<=end;k++){
-									var inner_html = '<button class="btn btn-info" type="button" id="num'+k+'">'+k+'</button>';
-
-									$(".pageBox").append(inner_html);
-								};
-								 $("#num"+currentPage).addClass("on").siblings().removeClass("on");
-
-
 						});
-
 					};
 
 					$(function(){
 						gotoPage("1");
-						$(document).on('click','.pageBox > button',function(){
-							var num = $(this).text();
-							gotoPage(num);
-							//  $(this).addClass("current").siblings().removeClass("current");
-						})
-
-						$("#prev").on("click",function(){
-								if(currentPage<=1){
-
-								}else{
-										gotoPage(--currentPage);
-										// $("#num"+currentPage).addClass("current").siblings().removeClass("current");
-								}
+						var count = 2;
+						$(document).on('click','#more_btn',function(even){
+							event.preventDefault();
+							gotoPage(count);
+							count++;
+							if(count > total_page+1){
+								alert("已经加载完毕！");
+								return false;
+							}
 						});
-
-						$("#next").on("click",function(){
-								if(currentPage>=total_page){
-
-								}else{
-										gotoPage(++currentPage);
-										// $("#num"+currentPage).addClass("current").siblings().removeClass("current");
-								}
-						})
 					});
 	</script>
 	</body>
