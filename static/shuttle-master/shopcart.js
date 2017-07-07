@@ -182,7 +182,7 @@ $(function(){
 
                 // 下单操作
                 $("#open-right").on('click',function(event){
-                  if(items.length == 0){
+                  if(items == ""){
                      event.preventDefault();
                   }else{
                     $(".order-form").submit();
