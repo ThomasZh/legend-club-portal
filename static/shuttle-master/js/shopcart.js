@@ -143,7 +143,6 @@ $(function(){
                   }
                     // $(".footer-total-price").children().html(total_price.toFixed(2));
                     $("#footer-bar span").text(total_price.toFixed(2));
-                    $("#total_amount").val(total_price.toFixed(2));
                 };
                 getTotal();
 
@@ -167,29 +166,15 @@ $(function(){
                     //点击取消后的回调函数
                     });
                 });
-
-                // 组织json数据
-                var items = [];
-                $('.list-item-info').each(function(index) {
-                  var item_id = $(".del",$(this)).attr("data_pro_id");
-                  var fee_template_id =  $(".fee_template",$(this)).val();
-                  var quantity = $(".one-quantity",$(this)).text();
-                  obj =  {"item_id":item_id,"fee_template_id":fee_template_id,"quantity":quantity};
-                  items.push(obj);
-                 });
-                 console.log(items);
-                 $("#item_input").val(JSON.stringify(items));
-
-                // 下单操作
+                // 结算操作
                 $("#open-right").on('click',function(event){
-                  if(items.length == 0){
-                     event.preventDefault();
+                  if(pageData.length == 0){
+                    $.alert("您没有选择任何商品!");
                   }else{
-                    $(".order-form").submit();
+                    location.href="/bf/wx/vendors/"+ club_id +"/items/submit/order"
                   }
 
                 });
-
               }
             })
       };
