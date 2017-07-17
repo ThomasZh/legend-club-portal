@@ -4,8 +4,8 @@ $(function(){
   // Tabs
   $('ul.tabs').tabs();
 
-  $('.modal').modal();
-  
+  $('.modal').modal({});
+
   console.log('category page...');
 
 });

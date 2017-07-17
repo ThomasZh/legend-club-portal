@@ -22,8 +22,10 @@
 }
 
 .fixed {
+  right: 0;
   position: fixed;
   z-index: 100;
+  top: 48px;
 }
 
 .filters {
@@ -33,7 +35,7 @@
 
 .row.filters {
   margin-bottom: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
   padding-top: 10px;
   background-color: #FFFFFF;
 }
