@@ -12,7 +12,7 @@ $(function(){
             headers: {"Authorization": "Bearer "+ access_token +""},
             contentType: 'application/json',
             success: function(data, status, xhr) {
-
+                  console.log(data);
                   data_obj = JSON.parse(data);
                   data = data_obj.rs;
               var pageData = data.data;
@@ -22,17 +22,17 @@ $(function(){
                   inner_html += '<div class="empty">';
                   inner_html += '<div class="empty-cart">';
                   inner_html += '<h4>购物车空空如也</h4>';
-                  inner_html += '<a href="/bf/wx/vendors/'+ club_id +'/items" class="shop-btn">去抢购</a>';
+                  inner_html += '<a href="/bf/wx/vendors/'+ club_id +'/category/items" class="shop-btn">去抢购</a>';
                   inner_html += '</div></div>';
               }else{
                   for (var i in pageData) {
                       inner_html += '<li class="collection-item avatar list-item-info">';
                       inner_html += '<img src="'+pageData[i].img+'" alt="" class="circle">';
                       inner_html += '<span class="title">'+pageData[i].title+'</span>';
-                      inner_html += '<p>'+pageData[i].fee_template_name+'</p>';
+                      inner_html += '<p>'+pageData[i].spec_title+'</p>';
                       inner_html += '<div class="hilight flex-separate">';
                       inner_html += '<input type="hidden" value="'+ pageData[i].fee_template_id +'" class="fee_template">';
-                      inner_html += '<span class="one-price">'+pageData[i].fee/100+'元/桶</span>';
+                      inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/桶</span>';
                       inner_html += '<div class="qunatity">';
                       inner_html += '<a href="#!" class="counter del" data_dele_id="'+pageData[i]._id+'" data_pro_id="'+pageData[i].item_id+'"><i class="ion-minus-circled"></i></a>';
                       inner_html += '<span class="one-quantity">'+pageData[i].quantity+'</span>';

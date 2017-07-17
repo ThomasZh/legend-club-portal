@@ -45,6 +45,13 @@ ol, ul {
   flex-direction: column;
 }
 
+.left-side {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
 i {
   font-size: 2rem;
   margin-left: 4px;
