@@ -22,10 +22,10 @@ $(function(){
                   inner_html += '<li class="collection-item avatar list-item-info">';
                   inner_html += '<img src="'+ pageData[i].img +'" alt="" class="circle">';
                   inner_html += '<span class="title" data_pro_id="'+pageData[i].item_id+'">'+pageData[i].title+'</span>';
-                  inner_html += '<p>'+pageData[i].fee_template_name+'</p>';
+                  inner_html += '<p>规格: '+pageData[i].spec_title+'</p>';
                   inner_html += '<div class="hilight flex-separate">';
-                  inner_html += '<input type="hidden" value="'+ pageData[i].fee_template_id +'" class="fee_template">';
-                  inner_html += '<span class="one-price">'+pageData[i].fee/100+'元/桶</span>';
+                  inner_html += '<input type="hidden" value="'+ pageData[i].spec_id +'" class="spec_template">';
+                  inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/桶</span>';
                   inner_html += '<div class="qunatity" style="padding-right: 2rem;">数量:';
                   inner_html += '<span class="one-quantity" style="margin-left: 1rem;">'+pageData[i].quantity+'</span>';
                   inner_html += '</div></div></li>';
@@ -58,9 +58,9 @@ $(function(){
                 var items = [];
                 $('.list-item-info').each(function(index) {
                   var item_id = $(".title",$(this)).attr("data_pro_id");
-                  var fee_template_id =  $(".fee_template",$(this)).val();
+                  var spec_id =  $(".spec_template",$(this)).val();
                   var quantity = $(".one-quantity",$(this)).text();
-                  obj =  {"item_id":item_id,"fee_template_id":fee_template_id,"quantity":quantity};
+                  obj =  {"item_id":item_id,"spec_id":spec_id,"quantity":quantity};
                   items.push(obj);
                  });
                  $("#item_input").val(JSON.stringify(items));
@@ -68,6 +68,7 @@ $(function(){
                 // 收货地址
                var address = {};
                  // 保存地址到localstorage
+
                if(!window.localStorage){
                      alert("浏览器不支持localstorage");
                      return false;
@@ -111,7 +112,7 @@ $(function(){
                   if(items.length == 0){
                     $.alert('您还没有选择任何商品!')
                      event.preventDefault();
-                  }else if(address.name == '' || address.phone == '' || address.addr == ''){
+                  }else if(address.name == null || address.name == '' || address.phone == '' || address.addr == ''){
                     $.alert("请填写收货地址!");
                     event.preventDefault();
                   }
