@@ -56,9 +56,55 @@ i {
   font-size: 2rem;
   margin-left: 4px;
   margin-right: 4px;
-  color: #01acc6;
 }
 
 .btn, .btn-large, .btn-floating, .btn-large, .btn-flat {
   font-size: 2rem;
+}
+/*底部footer*/
+#footer-bar{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+
+#footer-bar .cart-left{
+  height: 6rem;
+  float: left;
+  width: 35%;
+  background-color: #01acc6;
+}
+
+#footer-bar .cart-left .shop-car-btn{
+    font-size: 1.8rem;
+    position: relative;
+}
+
+#footer-bar .cart-left .shop-car-btn i {
+  font-size: 3.5rem;
+  margin-left: 30%;
+  line-height:2;
+}
+
+#footer-bar .open-right{
+  height: 6rem;
+  width: 65%;
+  background-color: #fdd835;
+}
+
+.mark{
+  position: absolute;
+  top: -1.6rem;
+  right: -0.2rem;
+  display: block;
+  border-radius: 50%;
+  background-color: #ef4018;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+  color:white;
+  font-weight: 600;
 }
