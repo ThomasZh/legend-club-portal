@@ -138,7 +138,6 @@ $(function(){
                         success: function(data, status, xhr) {
                           // location.reload();
                           _this.parent().remove();
-                          getTotal();
                         }
                       });
                     }, function() {
@@ -169,10 +168,10 @@ $(function(){
                   console.log(json);
                   $.ajax({
                     type: "POST",
-                    url: "{{ api_domain }}/api/clubs/{{club_id}}/cart/items",
+                    url: api_domain+"/api/clubs/"+ club_id +"/cart/items",
                     data: json,
                     dataType: "json",
-                    headers: {"Authorization":"Bearer {{access_token}}"},
+                    headers: {"Authorization":"Bearer "+access_token+""},
                     contentType: 'application/json',
                     success: function(data, status, xhr) {
                       location.href="/bf/wx/vendors/"+ club_id +"/items/cart"
