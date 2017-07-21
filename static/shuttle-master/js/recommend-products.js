@@ -5,7 +5,7 @@ $(function(){
       var access_token = $("#access_token").val();
       var club_id = $("#club_id").val();
       var recommend_id = $("#recommend_category_id").val();
-      console.log(recommend_id);
+      // console.log(recommend_id);
       function getCartPro(pageNum) {
           var limit = 1000;//初始化值
           $.ajax({
@@ -14,7 +14,7 @@ $(function(){
             headers: {"Authorization": "Bearer "+ access_token +""},
             contentType: 'application/json',
             success: function(data, status, xhr) {
-                  console.log(data);
+                  // console.log(data);
                   data_obj = JSON.parse(data);
                   data = data_obj.rs;
               var pageData = data.data;
@@ -26,7 +26,8 @@ $(function(){
                   inner_html += '<span class="title">'+pageData[i].item_title+'</span>';
                   inner_html += '<p>规格: '+pageData[i].spec_title+'</p>';
                   inner_html += '<div class="hilight flex-separate">';
-                  inner_html += '<input type="hidden" value="'+ pageData[i].fee_template_id +'" class="fee_template">';
+                  inner_html += '<input type="hidden" value="'+ pageData[i].spec_id +'" class="fee_template">';
+                  inner_html += '<input type="hidden" value="'+ pageData[i].item_id +'" class="item_id">';
                   inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/桶</span>';
                   inner_html += '<div class="qunatity">';
                   inner_html += '<a href="#!" class="counter del" data_dele_id="'+pageData[i]._id+'" data_pro_id="'+pageData[i].item_id+'"><i class="ion-minus-circled"></i></a>';
@@ -123,22 +124,6 @@ $(function(){
                 $(document).on("input",".J_input",function(){
                     getTotal();
                 });
-                // 计算总金额
-                function getTotal(){
-                  var num = $(".list-item-info").length;
-                  var total_price=0;
-                  for(var i=0;i<num;i++){
-                    var one_price = $(".list-item-info").eq(i).find(".one-price").text();
-                    // console.log(one_price);
-                    var quantity = $(".list-item-info").eq(i).find(".one-quantity").text();
-                    // console.log(quantity);
-                    var one_total = parseFloat(one_price)*quantity;
-                        total_price += parseFloat(one_total);
-                  }
-                    // $(".footer-total-price").children().html(total_price.toFixed(2));
-                    $("#footer-bar span").text(total_price.toFixed(2));
-                };
-                getTotal();
 
                 // 删除购物车一项
                 $(document).on('click','.cart-info-delete',function(){
@@ -160,14 +145,45 @@ $(function(){
                     //点击取消后的回调函数
                     });
                 });
-                // 结算操作
-                $("#open-right").on('click',function(event){
-                  if(pageData.length == 0){
-                    $.alert("您没有选择任何商品!");
-                  }else{
-                    location.href="/bf/wx/vendors/"+ club_id +"/items/submit/order"
-                  }
+                // 导入购物车操作
+                $("#put-cart-btn").on('click',function(event){
+                      var specsArr = [];
+                      var itemsArr = [];
+                      var quantitysArr = [];
+                      var data = [];
+                  $('.fee_template').each(function(key,value){
+                       specsArr[key] = $(this).val();
+                  });
+                  $('.item_id').each(function(key,value){
+                       itemsArr[key] = $(this).val();
+                  });
+                  $('.one-quantity').each(function(key,value){
+                       quantitysArr[key] = $(this).text();
+                  });
 
+                  for (var i=0; i<specsArr.length;i++){
+                    var obj = {"item_id":itemsArr[i], "spec_id":specsArr[i], "quantity":quantitysArr[i]};
+                    data.push(obj);
+                  }
+                  var json = JSON.stringify(data);
+                  console.log(json);
+                  $.ajax({
+                    type: "POST",
+                    url: "{{ api_domain }}/api/clubs/{{club_id}}/cart/items",
+                    data: json,
+                    dataType: "json",
+                    headers: {"Authorization":"Bearer {{access_token}}"},
+                    contentType: 'application/json',
+                    success: function(data, status, xhr) {
+                      location.href="/bf/wx/vendors/"+ club_id +"/items/cart"
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log("error");
+                    },
+                    complete: function(XMLHttpRequest, textStatus) {
+                      this; // 调用本次AJAX请求时传递的options参数
+                    }
+                  });
                 });
               }
             })

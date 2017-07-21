@@ -31,7 +31,7 @@ $(function(){
                       inner_html += '<span class="title">'+pageData[i].title+'</span>';
                       inner_html += '<p>规格: '+pageData[i].spec_title+'</p>';
                       inner_html += '<div class="hilight flex-separate">';
-                      inner_html += '<input type="hidden" value="'+ pageData[i].fee_template_id +'" class="fee_template">';
+                      inner_html += '<input type="hidden" value="'+ pageData[i].spec_id +'" class="fee_template">';
                       inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/桶</span>';
                       inner_html += '<div class="qunatity">';
                       inner_html += '<a href="#!" class="counter del" data_dele_id="'+pageData[i]._id+'" data_pro_id="'+pageData[i].item_id+'"><i class="ion-minus-circled"></i></a>';
