@@ -118,3 +118,45 @@
   box-shadow: none;
   height: 56px;
 }
+.right-icon{
+  float: right;
+  margin-right: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+}
+/*底部收货信息模态css*/
+#modal1 .addr-wrap{
+  padding: 1rem 2rem;
+  border: 1px solid #e8e2e2;
+  width: 90%;
+  height: 8rem;
+  margin: 1rem auto;
+  border-radius: 5px;
+}
+#modal1 .addr-wrap .addr-title{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:space-between;
+}
+/*底部发票信息模态css*/
+#modal2 .bill-addr-wrap{
+  padding: 1rem 2rem;
+  border: 1px solid #e8e2e2;
+  width: 90%;
+  height: 8rem;
+  margin: 1rem auto;
+  border-radius: 5px;
+}
+#modal2 .bill-addr-wrap .bill-addr-title{
+  overflow: hidden;
+}
+#modal2 .bill-addr-wrap .bill-addr-title p:first-child{
+  float: left;
+}
+#modal2 .bill-addr-wrap .bill-addr-title p:last-child{
+  float: left;
+  margin-left: 2rem;
+}

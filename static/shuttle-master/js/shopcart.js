@@ -27,7 +27,7 @@ $(function(){
               }else{
                   for (var i in pageData) {
                       inner_html += '<li class="collection-item avatar list-item-info">';
-                      inner_html += '<img src="'+pageData[i].img+'" alt="" class="circle">';
+                      inner_html += '<img src="'+pageData[i].img+'" alt="" class="circle" style="border-radius:0;">';
                       inner_html += '<span class="title">'+pageData[i].title+'</span>';
                       inner_html += '<p>规格: '+pageData[i].spec_title+'</p>';
                       inner_html += '<div class="hilight flex-separate">';
