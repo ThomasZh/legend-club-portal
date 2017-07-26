@@ -76,8 +76,9 @@ $(function(){
                             }
                           }
                           $("#express-fee").text(express_fee.toFixed(2));
+                          $("#shipping_cost").val(express_fee.toFixed(2));
                           $("#footer-bar span").text((total_price+express_fee).toFixed(2));
-                          $("#total_amount").val((total_price+express_fee).toFixed(2));
+                          $("#total_amount").val((total_price).toFixed(2));
                         }
                     });
 
