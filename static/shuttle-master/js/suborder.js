@@ -4,6 +4,7 @@ $(function(){
       var api_domain = $("#api_domain").val();
       var access_token = $("#access_token").val();
       var club_id = $("#club_id").val();
+      var league_id = $("#league_id").val();
       var title;
       var billing_code;
       function getCartPro(pageNum) {
@@ -42,6 +43,7 @@ $(function(){
                 function getTotal(){
                   var num = $(".list-item-info").length;
                   var total_price=0;
+                  var express_fee = 0;
                   for(var i=0;i<num;i++){
                     var one_price = $(".list-item-info").eq(i).find(".one-price").text();
                     // console.log(one_price);
@@ -51,8 +53,34 @@ $(function(){
                         total_price += parseFloat(one_total);
                   }
                     // $(".footer-total-price").children().html(total_price.toFixed(2));
-                    $("#footer-bar span").text(total_price.toFixed(2));
-                    $("#total_amount").val(total_price.toFixed(2));
+                    $("#pro-fee").text(total_price.toFixed(2));
+
+                      // 获取运费分类段位
+                    $.ajax({
+
+                        type: "GET",
+                        url: api_domain+"/api/def/leagues/"+ league_id +"/shipping-costs",
+                        headers: {"Authorization": "Bearer "+ access_token +""},
+                        contentType: 'application/json',
+                        success: function(data, status, xhr) {
+                          var data_obj = JSON.parse(data);
+                          if( data_obj.err_code == '200'){
+                            var dataObj = data_obj.rs;
+                            for(var j=0; j<dataObj.length;j++){
+                              if(total_price >=dataObj[j]['_min'] && total_price < dataObj[j]['_max']){
+                                express_fee = dataObj[j].cost;
+                              }
+                              else{
+                                console.log('error');
+                              }
+                            }
+                          }
+                          $("#express-fee").text(express_fee.toFixed(2));
+                          $("#footer-bar span").text((total_price+express_fee).toFixed(2));
+                          $("#total_amount").val((total_price+express_fee).toFixed(2));
+                        }
+                    });
+
                 };
                 getTotal();
 

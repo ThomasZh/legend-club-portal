@@ -125,9 +125,21 @@
   float: right;
 }
 
+.hidden .left-side, .hidden .quantity{
+  display: none;
+}
+.quantity{
+  display: inline-block;
+  width: 3rem;
+  text-align: center;
+  margin-top: .5rem;
+  vertical-align: top;
+}
 .hilight {
   margin-top: 10px;
   color: #01acc6;
+  display: flex;
+  justify-content: space-between;
 }
 
 /*.................*/
