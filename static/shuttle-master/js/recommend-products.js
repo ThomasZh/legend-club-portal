@@ -29,7 +29,7 @@ $(function(){
                   inner_html += '<div class="hilight flex-separate">';
                   inner_html += '<input type="hidden" value="'+ pageData[i].spec_id +'" class="fee_template">';
                   inner_html += '<input type="hidden" value="'+ pageData[i].item_id +'" class="item_id">';
-                  inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/桶</span>';
+                  inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/'+pageData[i].unit+'</span>';
                   inner_html += '<div class="qunatity">';
                   inner_html += '<a href="#!" class="counter del" data_dele_id="'+pageData[i]._id+'" data_pro_id="'+pageData[i].item_id+'"><i class="ion-minus-circled"></i></a>';
                   inner_html += '<span class="one-quantity">'+pageData[i].quantity+'</span>';

@@ -13,14 +13,13 @@ $(function(){
             type: "GET",
             url: api_domain+"/api/clubs/"+ club_id +"/cart/items?page="+pageNum+"&limit="+limit,
             headers: {"Authorization": "Bearer "+ access_token +""},
+            dataType: "json",
             contentType: 'application/json',
             success: function(data, status, xhr) {
-
-                  data_obj = JSON.parse(data);
-                  data = data_obj.rs;
-              var pageData = data.data;
+                  console.log(data);
+              var pageData = data.rs.data;
               var inner_html = "";
-              // console.log(pageData);
+
               for (var i in pageData) {
                   inner_html += '<li class="collection-item avatar list-item-info">';
                   inner_html += '<img src="'+ pageData[i].img +'" alt="" class="circle" style="border-radius:0;">';
@@ -29,7 +28,7 @@ $(function(){
                   inner_html += '<p>规格: '+pageData[i].spec_title+'</p>';
                   inner_html += '<div class="hilight flex-separate">';
                   inner_html += '<input type="hidden" value="'+ pageData[i].spec_id +'" class="spec_template">';
-                  inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/桶</span>';
+                  inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/'+pageData[i].unit+'</span>';
                   inner_html += '<div class="qunatity" style="padding-right: 2rem;">数量:';
                   inner_html += '<span class="one-quantity" style="margin-left: 1rem;">'+pageData[i].quantity+'</span>';
                   inner_html += '</div></div></li>';
