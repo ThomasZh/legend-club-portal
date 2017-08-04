@@ -178,7 +178,7 @@ $(function(){
                 title = $("#title").val();
                 billing_code = $("#billing_code").val();
               // 填写发票信息显示和隐藏
-              $('.row').on('click',"#test1",function(){
+              $('#row').on('click',"#test1",function(){
                 $(".billing-wrap").show();
               }).on('click','#test2',function(){
                 $(".billing-wrap").hide();
