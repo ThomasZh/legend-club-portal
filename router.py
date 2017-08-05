@@ -70,6 +70,8 @@ def map():
         (r'/club/auth/register/into-league', getattr(auth_email, 'AuthRegisterIntoLeagueXHR')),
         (r'/club/auth/logout', getattr(auth_email, 'AuthLogoutHandler')),
 
+        (r"/MP_verify_VkjHWQBz2jko4CBs.txt", getattr(comm, 'WxMpVerifyHandler')),
+
         # comm
         ('.*', getattr(comm, 'PageNotFoundHandler'))
 

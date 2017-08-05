@@ -196,6 +196,12 @@ def hash_pwd(md5pwd, salt):
     return ecrypted_pwd
 
 
+class WxMpVerifyHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.finish('VkjHWQBz2jko4CBs')
+        return
+
+
 class PageNotFoundHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('comm/page-404.html')
