@@ -142,7 +142,7 @@ $(function(){
         $.ajax({
           type: "GET",
           url: api_domain+ "/api/addr/billings",
-          headers: {"Authorization": "Bearer  "+access_token+""},
+          headers: {"Authorization": "Bearer "+access_token+""},
           contentType: 'application/json',
           success: function(data, status, xhr) {
                 console.log(data);
