@@ -153,11 +153,11 @@ $(function(){
               if(pageData == ''){
                   $('#row').append('<div class="billing-wrap" style="margin-top:4rem;border-top:1px solid #9e9e9e;padding-top: 1.5rem; display:none;">'
                       + '<div class="input-field">'
-                      + '<input id="title" type="text" class="validate">'
+                      + '<input id="title" type="text" style="font-size:16px;" class="validate">'
                       +  '<label for="title" class="active">公司抬头:</label>'
                       + '</div>'
                       + '<div class="input-field">'
-                      +  '<input id="billing_code" type="number" class="validate">'
+                      +  '<input id="billing_code" type="number" style="font-size:16px;" class="validate">'
                       +  '<label for="billing_code" class="active">公司税号:</label>'
                       + '</div>'
                       +'</div>');
@@ -165,11 +165,11 @@ $(function(){
               else{
                   _html += '<div class="billing-wrap" style="margin-top:4rem;border-top:1px solid #9e9e9e;padding-top: 1.5rem; display:none;">';
                   _html +=  '<div class="input-field">';
-                  _html += '<input id="title" type="text" class="validate" value="'+ pageData[0].company_title +'">';
+                  _html += '<input id="title" type="text" class="validate" style="font-size:16px;" value="'+ pageData[0].company_title +'">';
                   _html +=  '<label for="title" class="active">公司抬头:</label>';
                   _html += '</div>';
                   _html += '<div class="input-field">';
-                  _html +=  '<input id="billing_code" type="number" class="validate" value="'+ pageData[0].tfn +'">';
+                  _html +=  '<input id="billing_code" type="number" class="validate" style="font-size:16px;" value="'+ pageData[0].tfn +'">';
                   _html +=  '<label for="billing_code" class="active">公司税号:</label>';
                   _html += '</div>';
                   _html += '</div>';
