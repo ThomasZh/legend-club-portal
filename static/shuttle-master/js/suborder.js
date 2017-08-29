@@ -158,7 +158,7 @@ $(function(){
                   var phone = $("#phone").val();
                   var addr = $("#addr").val();
                   var coupon_id = $("#coup-code").val();
-                  var coupon = {"datas":[{"coupon_id":coupon_id}]};
+                  var coupon = {"datas":[{"_id":coupon_id}]};
                   // console.log(coupon);
 
                   // 发票信息
