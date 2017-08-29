@@ -5,7 +5,7 @@ $(function(){
       var access_token = $("#access_token").val();
       var club_id = $("#club_id").val();
       var recommend_id = $("#recommend_category_id").val();
-      // console.log(recommend_id);
+       console.log(club_id);
       function getCartPro(pageNum) {
           var limit = 1000;//初始化值
           $.ajax({
@@ -166,7 +166,7 @@ $(function(){
                     data.push(obj);
                   }
                   var json = JSON.stringify(data);
-                  console.log(json);
+                  // console.log(json);
                   $.ajax({
                     type: "POST",
                     url: api_domain+"/api/clubs/"+ club_id +"/cart/items",

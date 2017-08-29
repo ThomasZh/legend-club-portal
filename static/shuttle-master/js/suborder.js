@@ -39,11 +39,62 @@ $(function(){
                 // $(document).on("input",".J_input",function(){
                 //     getTotal();
                 // });
+
+
                 // 计算总金额
+                var coupons_fee = 0;
+
+                // 优惠券的使用
+                $('#coupons-s').on('click',function(){
+                  var code = $('#coupons-code').val();
+                  $.ajax({
+                    type: "GET",
+                    url: api_domain+"/api/coupons/codes/"+code,
+                    headers: {"Authorization": "Bearer  {{access_token}}"},
+                    contentType: 'application/json',
+                    dataType:'json',
+                    success: function(data, status, xhr) {
+                        // console.log(data);
+                        if(data.err_code == 200){
+                            $('#coup-code').val(data.rs._id)
+                            $('#coupons-fee').show().css({'display': 'flex'});
+                            $('#coupons-fee span').css({'color':'green'}).html('此优惠券:&nbsp&nbsp&nbsp&nbsp&nbsp¥&nbsp'+parseFloat(data.rs.amount)/100+'元');
+                            $('#filled-in-box').next().show();
+
+                            $("input[type='checkbox']").on('change',function(){
+                              console.log($(this).prop('checked'));
+                              if($(this).prop("checked")==true){
+                                coupons_fee = parseFloat(data.rs.amount)/100;
+                                getTotal();
+                              }else if($(this).prop("checked")==false){
+                                coupons_fee = 0;
+                                getTotal();
+                              }
+                              // var check_val = [];
+                              //     for(k in obj){
+                              //       if(obj[k].checked)
+                              //          check_val.push(obj[k].value);
+                              //     }
+                            })
+
+                        }else if(data.err_code == 403){
+                            $('#coupons-fee').show().css({'display': 'flex'});
+                            $('#coupons-fee span').css({'color':'red'}).html('此优惠券已被使用');
+                            $('#filled-in-box').next().hide();
+                        }else if(data.err_code == 408){
+                            $('#coupons-fee').show().css({'display': 'flex'});
+                            $('#coupons-fee span').css({'color':'red'}).html('此优惠券已超过有效期');
+                            $('#filled-in-box').next().hide();
+                        };
+                    }
+                  })
+                });
+
                 function getTotal(){
                   var num = $(".list-item-info").length;
                   var total_price=0;
                   var express_fee = 0;
+
                   for(var i=0;i<num;i++){
                     var one_price = $(".list-item-info").eq(i).find(".one-price").text();
                     // console.log(one_price);
@@ -77,12 +128,13 @@ $(function(){
                           }
                           $("#express-fee").text(express_fee.toFixed(2));
                           $("#shipping_cost").val(express_fee.toFixed(2));
-                          $("#footer-bar span").text((total_price+express_fee).toFixed(2));
-                          $("#total_amount").val((total_price).toFixed(2));
+                          $("#footer-bar span").text((total_price+express_fee-coupons_fee).toFixed(2));
+                          $("#total_amount").val((total_price-coupons_fee).toFixed(2));
                         }
                     });
 
                 };
+
                 getTotal();
 
                 // 组织json数据
@@ -99,11 +151,16 @@ $(function(){
                 // 收货地址和发票信息
                var address = {};
                var billing_addr = {};
+
                 // 下单操作
                 $("#sub-order").on('click',function(event){
                   var name = $("#name").val();
                   var phone = $("#phone").val();
                   var addr = $("#addr").val();
+                  var coupon_id = $("#coup-code").val();
+                  var coupon = {"datas":[{"coupon_id":coupon_id}]};
+                  // console.log(coupon);
+
                   // 发票信息
                   // console.log($('#test1').attr('checked'));
                       title = $("#title").val();
@@ -112,6 +169,7 @@ $(function(){
                   billing_addr = {'tfn':billing_code,'company_title':title}
                   $("#addr_input").val(JSON.stringify(address));
                   $("#billing_addr_input").val(JSON.stringify(billing_addr));
+                  $("#coupon_input").val(JSON.stringify(coupon));
                   if(items.length == 0){
                     $.alert('您还没有选择任何商品!')
                      event.preventDefault();

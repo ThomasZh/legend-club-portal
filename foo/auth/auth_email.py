@@ -96,9 +96,13 @@ class AuthLogoutHandler(AuthorizationHandler):
         http_client = HTTPClient()
         response = http_client.fetch(url, method="DELETE", headers={"Authorization":"Bearer "+access_token})
         logging.info("got response %r", response.body)
-        self.clear_cookie("access_token")
-        self.clear_cookie("expires_at")
-        self.clear_cookie("login_next")
+        # self.clear_cookie("access_token")
+        # self.clear_cookie("expires_at")
+        # self.clear_cookie("login_next")
+
+        self.set_secure_cookie("access_token", "")
+        self.set_secure_cookie("expires_at", "")
+        self.set_secure_cookie("login_next", "")
 
         self.redirect("/");
 
