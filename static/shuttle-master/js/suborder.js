@@ -56,7 +56,8 @@ $(function(){
                     success: function(data, status, xhr) {
                         // console.log(data);
                         if(data.err_code == 200){
-                            $('#coup-code').val(data.rs._id)
+                            $('#coup-code').val(data.rs._id);
+                            $('#coupon_fee').val(parseFloat(data.rs.amount)/100);
                             $('#coupons-fee').show().css({'display': 'flex'});
                             $('#coupons-fee span').css({'color':'green'}).html('此优惠券:&nbsp&nbsp&nbsp&nbsp&nbsp¥&nbsp'+parseFloat(data.rs.amount)/100+'元');
                             $('#filled-in-box').next().show();
@@ -129,7 +130,7 @@ $(function(){
                           $("#express-fee").text(express_fee.toFixed(2));
                           $("#shipping_cost").val(express_fee.toFixed(2));
                           $("#footer-bar span").text((total_price+express_fee-coupons_fee).toFixed(2));
-                          $("#total_amount").val((total_price-coupons_fee).toFixed(2));
+                          $("#total_amount").val((total_price).toFixed(2));
                         }
                     });
 
@@ -159,7 +160,7 @@ $(function(){
                   var addr = $("#addr").val();
                   var coupon_id = $("#coup-code").val();
                   var coupon = {"datas":[{"_id":coupon_id}]};
-                  // console.log(coupon);
+                  console.log(JSON.stringify(coupon));
 
                   // 发票信息
                   // console.log($('#test1').attr('checked'));
