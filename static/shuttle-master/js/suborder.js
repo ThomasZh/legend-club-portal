@@ -49,7 +49,7 @@ $(function(){
                   var code = $('#coupons-code').val();
                   $.ajax({
                     type: "GET",
-                    url: api_domain+"/api/coupons/codes/"+code,
+                    url: api_domain+"/api/clubs/"+ club_id +"/coupons/codes/"+code,
                     headers: {"Authorization": "Bearer  {{access_token}}"},
                     contentType: 'application/json',
                     dataType:'json',
