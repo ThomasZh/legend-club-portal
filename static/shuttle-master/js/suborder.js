@@ -16,7 +16,7 @@ $(function(){
             dataType: "json",
             contentType: 'application/json',
             success: function(data, status, xhr) {
-                  console.log(data);
+                  // console.log(data);
               var pageData = data.rs.data;
               var inner_html = "";
 
@@ -42,10 +42,81 @@ $(function(){
 
 
                 // 计算总金额
-                var coupons_fee = 0;
+
+                var coupons_fee = 0;// 优惠券实际使用金额
+                var max_discount = 0;//优惠券段位金额
+                function getTotal(){
+                  var num = $(".list-item-info").length;
+                  var express_fee = 0;
+                  var total_price=0;
+                  for(var i=0;i<num;i++){
+                    var one_price = $(".list-item-info").eq(i).find(".one-price").text();
+                    // console.log(one_price);
+                    var quantity = $(".list-item-info").eq(i).find(".one-quantity").text();
+                    // console.log(quantity);
+                    var one_total = parseFloat(one_price)*quantity;
+                        total_price += parseFloat(one_total);
+                  }
+                    // $(".footer-total-price").children().html(total_price.toFixed(2));
+                    $("#pro-fee").text(total_price.toFixed(2));
+
+                      // 获取运费分类段位
+                    $.ajax({
+
+                        type: "GET",
+                        url: api_domain+"/api/def/leagues/"+ league_id +"/shipping-costs",
+                        headers: {"Authorization": "Bearer "+ access_token +""},
+                        contentType: 'application/json',
+                        success: function(data, status, xhr) {
+                          var data_obj = JSON.parse(data);
+                          if( data_obj.err_code == '200'){
+                            var dataObj = data_obj.rs;
+                            var coupon_total_price = total_price*100;
+                            for(var j=0; j<dataObj.length;j++){
+                              if(coupon_total_price >=dataObj[j]['_min'] && coupon_total_price < dataObj[j]['_max']){
+                                express_fee = parseFloat(dataObj[j].cost)/100;
+                              }
+                              else{
+                                // console.log('error');
+                              }
+                            }
+                          }
+                          $("#express-fee").text(express_fee.toFixed(2));
+                          $("#shipping_cost").val(express_fee.toFixed(2));
+                          $("#footer-bar span").text((total_price+express_fee-coupons_fee).toFixed(2));
+                          $("#total_amount").val((total_price).toFixed(2));
+                        }
+                    });
+
+                      // 获取优惠券段位
+                    $.ajax({
+                        type: "GET",
+                        url: api_domain+"/api/def/club/"+club_id+"/coupon-conds",
+                        headers: {"Authorization": "Bearer "+ access_token +""},
+                        contentType: 'application/json',
+                        dataType:'json',
+                        success: function(data, status, xhr) {
+                          var data_obj = data;
+                          var coupon_total_price = total_price*100;
+                          if( data_obj.err_code == '200'){
+                            var dataObj = data_obj.rs;
+                            for(var j=0; j<dataObj.length;j++){
+                              if(coupon_total_price >=dataObj[j]['_min'] && coupon_total_price < dataObj[j]['_max']){
+                                max_discount = dataObj[j].discount;
+                                break;
+                              }
+                            }
+                          }
+                        }
+                    });
+
+                };
+
+                getTotal();
 
                 // 优惠券的使用
                 $('#coupons-s').on('click',function(){
+
                   var code = $('#coupons-code').val();
                   $.ajax({
                     type: "GET",
@@ -56,17 +127,24 @@ $(function(){
                     success: function(data, status, xhr) {
                         // console.log(data);
                         if(data.err_code == 200){
+                            console.log(max_discount);
+                            coupons_fee = data.rs.amount;
+                            if(max_discount > coupons_fee){
+                              coupons_fee = parseFloat(coupons_fee)/100;
+                            }else if(max_discount <= coupons_fee){
+                              coupons_fee = parseFloat(max_discount)/100;
+                            }
+                            console.log(coupons_fee);
                             $('#coup-code').val(data.rs._id);
                             $('#coupon_fee').val(parseFloat(data.rs.amount)/100);
                             $('#coupons-fee').show().css({'display': 'flex'});
-                            $('#coupons-fee span').css({'color':'green'}).html('此优惠券:&nbsp&nbsp&nbsp&nbsp&nbsp¥&nbsp'+parseFloat(data.rs.amount)/100+'元');
+                            $('#coupons-fee span').css({'color':'green'}).html('此优惠券抵扣:&nbsp&nbsp&nbsp&nbsp&nbsp¥&nbsp'+coupons_fee+'元');
                             $('#filled-in-box').next().show();
 
                             $("input[type='checkbox']").on('change',function(){
-                              console.log($(this).prop('checked'));
+                              // console.log($(this).prop('checked'));
                               if($(this).prop("checked")==true){
-                                coupons_fee = parseFloat(data.rs.amount)/100;
-                                getTotal();
+                                  getTotal();
                               }else if($(this).prop("checked")==false){
                                 coupons_fee = 0;
                                 getTotal();
@@ -90,53 +168,6 @@ $(function(){
                     }
                   })
                 });
-
-                function getTotal(){
-                  var num = $(".list-item-info").length;
-                  var total_price=0;
-                  var express_fee = 0;
-
-                  for(var i=0;i<num;i++){
-                    var one_price = $(".list-item-info").eq(i).find(".one-price").text();
-                    // console.log(one_price);
-                    var quantity = $(".list-item-info").eq(i).find(".one-quantity").text();
-                    // console.log(quantity);
-                    var one_total = parseFloat(one_price)*quantity;
-                        total_price += parseFloat(one_total);
-                  }
-                    // $(".footer-total-price").children().html(total_price.toFixed(2));
-                    $("#pro-fee").text(total_price.toFixed(2));
-
-                      // 获取运费分类段位
-                    $.ajax({
-
-                        type: "GET",
-                        url: api_domain+"/api/def/leagues/"+ league_id +"/shipping-costs",
-                        headers: {"Authorization": "Bearer "+ access_token +""},
-                        contentType: 'application/json',
-                        success: function(data, status, xhr) {
-                          var data_obj = JSON.parse(data);
-                          if( data_obj.err_code == '200'){
-                            var dataObj = data_obj.rs;
-                            for(var j=0; j<dataObj.length;j++){
-                              if(total_price >=dataObj[j]['_min'] && total_price < dataObj[j]['_max']){
-                                express_fee = dataObj[j].cost;
-                              }
-                              else{
-                                console.log('error');
-                              }
-                            }
-                          }
-                          $("#express-fee").text(express_fee.toFixed(2));
-                          $("#shipping_cost").val(express_fee.toFixed(2));
-                          $("#footer-bar span").text((total_price+express_fee-coupons_fee).toFixed(2));
-                          $("#total_amount").val((total_price).toFixed(2));
-                        }
-                    });
-
-                };
-
-                getTotal();
 
                 // 组织json数据
                 var items = [];
@@ -204,7 +235,7 @@ $(function(){
           headers: {"Authorization": "Bearer "+access_token+""},
           contentType: 'application/json',
           success: function(data, status, xhr) {
-                console.log(data);
+                // console.log(data);
                 data_obj = JSON.parse(data);
               var pageData = data_obj.rs;
               var _html = "";
