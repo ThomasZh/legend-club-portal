@@ -131,6 +131,7 @@ $(function(){
                             }else if(max_discount <= coupons_fee){
                               coupons_fee = parseFloat(max_discount)/100;
                             }
+                            getTotal(coupons_fee);
                             $('#coup-code').val(data.rs._id);
                             $('#coupon_fee').val(parseFloat(data.rs.amount)/100);
                             $('#coupons-fee').show().css({'display': 'flex'});
