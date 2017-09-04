@@ -75,7 +75,7 @@ $(function(){
         actual_amount -= fee;
         var tax_amount = 0;
         if (tax_flag == 1){
-          tax_amount = actual_amount*0.17;
+          tax_amount = actual_amount*0.08;
           actual_amount += tax_amount;
         }
         $("#tax-fee").val(tax_amount.toFixed(2));
