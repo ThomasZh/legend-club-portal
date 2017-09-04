@@ -1,12 +1,91 @@
 // @2017/07/05
 $(function(){
 
-      var api_domain = $("#api_domain").val();
-      var access_token = $("#access_token").val();
-      var club_id = $("#club_id").val();
-      var league_id = $("#league_id").val();
-      var title;
-      var billing_code;
+  var api_domain = $("#api_domain").val();
+  var access_token = $("#access_token").val();
+  var club_id = $("#club_id").val();
+  var league_id = $("#league_id").val();
+  var title;
+  var billing_code;
+  var coupons_fee = 0; // 优惠券实际使用金额
+  var tax_flag = 0; // 是否计算税金标记：0-否，1-是
+  var max_discount = 0; // 优惠券最大抵扣金额
+  var shipping_cost = 0; // 运费
+
+  function getMaxDiscount(actual_amount){
+    // 获取优惠券段位
+    $.ajax({
+      type: "GET",
+      url: api_domain+"/api/def/club/"+club_id+"/coupon-conds",
+      headers: {"Authorization": "Bearer "+ access_token +""},
+      contentType: 'application/json',
+      dataType:'json',
+      success: function(data, status, xhr) {
+        var data_obj = data;
+        var total_amount = actual_amount * 100; // 元变成分去计算
+        if( data_obj.err_code == '200'){
+          var dataObj = data_obj.rs;
+          for(var j=0; j<dataObj.length;j++){
+            if(total_amount >=dataObj[j]['_min'] && total_amount < dataObj[j]['_max']){
+              max_discount = dataObj[j].discount;
+              break;
+            }
+          }
+        }
+      }
+    });
+  }
+
+  function getTotal(fee, tax_flag){
+    var num = $(".list-item-info").length;
+    var actual_amount = 0; // 实际支付金额
+    for(var i=0;i<num;i++){
+      var one_price = $(".list-item-info").eq(i).find(".one-price").text();
+      // console.log(one_price);
+      var quantity = $(".list-item-info").eq(i).find(".one-quantity").text();
+      // console.log(quantity);
+      var one_total = parseFloat(one_price)*quantity;
+      actual_amount += parseFloat(one_total);
+    }
+    $("#pro-fee").text(actual_amount.toFixed(2));
+
+    getMaxDiscount(actual_amount);
+
+    // 获取运费分类段位
+    $.ajax({
+      type: "GET",
+      url: api_domain+"/api/def/leagues/"+ league_id +"/shipping-costs",
+      headers: {"Authorization": "Bearer "+ access_token +""},
+      contentType: 'application/json',
+      success: function(data, status, xhr) {
+        var data_obj = JSON.parse(data);
+        if( data_obj.err_code == '200'){
+          var dataObj = data_obj.rs;
+          var total_amount = actual_amount * 100; // 元变成分去计算
+          for(var j=0; j<dataObj.length;j++){
+            if(total_amount >=dataObj[j]['_min'] && total_amount < dataObj[j]['_max']){
+              shipping_cost = parseFloat(dataObj[j].cost)/100;
+              break;
+            }
+          }
+        }
+        $("#express-fee").text(shipping_cost.toFixed(2));
+        $("#express-fee").val(shipping_cost.toFixed(2));
+        actual_amount += shipping_cost;
+        actual_amount -= fee;
+        var tax_amount = 0;
+        if (tax_flag == 1){
+          tax_amount = actual_amount*0.17;
+          actual_amount += tax_amount;
+        }
+        $("#tax-fee").val(tax_amount.toFixed(2));
+        $("#tax-fee").text(tax_amount.toFixed(2));
+        $("#footer-bar span").text(actual_amount.toFixed(2));
+        $("#total_amount").val(actual_amount.toFixed(2));
+      }
+    });
+  };
+
       function getCartPro(pageNum) {
           var limit = 20;//初始化值
           $.ajax({
@@ -35,86 +114,10 @@ $(function(){
                 };
                 $('#list-item').append(inner_html);
 
-                // watch input change
-                // $(document).on("input",".J_input",function(){
-                //     getTotal();
-                // });
-
-
-                // 计算总金额
-
-                var max_discount = 0;//优惠券段位金额
-                function getTotal(fee){
-
-                  var num = $(".list-item-info").length;
-                  var express_fee = 0;
-                  var total_price=0;
-                  for(var i=0;i<num;i++){
-                    var one_price = $(".list-item-info").eq(i).find(".one-price").text();
-                    // console.log(one_price);
-                    var quantity = $(".list-item-info").eq(i).find(".one-quantity").text();
-                    // console.log(quantity);
-                    var one_total = parseFloat(one_price)*quantity;
-                        total_price += parseFloat(one_total);
-                  }
-                    // $(".footer-total-price").children().html(total_price.toFixed(2));
-                    $("#pro-fee").text(total_price.toFixed(2));
-
-                      // 获取优惠券段位
-                    $.ajax({
-                        type: "GET",
-                        url: api_domain+"/api/def/club/"+club_id+"/coupon-conds",
-                        headers: {"Authorization": "Bearer "+ access_token +""},
-                        contentType: 'application/json',
-                        dataType:'json',
-                        success: function(data, status, xhr) {
-                          var data_obj = data;
-                          var coupon_total_price = total_price*100;
-                          if( data_obj.err_code == '200'){
-                            var dataObj = data_obj.rs;
-                            for(var j=0; j<dataObj.length;j++){
-                              if(coupon_total_price >=dataObj[j]['_min'] && coupon_total_price < dataObj[j]['_max']){
-                                max_discount = dataObj[j].discount;
-                                break;
-                              }
-                            }
-                          }
-                        }
-                    });
-                      // 获取运费分类段位
-                    $.ajax({
-                        type: "GET",
-                        url: api_domain+"/api/def/leagues/"+ league_id +"/shipping-costs",
-                        headers: {"Authorization": "Bearer "+ access_token +""},
-                        contentType: 'application/json',
-                        success: function(data, status, xhr) {
-                          var data_obj = JSON.parse(data);
-                          if( data_obj.err_code == '200'){
-                            var dataObj = data_obj.rs;
-                            var coupon_total_price = total_price*100;
-                            for(var j=0; j<dataObj.length;j++){
-                              if(coupon_total_price >=dataObj[j]['_min'] && coupon_total_price < dataObj[j]['_max']){
-                                express_fee = parseFloat(dataObj[j].cost)/100;
-                              }
-                              else{
-                                // console.log('error');
-                              }
-                            }
-                          }
-                          $("#express-fee").text(express_fee.toFixed(2));
-                          $("#shipping_cost").val(express_fee.toFixed(2));
-                          $("#footer-bar span").text((total_price+express_fee-fee).toFixed(2));
-                          $("#total_amount").val((total_price).toFixed(2));
-                        }
-                    });
-
-                };
-
-                getTotal(0);
+                getTotal(0, tax_flag);
 
                 // 优惠券的使用
                 $('#coupons-s').on('click',function(){
-                  var coupons_fee = 0;// 优惠券实际使用金额
                   var code = $('#coupons-code').val();
                   $.ajax({
                     type: "GET",
@@ -131,7 +134,7 @@ $(function(){
                             }else if(max_discount <= coupons_fee){
                               coupons_fee = parseFloat(max_discount)/100;
                             }
-                            getTotal(coupons_fee);
+                            getTotal(coupons_fee, tax_flag);
                             $('#coup-code').val(data.rs._id);
                             $('#coupon_fee').val(parseFloat(data.rs.amount)/100);
                             $('#coupons-fee').show().css({'display': 'flex'});
@@ -141,17 +144,11 @@ $(function(){
                             $("input[type='checkbox']").on('change',function(){
                               // console.log($(this).prop('checked'));
                               if($(this).prop("checked")==true){
-                                  getTotal(coupons_fee);
+                                  getTotal(coupons_fee, tax_flag);
                               }else if($(this).prop("checked")==false){
-                                getTotal(0);
+                                getTotal(0, tax_flag);
                               }
-                              // var check_val = [];
-                              //     for(k in obj){
-                              //       if(obj[k].checked)
-                              //          check_val.push(obj[k].value);
-                              //     }
                             })
-
                         }else if(data.err_code == 403){
                             $('#coupons-fee').show().css({'display': 'flex'});
                             $('#coupons-fee span').css({'color':'red'}).html('此优惠券已被使用');
@@ -220,7 +217,6 @@ $(function(){
                   }
 
                 });
-
               }
             })
       };
@@ -270,8 +266,12 @@ $(function(){
               // 填写发票信息显示和隐藏
               $('#row').on('click',"#test1",function(){
                 $(".billing-wrap").show();
+                tax_flag = 1;
+                getTotal(coupons_fee, tax_flag);
               }).on('click','#test2',function(){
                 $(".billing-wrap").hide();
+                tax_flag = 0;
+                getTotal(coupons_fee, tax_flag);
               });
 
               // 获取所有收货地址列表
