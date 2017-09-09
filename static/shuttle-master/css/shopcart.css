@@ -62,12 +62,11 @@
 .qunatity {
   display: flex;
   align-items: center;
-
   margin-right: 20px;
 }
 
 .counter {
-  margin: 0 10px 0 10px;
+  margin: 0 3px;
 }
 
 .open-right i {

@@ -6,7 +6,7 @@ $(function(){
       var club_id = $("#club_id").val();
       function getCartPro(pageNum) {
           var no_num = 0;
-          var limit = 20;//初始化值
+          var limit = 2000;//初始化值
           $.ajax({
             type: "GET",
             url: api_domain+"/api/clubs/"+ club_id +"/cart/items?page="+pageNum+"&limit="+limit,
@@ -46,13 +46,13 @@ $(function(){
                         inner_html += '<span class="one-no-price">'+pageData[i].amount/100+'元/'+pageData[i].unit+'</span>';
                         inner_html += '<div class="qunatity">';
                         inner_html += '<a href="#!" class="counter" data_dele_id="'+pageData[i]._id+'" data_pro_id="'+pageData[i].item_id+'"><i class="ion-minus-circled"></i></a>';
-                        inner_html += '<span class="one-no-quantity">'+pageData[i].quantity+'</span>';
+                        inner_html += '<input type="number" min="1" class="one-quantity" value="'+pageData[i].quantity+'"/>';
                         inner_html += '<a href="#!" class="counter" data_dele_id="'+pageData[i]._id+'"><i class="ion-plus-circled"></i></a>';
                       }else{
                         inner_html += '<span class="one-price">'+pageData[i].amount/100+'元/'+pageData[i].unit+'</span>';
                         inner_html += '<div class="qunatity">';
                         inner_html += '<a href="#!" class="counter del" data_dele_id="'+pageData[i]._id+'" data_pro_id="'+pageData[i].item_id+'"><i class="ion-minus-circled"></i></a>';
-                        inner_html += '<span class="one-quantity">'+pageData[i].quantity+'</span>';
+                        inner_html += '<input type="number" min="1" class="one-quantity" value="'+pageData[i].quantity+'"/>';
                         inner_html += '<a href="#!" class="counter add" data_dele_id="'+pageData[i]._id+'"><i class="ion-plus-circled"></i></a>';
                       }
                       inner_html += '</div></div>';
@@ -120,7 +120,7 @@ $(function(){
 
                 });
                 // blur input save
-                $(document).on("blur",".J_input",function(){
+                $(document).on("change",".one-quantity",function(){
                     var _id = $(this).next().attr("data_dele_id");
                     var _this = $(this);
                     var num = $(this).val();
@@ -144,7 +144,7 @@ $(function(){
                     });
                 });
                 // watch input change
-                $(document).on("input",".J_input",function(){
+                $(document).on("change",".one-quantity",function(){
                     getTotal();
                 });
                 // 计算总金额
@@ -154,7 +154,7 @@ $(function(){
                   for(var i=0;i<num;i++){
                     var one_price = $(".list-item-info").eq(i).find(".one-price").text();
                     // console.log(one_price);
-                    var quantity = $(".list-item-info").eq(i).find(".one-quantity").text();
+                    var quantity = $(".list-item-info").eq(i).find(".one-quantity").val();
                     // console.log(quantity);
                     if(one_price == "" || quantity == ""){
                       one_price = 0;
