@@ -87,7 +87,7 @@ $(function(){
   };
 
       function getCartPro(pageNum) {
-          var limit = 20;//初始化值
+          var limit = 2000;//初始化值
           $.ajax({
             type: "GET",
             url: api_domain+"/api/clubs/"+ club_id +"/cart/items?page="+pageNum+"&limit="+limit,
