@@ -5,6 +5,7 @@ $(function(){
   var access_token = $("#access_token").val();
   var club_id = $("#club_id").val();
   var league_id = $("#league_id").val();
+  var account_id = $("#account_id").val();
   var title;
   var billing_code;
   var coupons_fee = 0; // 优惠券实际使用金额
@@ -188,10 +189,8 @@ $(function(){
                   var addr = $("#addr").val();
                   var coupon_id = $("#coup-code").val();
                   var coupon = {"datas":[{"_id":coupon_id}]};
-                  // console.log(JSON.stringify(coupon));
 
                   // 发票信息
-                  // console.log($('#test1').attr('checked'));
                       title = $("#title").val();
                       billing_code = $("#billing_code").val();
                   address = {"name":name,"phone":phone,"_addr":addr};
@@ -295,6 +294,38 @@ $(function(){
                 $("#billing_code").val(billing_code);
                 $("#billing_code").next().addClass('active');
                 $("#modal2").modal('close');
+              });
+          }
+        })
+      };
+
+      // 积分
+      getPoints();
+      function getPoints(){
+        $.ajax({
+          type: "GET",
+          url: api_domain+ "/api/clubs/"+club_id+"/users/" + account_id,
+          headers: {"Authorization": "Bearer "+access_token+""},
+          contentType: 'application/json',
+          success: function(data, status, xhr) {
+                console.log(data);
+                data_obj = JSON.parse(data);
+              var pageData = data_obj.rs;
+              var _html = "";
+                  _html +=  '<div class="point-wrap" style="display:none; margin-top:4rem;border-top:1px solid #9e9e9e;padding-top: 1.5rem;">';
+                  _html +=  '<p style="padding-left: 2rem;">';
+                  _html +=  '<span>您的可用积分:</span><span style="margin-left:5rem;">1231</span>';
+                  _html +=  '</p></div>';
+                  $('#point-row').append(_html);
+              // 是否使用积分
+              $('#point-row').on('click',"#point1",function(){
+                $(".point-wrap").show();
+                tax_flag = 1;
+                getTotal(coupons_fee, tax_flag);
+              }).on('click','#point2',function(){
+                $(".point-wrap").hide();
+                tax_flag = 0;
+                getTotal(coupons_fee, tax_flag);
               });
           }
         })
