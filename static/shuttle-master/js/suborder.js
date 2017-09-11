@@ -307,14 +307,14 @@ $(function(){
           url: api_domain+ "/api/clubs/"+club_id+"/users/" + account_id,
           headers: {"Authorization": "Bearer "+access_token+""},
           contentType: 'application/json',
+          dataType:"json",
           success: function(data, status, xhr) {
                 console.log(data);
-                data_obj = JSON.parse(data);
-              var pageData = data_obj.rs;
+              var pageData = data.rs;
               var _html = "";
-                  _html +=  '<div class="point-wrap" style="display:none; margin-top:4rem;border-top:1px solid #9e9e9e;padding-top: 1.5rem;">';
-                  _html +=  '<p style="padding-left: 2rem;">';
-                  _html +=  '<span>您的可用积分:</span><span style="margin-left:5rem;">1231</span>';
+                  _html +=  '<div class="point-wrap" style="display:none; margin-top:4rem;padding-top: 1.5rem;">';
+                  _html +=  '<p style="padding-left: 1rem;">';
+                  _html +=  '<span>您的可用积分:</span><span style="margin-left:7rem;">'+pageData.remaining_points+'</span>';
                   _html +=  '</p></div>';
                   $('#point-row').append(_html);
               // 是否使用积分
