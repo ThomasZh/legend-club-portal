@@ -12,6 +12,7 @@ $(function(){
   var tax_flag = 0; // 是否计算税金标记：0-否，1-是
   var max_discount = 0; // 优惠券最大抵扣金额
   var shipping_cost = 0; // 运费
+  var remaining_points = 0; //积分
 
   function getMaxDiscount(actual_amount){
     // 获取优惠券段位
@@ -37,7 +38,7 @@ $(function(){
     });
   }
 
-  function getTotal(fee, tax_flag){
+  function getTotal(fee, tax_flag, remaining_points){
     var num = $(".list-item-info").length;
     var actual_amount = 0; // 实际支付金额
     for(var i=0;i<num;i++){
@@ -74,10 +75,12 @@ $(function(){
         $("#express-fee").val(shipping_cost.toFixed(2));
         actual_amount += shipping_cost;
         actual_amount -= fee;
+        actual_amount -= remaining_points;
         var tax_amount = 0;
         if (tax_flag == 1){
           tax_amount = actual_amount*0.08;
           actual_amount += tax_amount;
+          actual_amount -= remaining_points;
         }
         $("#tax-fee").val(tax_amount.toFixed(2));
         $("#tax-fee").text(tax_amount.toFixed(2));
@@ -85,6 +88,8 @@ $(function(){
         $("#total_amount").val(actual_amount.toFixed(2));
       }
     });
+
+
   };
 
       function getCartPro(pageNum) {
@@ -115,7 +120,7 @@ $(function(){
                 };
                 $('#list-item').append(inner_html);
 
-                getTotal(0, tax_flag);
+                getTotal(0, tax_flag, remaining_points);
 
                 // 优惠券的使用
                 $('#coupons-s').on('click',function(){
@@ -135,7 +140,7 @@ $(function(){
                             }else if(max_discount <= coupons_fee){
                               coupons_fee = parseFloat(max_discount)/100;
                             }
-                            getTotal(coupons_fee, tax_flag);
+                            getTotal(coupons_fee, tax_flag, remaining_points);
                             $('#coup-code').val(data.rs._id);
                             $('#coupon_fee').val(parseFloat(data.rs.amount)/100);
                             $('#coupons-fee').show().css({'display': 'flex'});
@@ -145,9 +150,9 @@ $(function(){
                             $("input[type='checkbox']").on('change',function(){
                               // console.log($(this).prop('checked'));
                               if($(this).prop("checked")==true){
-                                  getTotal(coupons_fee, tax_flag);
+                                  getTotal(coupons_fee, tax_flag, remaining_points);
                               }else if($(this).prop("checked")==false){
-                                getTotal(0, tax_flag);
+                                getTotal(0, tax_flag, remaining_points);
                               }
                             })
                         }else if(data.err_code == 403){
@@ -266,11 +271,11 @@ $(function(){
               $('#row').on('click',"#test1",function(){
                 $(".billing-wrap").show();
                 tax_flag = 1;
-                getTotal(coupons_fee, tax_flag);
+                getTotal(coupons_fee, tax_flag, remaining_points);
               }).on('click','#test2',function(){
                 $(".billing-wrap").hide();
                 tax_flag = 0;
-                getTotal(coupons_fee, tax_flag);
+                getTotal(coupons_fee, tax_flag, remaining_points);
               });
 
               // 获取所有收货地址列表
@@ -309,23 +314,25 @@ $(function(){
           contentType: 'application/json',
           dataType:"json",
           success: function(data, status, xhr) {
-                console.log(data);
+                // console.log(data);
               var pageData = data.rs;
               var _html = "";
                   _html +=  '<div class="point-wrap" style="display:none; margin-top:4rem;padding-top: 1.5rem;">';
                   _html +=  '<p style="padding-left: 1rem;">';
-                  _html +=  '<span>您的可用积分:</span><span style="margin-left:7rem;">'+pageData.remaining_points+'</span>';
+                  _html +=  '<span>您的可用积分:</span><span class="remaining_points" style="margin-left:7rem;">'+pageData.remaining_points+'</span>';
                   _html +=  '</p></div>';
                   $('#point-row').append(_html);
               // 是否使用积分
               $('#point-row').on('click',"#point1",function(){
                 $(".point-wrap").show();
-                tax_flag = 1;
-                getTotal(coupons_fee, tax_flag);
+                    remaining_points = $(".remaining_points").text();
+                    remaining_points = parseFloat(remaining_points)/100;
+                    console.log(remaining_points);
+                getTotal(coupons_fee, tax_flag, remaining_points);
               }).on('click','#point2',function(){
                 $(".point-wrap").hide();
-                tax_flag = 0;
-                getTotal(coupons_fee, tax_flag);
+                remaining_points = 0;
+                getTotal(coupons_fee, tax_flag, remaining_points);
               });
           }
         })
