@@ -422,21 +422,9 @@
 	<script type="text/javascript" src="{{ static_url('froala/js/plugins/video.min.js') }}"></script>
 	<script type="text/javascript" src="{{ static_url('froala/js/plugins/table.min.js') }}"></script>
 
-	<!--
-	<script>
-		$(function() {
-			$('#edit').froalaEditor({
-				enter: $.FroalaEditor.ENTER_P,
-				heightMax: 500
-			})
-		});
-	</script>
--->
 	<input type="file" id="file" name="file" style="display:none;">
 	<script>
-
-var vFroalaEditor;
-
+		var vFroalaEditor;
 	  function uuid() {
 	    var s = [];
 	    var hexDigits = "0123456789abcdef";

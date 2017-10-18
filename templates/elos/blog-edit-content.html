@@ -67,22 +67,8 @@
 			<!-- top header bar -->
 			{% module Template("elos/block-header.html", club=club, categories=categories, is_login=is_login) %}
 			<!-- /top header bar -->
-
 			<div class="clearfix"></div>
-
-			<div class="page_title2">
-				<div class="container">
-
-					<div class="title">
-						<h1>Blog Edit</h1></div>
-
-					<div class="pagenation">&nbsp;<a href="/elos/clubs/{{ club['_id'] }}/blogs">首页</a> <i>/</i> <a href="#">发布博客</a></div>
-
-				</div>
-			</div>
 			<!-- end page title -->
-
-
 			<div class="clearfix"></div>
 
 			<div class="container">
@@ -111,31 +97,11 @@
                   </div>
               </div>
 							<form action="#" method="post" id="sky-form" class="sky-form">
-								<header>编辑 <strong>文章</strong></header>
+								<header>编辑 <strong>文章内容</strong></header>
 								<fieldset>
-									<section>
-										<label class="label">文章标题</label>
-										<label class="input"> <i class="icon-append icon-tag"></i>
-                			<input type="text" name="title" id="title" value="{{ article['title'] }}">
-              			</label>
-									</section>
-									<section>
-										<label class="label">副标题</label>
-										<label class="textarea"> <i class="icon-append icon-comment"></i>
-              			  <textarea rows="4" name="subtitle" id="subtitle">{{ article['subtitle'] }}</textarea>
-            			  </label>
-									</section>
                   <section>
-										<label class="label">封面图片</label>
-                        <div class="form-group">
-                          <div class="rst-account-img" style="position:static;">
-                            <img id="article_img" name="article_img" src="{{ article['img'] }}" alt="俱乐部背景图" />
-                            <input type="hidden" name="article_img" id="i_article_img">
-                            <a class="elos-loadbutton" type="button" onclick="openBrowse('file1')">上传封面图</a>
-                            <input type="file" id="file1" name="file1" style="display:none;">
-                          </div>
-                        </div>
-                          <small style="color:red;">图片大小：500px * 300px 1M内 </small>
+                      <div id='edit' style="margin-top:30px;">{% raw article['paragraphs'] %}</div>
+                      <input type="hidden" name="paragraphs" id="paragraphs">
 									</section>
 								</fieldset>
 								<footer>
@@ -143,7 +109,6 @@
                     <div class="clearfix divider_dashed9"></div>
                     <div id="buttons">
                       <ul class="list_empty">
-                        <!-- <li><a id="init2" href="#" class="but_ok_2"><i class="fa fa-pencil fa-lg"></i> 编辑</a></li> -->
                         <li><a id="destroy2" href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> 保存</a></li>
                       </ul>
                     </div>
@@ -155,36 +120,6 @@
 					<!-- /# end post -->
 				</div>
 				<!-- end content left side -->
-
-				<!-- right sidebar starts -->
-				<div class="right_sidebar">
-
-					<div class="site-search-area">
-
-						<form method="get" id="site-searchform" action="blog.html">
-							<div>
-								<input class="input-text" name="s" id="s" value="Enter Search keywords..." onFocus="if (this.value == 'Enter Search keywords...') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Enter Search keywords...';}" type="text" />
-								<input id="searchsubmit" value="Search" type="submit" />
-							</div>
-						</form>
-
-					</div>
-					<!-- end site search -->
-
-					<div class="clearfix margin_top4"></div>
-
-					<!-- sidebar category widget -->
-					{% module Template("elos/block-sidebar-category.html", categories=categories, club=club) %}
-					<!-- /sidebar category widget -->
-
-					<div class="clearfix margin_top4"></div>
-
-					<!-- sidebar popular widget -->
-					{% module Template("elos/block-sidebar-popular.html", populars=populars, articles=articles) %}
-					<!-- /sidebar popular widget -->
-
-				</div>
-				<!-- end right sidebar -->
 
 			</div>
 

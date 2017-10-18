@@ -56,6 +56,7 @@ def map():
         (r'/elos/clubs/([a-z0-9]*)/articles/creat', getattr(elos, 'ElosBlogCreatHandler')),
         (r'/elos/clubs/([a-z0-9]*)/articles/([a-z0-9]*)/detail', getattr(elos, 'ElosBlogDetailHandler')),
         (r'/elos/clubs/([a-z0-9]*)/articles/([a-z0-9]*)/edit', getattr(elos, 'ElosBlogEditHandler')),
+        (r'/elos/clubs/([a-z0-9]*)/articles/([a-z0-9]*)/edit-content', getattr(elos, 'ElosBlogEditContentHandler')),
         (r'/elos/clubs/([a-z0-9]*)/articles/draft', getattr(elos, 'ElosBlogDraftHandler')),
         (r'/elos/clubs/([a-z0-9]*)/articles/publish', getattr(elos, 'ElosBlogPublishHandler')),
         (r'/elos/clubs/([a-z0-9]*)/blogs/user-info', getattr(elos, 'ElosBlogUserInfoHandler')),

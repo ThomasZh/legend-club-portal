@@ -84,7 +84,8 @@
 							<ul class="post_meta_links">
 								<li class="post_by"><a href="#">{{ article['nickname'] }}</a></li>
 								<li class="post_comments"><a href="#">{{ article['comment_num'] }} 条评论</a></li>
-                <li class="post_edit"><a href="/elos/clubs/{{club['_id']}}/articles/{{article['_id']}}/edit">编辑</a></li>
+                <li class="post_edit"><a href="/elos/clubs/{{club['_id']}}/articles/{{article['_id']}}/edit">标题编辑</a></li>
+								<li class="post_edit"><a href="/elos/clubs/{{club['_id']}}/articles/{{article['_id']}}/edit-content">内容编辑</a></li>
 							{% if article['_status'] != 100 %}
 								<li class="post_categoty"><a href="#" id="pub_btn">发布</a></li>
 							{% end %}
