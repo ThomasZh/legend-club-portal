@@ -73,7 +73,7 @@
 
 			<div class="container">
 
-				<div class="content_left">
+				<div class="content_left" style="padding-top:10px;">
 						<div class="cforms">
               <!-- uploading toast -->
               <div id="loadingToast" class="weui_loading_toast" style="display:none;">
@@ -98,15 +98,14 @@
               </div>
 							<form action="#" method="post" id="sky-form" class="sky-form">
 								<header>编辑 <strong>文章内容</strong></header>
-								<fieldset>
+								<fieldset style="padding-top:5px;">
                   <section>
                       <div id='edit' style="margin-top:30px;">{% raw article['paragraphs'] %}</div>
                       <input type="hidden" name="paragraphs" id="paragraphs">
 									</section>
 								</fieldset>
-								<footer>
+								<footer style="padding:0 15px;">
                   <div class="post_info_content">
-                    <div class="clearfix divider_dashed9"></div>
                     <div id="buttons">
                       <ul class="list_empty">
                         <li><a id="destroy2" href="#" class="but_wifi"><i class="fa fa-cloud-upload fa-lg"></i> 保存</a></li>
@@ -122,12 +121,6 @@
 				<!-- end content left side -->
 
 			</div>
-
-			<div class="clearfix margin_top7"></div>
-
-			<!-- footer -->
-			{% module Template("elos/block-footer.html", club=club, categories=categories, articles=articles) %}
-			<!-- footer -->
 
 			<div class="clearfix"></div>
 

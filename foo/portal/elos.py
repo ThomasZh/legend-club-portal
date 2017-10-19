@@ -1203,8 +1203,7 @@ class ElosBlogEditContentHandler(AuthorizationHandler):
                 access_token=access_token,
                 categories=categories,
                 articles=articles,
-                article=article_info,
-                populars=populars)
+                article=article_info)
 
 
 class ElosBlogDraftHandler(AuthorizationHandler):
