@@ -55,9 +55,15 @@
 	<link rel="stylesheet" href="{{ static_url('froala/css/plugins/fullscreen.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
-
 </head>
-
+<!-- <style media="screen">
+	.fixed{
+		position: fixed;
+		top:50px;
+		width: 760px;
+		height: 640px;
+	}
+</style> -->
 <body>
 
 
@@ -97,14 +103,14 @@
                   </div>
               </div>
 							<form action="#" method="post" id="sky-form" class="sky-form">
-								<header>编辑 <strong>文章内容</strong></header>
-								<fieldset style="padding-top:5px;">
+								<!-- <header>编辑 <strong>文章内容</strong></header> -->
+								<fieldset style="padding-top:5px;" id="cont-wrap">
                   <section>
                       <div id='edit' style="margin-top:30px;">{% raw article['paragraphs'] %}</div>
                       <input type="hidden" name="paragraphs" id="paragraphs">
 									</section>
 								</fieldset>
-								<footer style="padding:0 15px;">
+								<!-- <footer style="padding:0 15px;" id="footer">
                   <div class="post_info_content">
                     <div id="buttons">
                       <ul class="list_empty">
@@ -112,7 +118,7 @@
                       </ul>
                     </div>
                   </div>
-								</footer>
+								</footer> -->
 							</form>
 
 						</div>
@@ -147,14 +153,6 @@
 	<script src="{{ static_url('elos/js/scrolltotop/totop.js') }}" type="text/javascript"></script>
 	<!-- tabs -->
 	<script src="{{ static_url('elos/js/tabs/assets/js/responsive-tabs.min.js') }}" type="text/javascript"></script>
-
-	<!-- jquery jcarousel -->
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			jQuery('#mycarouselthree').jcarousel();
-		});
-	</script>
-
 	<!-- accordion -->
 	<script type="text/javascript" src="{{ static_url('elos/js/accordion/custom.js') }}"></script>
 	<!-- REVOLUTION SLIDER -->
@@ -344,6 +342,52 @@
         }
       });
 
+			$.FroalaEditor.DefineIcon('save', {NAME: 'save'});
+      $.FroalaEditor.RegisterCommand('save', {
+        title: '保存',
+        focus: false,
+        undo: false,
+        refreshAfterCallback: false,
+        callback: function () {
+						// e.preventDefault();
+						var title = $("#title").val();
+						var subtitle = $("#subtitle").val();
+						var img = $("#i_article_img").val();
+						var html = $('#edit').froalaEditor('html.get');
+						// $("#paragraphs").val(html);
+						// console.log(html);
+						var data = {
+							"title": title,
+							"subtitle": subtitle,
+							"img": img,
+							"paragraphs": html,
+						};
+						var json = JSON.stringify(data);
+						// console.log(json);
+						$.ajax({
+							type: "PUT",
+							url: "{{ API_DOMAIN }}/api/articles/{{ article['_id'] }}",
+							data: json,
+							dataType: "json",
+							contentType: 'application/json',
+							headers: {"Authorization":"Bearer {{access_token}}"},
+							success: function(data, status, xhr) {
+									weui.Loading.success();
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
+								$('.lostpwd-form-main-message').addClass('show error').html(XMLHttpRequest.status + ": 服务器异常,请稍后重试!");
+							},
+							complete: function(XMLHttpRequest, textStatus) {
+								this; // 调用本次AJAX请求时传递的options参数
+							}
+						});
+						console.log("Destroying Froala Editor...");
+						$('#edit').froalaEditor('destroy');
+						$('#edit').addClass('fr-view');
+        }
+      });
+
 			$('#edit').froalaEditor(
 				{
 					enter: $.FroalaEditor.ENTER_DIV,
@@ -355,24 +399,24 @@
 						'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
 						'|', 'insertLink', 'insertTable', 'insertHR',
 						'|', 'undo', 'redo', 'clearFormatting', 'html',
-						'|', 'insert','imageInfo'
+						'|', 'insert','imageInfo','save'
 					],
 					toolbarButtonsMD: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize',
 						'|', 'color', 'emoticons', 'paragraphFormat', 'paragraphStyle',
 						'|', 'align', 'formatOL', 'formatUL', 'outdent', 'indent',
 						'|', 'insertLink', 'insertHR',
 						'|', 'undo', 'redo', 'html',
-						'|', 'insert','imageInfo'
+						'|', 'insert','imageInfo','save'
 					],
 					toolbarButtonsSM: ['bold', 'italic', 'underline', 'fontFamily', 'fontSize',
 						'|', 'color', 'paragraphFormat', 'align', 'formatOL', 'formatUL',
 						'|', 'insertLink',
 						'|', 'undo', 'redo', 'html',
-						'|', 'insert','imageInfo'
+						'|', 'insert','imageInfo','save'
 					],
 					toolbarButtonsXS: ['bold', 'fontSize',
 						'|', 'align', 'formatOL', 'formatUL',
-						'|', 'insert','imageInfo'
+						'|', 'insert','imageInfo','save'
 					],
 				}
 			);
@@ -381,44 +425,9 @@
 				console.log("Initializing Froala Editor...");
 				$('#edit').removeClass('fr-view').froalaEditor();
 			});
-			$('#destroy2').on('click', function(e) {
-        e.preventDefault();
-        var title = $("#title").val();
-        var subtitle = $("#subtitle").val();
-        var img = $("#i_article_img").val();
-				var html = $('#edit').froalaEditor('html.get');
-        $("#paragraphs").val(html);
-				console.log(html);
-        var data = {
-          "title": title,
-          "subtitle": subtitle,
-          "img": img,
-          "paragraphs": html,
-        };
-        var json = JSON.stringify(data);
-        console.log(json);
-        $.ajax({
-          type: "PUT",
-          url: "{{ API_DOMAIN }}/api/articles/{{ article['_id'] }}",
-          data: json,
-          dataType: "json",
-          contentType: 'application/json',
-          headers: {"Authorization":"Bearer {{access_token}}"},
-          success: function(data, status, xhr) {
-              weui.Loading.success();
-          },
-          error: function(XMLHttpRequest, textStatus, errorThrown) {
-            console.log("XMLHttpRequest.status:" + XMLHttpRequest.status);
-            $('.lostpwd-form-main-message').addClass('show error').html(XMLHttpRequest.status + ": 服务器异常,请稍后重试!");
-          },
-          complete: function(XMLHttpRequest, textStatus) {
-            this; // 调用本次AJAX请求时传递的options参数
-          }
-        });
-				console.log("Destroying Froala Editor...");
-				$('#edit').froalaEditor('destroy');
-				$('#edit').addClass('fr-view');
-			});
+			// $('#destroy2').on('click', function(e) {
+      //
+			// });
 
 		});
 
